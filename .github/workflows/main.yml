@@ -1,0 +1,30 @@
+name: Deployment workflow
+on:
+    push:
+        tags: "deploy-test*"
+env:
+    DEPLOY_METHOD_PREVIEWS: {{ secrets.DEPLOY_METHOD_PREVIEWS }}
+    DESTINATIONPATH_PREVIEWS: {{ secrets.DESTINATIONPATH_PREVIEWS }}
+    SSH_PREVIEWS: {{ secrets.SSH_PREVIEWS }}
+    SSH_PREVIEWS_PORT: {{ secrets.SSH_PREVIEWS_PORT }}
+jobs:
+    deploy-student-site:
+        name: Deploy student site
+        runs-on: ubuntu-latest
+        if: contains(github.ref, 'tags/deploy-test')
+        steps:
+            - name: Install SSH Key
+              uses: shimataro/ssh-key-action@v2
+              with:
+                key: ${{ secrets.SSH_PRIVATE_KEY }} 
+                known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
+            - name: Adding Known Hosts
+              run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+            - name: Run test script
+              run: |
+                chmod +x ../../test.sh
+                ../../test.sh
+            - name: Run deploy script
+              run: |
+                chmod +x ../../deploy.sh
+                ../../deploy.sh
