@@ -1,0 +1,51 @@
+- firstname: "Humberto"
+  lastname: "Llavador"
+  sort-by: "llavador"
+  institutions:
+    - "Universitat Pompeu Fabra"
+  image: "contributor-humberto-llavador.jpg"
+  teams:
+    - "Authors"
+  roles:
+    - "Author"
+- firstname: "Marcus"
+  lastname: "Giamattei"
+  sort-by: "giamattei"
+  institutions:
+    - "Bard College Berlin"
+    - "University of Passau"
+  image: "contributor-marcus-giamattei.jpg"
+  teams:
+    - "Authors"
+  roles:
+    - "Author"
+- firstname: "Johann"
+  lastname: "Graf Lambsdorff"
+  sort-by: "graf lambsdorff"
+  institutions:
+    - "University of Passau"
+  image: "contributor-johann-graf-lambsdorff.jpg"
+  teams:
+    - "Authors"
+  roles:
+    - "Author"
+- firstname: "John"
+  lastname: "H. Miller"
+  sort-by: "miller john"
+  institutions:
+    - "Carnegie Mellon University"
+  image: "contributor-john-h-miller.jpg"
+  teams:
+    - "Authors"
+  roles:
+    - "Author"
+- firstname: "Ted"
+  lastname: "Bergstrom"
+  sort-by: "bergstrom ted"
+  institutions:
+    - "University of California, Santa Barbara"
+  image: "contributor-ted-bergstrom.jpg"
+  teams:
+    - "Authors"
+  roles:
+    - "Author"

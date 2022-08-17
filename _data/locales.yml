@@ -1,0 +1,1049 @@
+# Localise your project here by adding translations
+# for phrases in the languages you're using. Some are
+# already defined for English and French.
+# For right-to-left languages, add direction: "rtl".
+
+# ab:
+#   iso-name: "Abkhaz"
+#   local-name: ""
+# aa:
+#   iso-name: "Afar"
+#   local-name: ""
+# af:
+#   iso-name: "Afrikaans"
+#   local-name: ""
+# ak:
+#   iso-name: "Akan"
+#   local-name: ""
+# sq:
+#   iso-name: "Albanian"
+#   local-name: ""
+# am:
+#   iso-name: "Amharic"
+#   local-name: ""
+# ar:
+#   iso-name: "Arabic"
+#   local-name: ""
+# an:
+#   iso-name: "Aragonese"
+#   local-name: ""
+# hy:
+#   iso-name: "Armenian"
+#   local-name: ""
+# as:
+#   iso-name: "Assamese"
+#   local-name: ""
+# av:
+#   iso-name: "Avaric"
+#   local-name: ""
+# ae:
+#   iso-name: "Avestan"
+#   local-name: ""
+# ay:
+#   iso-name: "Aymara"
+#   local-name: ""
+# az:
+#   iso-name: "Azerbaijani"
+#   local-name: ""
+# bm:
+#   iso-name: "Bambara"
+#   local-name: ""
+# ba:
+#   iso-name: "Bashkir"
+#   local-name: ""
+# eu:
+#   iso-name: "Basque"
+#   local-name: ""
+# be:
+#   iso-name: "Belarusian"
+#   local-name: ""
+# bn:
+#   iso-name: "Bengali, Bangla"
+#   local-name: ""
+# bh:
+#   iso-name: "Bihari"
+#   local-name: ""
+# bi:
+#   iso-name: "Bislama"
+#   local-name: ""
+# bs:
+#   iso-name: "Bosnian"
+#   local-name: ""
+# br:
+#   iso-name: "Breton"
+#   local-name: ""
+# bg:
+#   iso-name: "Bulgarian"
+#   local-name: ""
+# my:
+#   iso-name: "Burmese"
+#   local-name: ""
+# ca:
+#   iso-name: "Catalan"
+#   local-name: ""
+# ch:
+#   iso-name: "Chamorro"
+#   local-name: ""
+# ce:
+#   iso-name: "Chechen"
+#   local-name: ""
+# ny:
+#   iso-name: "Chichewa, Chewa, Nyanja"
+#   local-name: ""
+# zh:
+#   iso-name: "Chinese"
+#   local-name: ""
+# cv:
+#   iso-name: "Chuvash"
+#   local-name: ""
+# kw:
+#   iso-name: "Cornish"
+#   local-name: ""
+# co:
+#   iso-name: "Corsican"
+#   local-name: ""
+# cr:
+#   iso-name: "Cree"
+#   local-name: ""
+# hr:
+#   iso-name: "Croatian"
+#   local-name: ""
+# cs:
+#   iso-name: "Czech"
+#   local-name: ""
+# da:
+#   iso-name: "Danish"
+#   local-name: ""
+# dv:
+#   iso-name: "Divehi, Dhivehi, Maldivian"
+#   local-name: ""
+# nl:
+#   iso-name: "Dutch"
+#   local-name: ""
+# dz:
+#   iso-name: "Dzongkha"
+#   local-name: ""
+en:
+  iso-name: "English"
+  local-name: "English"
+  project:
+    # Project items are set for the parent language
+    # in meta.yml and can be overridden here.
+    organisation: ""
+    url: ""
+    email: ""
+    name: "Experiencing Economics"
+    creator: "The CORE Project"
+    description: ""
+    image: ""
+    credit: ""
+  nav:
+    home: "Home"
+    menu: "Contents"
+    next: "Next"
+    previous: "Previous"
+    back: "←"
+  links:
+    anchor-link: "Link"
+  home:
+    read: "Read"
+    html-title: "Experiencing Economics"
+  input:
+    submit: "Submit"
+    send: "Send"
+    show: "Show"
+    hide: "Hide"
+  search:
+    placeholder: ""
+    search-title: "Search"
+    placeholder-searching: "Searching..."
+    notice: ""
+    search-results: "Search results"
+    results-for-singular: "result found for"
+    results-for-plural: "results found for"
+    results-for-none: "No results found for"
+    jump-to-first: "Jump to first result ↓"
+  contact:
+    placeholder:
+      name: "Name"
+      email: "Email address"
+      message: "Message"
+  questions:
+    check-answers-button: "Check my answers"
+    feedback-correct: "Correct!"
+    feedback-incorrect: "Incorrect"
+    feedback-unfinished: "You haven't selected all the correct answers."
+  themes:
+    legend-heading: "Themes and capstone units"
+  beta:
+    label: "Beta"
+    message: "This book is a beta edition. It is in development, and we need your input to improve it. [Please send us feedback here](http://www.core-econ.org/contact-us/)."
+    link: "http://www.core-econ.org/contact-us/"
+  annotator:
+    show-sidebar-tooltip-title: "Open annotations"
+    show-sidebar-tooltip-description: "Tap here to show the annotations sidebar. Select text to highlight and create notes on this page."
+    show-annotated-text-tooltip-title: "Highlight annotations"
+    show-annotated-text-tooltip-description: "Tap here to show or hide the annotation highlights on this page."
+  accordion:
+    show-all: "Expand all"
+    close-all: "Close all"
+  figures:
+    see-owid: "View this data at OWiD"
+    see-more: "See more"
+    link-to-online-prefix: "To explore all of the slides in this figure, see the online version at " # note hard space at end
+    link-to-online-suffix: "."
+    options-button: "Graph options"
+    see-interactive-graph: "View interactive graph"
+    see-static-graph: "View static graph"
+    enter-fullscreen: "Fullscreen"
+    exit-fullscreen: "Exit fullscreen"
+  video:
+    options-button: "Other video options"
+  cross-references:
+    pre-page-number: "(page "
+    post-page-number: ")"
+  footer:
+    text: "This ebook is developed by the CORE project. More information and additional resources for learning and teaching can be found at [www.core-econ.org](https://www.core-econ.org)."
+    credit: "Produced by <a href='https://electricbookworks.com'>Electric Book Works</a>"
+    version: "Version"
+  bookmarks:
+    bookmark: "Bookmark"
+    bookmarks: "Bookmarks"
+    bookmarks-tip: "Tap or select text, and then tap the bookmark icon to save a bookmark. Bookmarks are saved in your cache. Clearing cached data will remove them."
+    bookmarks-tip-sync-enabled: "Tap or select text, and then tap the bookmark icon to save a bookmark. Unless you're <a class='bookmark-dialog-login' href='/login'>logged in</a>, bookmarks are saved in your browser, and clearing your cache will remove them."
+    last-location: "Your last visit"
+    last-locations-tip: "The last time you visited, you stopped reading here."
+    last-location-prompt: "Continue from your last visit?"
+    delete-bookmark: "Delete"
+    delete-all: "Delete all"
+    delete-bookmark-confirm: "Tap again to confirm"
+    delete-all-bookmarks-confirm: "Tap again to confirm"
+    bookmarks-shifted-warning: "A bookmark doesn't seem to match its original place exactly. The content on this page may have changed."
+  controls:
+    dark-mode: "Toggle dark mode"
+    language-select: "Select language"
+  pdf:
+    notice: "For instructors' use only. Please do not share with students."
+  footnotes:
+    close-footnote: "Close footnote"
+    reversefootnote-alt: "Back to text"
+# eo:
+#   iso-name: "Esperanto"
+#   local-name: ""
+# et:
+#   iso-name: "Estonian"
+#   local-name: ""
+# ee:
+#   iso-name: "Ewe"
+#   local-name: ""
+# fo:
+#   iso-name: "Faroese"
+#   local-name: ""
+# fj:
+#   iso-name: "Fijian"
+#   local-name: ""
+# fi:
+#   iso-name: "Finnish"
+#   local-name: ""
+# fr:
+#   iso-name: "French"
+#   local-name: "Français"
+#   project:
+#     organisation: "CORE"
+#     url: ""
+#     email: ""
+#     name: "L'Économie"
+#     creator: "L'équipe CORE"
+#     description: "Une introduction complète aux sciences économiques et à l'économie, centrée sur l'étudiant et motivée par des problèmes et des données du monde réel."
+#     image: ""
+#     credit: "Construit avec [l'Electric Book](http://electricbook.works)"
+#   nav:
+#     home: "Accueil"
+#     menu: "Table des matières"
+#     next: "Suivant"
+#     previous: "Précédent"
+#     back: "←"
+    # back: "Revenir au texte"
+  # links:
+  #   anchor-link: "Lien"
+  # home:
+  #   read: "Lire"
+  #   html-title: "L'économie"
+  # input:
+  #   submit: "Soumettre"
+  #   send: "Envoyer"
+    # show: "Montrer"
+    # hide: "Cacher"
+  # search:
+  #   placeholder: ""
+  #   search-title: "Recherche"
+  #   placeholder-searching: "Recherche..."
+  #   notice: ""
+  #   search-results: "Résultats de la recherche"
+  #   results-for-singular: "résultat trouvé pour"
+  #   results-for-plural: "résultats trouvés pour"
+  #   results-for-none: "Aucun résultat trouvé pour"
+  #   jump-to-first: "Aller au premier résultat ↓"
+  # contact:
+  #   placeholder:
+  #     name: "Nom"
+  #     email: "L’adresse e-mail"
+  #     message: "Message"
+  # questions:
+  #   check-answers-button: "Vérifier mes réponses"
+  #   feedback-correct: "Correct!"
+  #   feedback-incorrect: "Incorrect"
+  #   feedback-unfinished: "Vous n'avez pas sélectionné toutes les bonnes réponses."
+  # themes:
+  #   legend-heading: "Thèmes et unités thématiques"
+  # beta:
+  #   label: "En cours de développement"
+  #   message: "Cette traduction est en cours de développement. N'hésitez pas à revenir vers nous si vous pensez que nous pouvons l'améliorer. [Vous pouvez nous contacter ici](http://www.core-econ.org/contact-us/)."
+  #   link: "http://www.core-econ.org/contact-us/"
+  # annotator:
+  #   show-sidebar-tooltip-title: "Ouvrir l'outil d'annotation"
+  #   show-sidebar-tooltip-description: "Cliquer ici pour afficher la barre latérale des annotations. Vous pouvez sélectionner le texte à surligner et à annoter sur cette page."
+  #   show-annotated-text-tooltip-title: "Surligner les annotations"
+  #   show-annotated-text-tooltip-description: "Cliquer ici pour afficher ou masquer les annotations surlignées sur cette page."
+  # accordion:
+  #   show-all: "Montre tout"
+  #   close-all: "Ferme tout"
+  # figures:
+  #   see-owid: "Voir ces données sur OWiD"
+  #   see-more: "Voir plus"
+  #   link-to-online-prefix: "Pour explorer toutes les diapositives de cette figure, voir la version en ligne à " # note hard space at end
+  #   link-to-online-suffix: "."
+  # video:
+  #   options-button: "Other video options"
+  # cross-references:
+  #   pre-page-number: "(page "
+  #   post-page-number: ")"
+  # footer:
+  #   text: "Cet eBook est produit par le projet CORE. Davantage d'informations et des ressources complémentaires pour l'apprentissage et l'enseignement peuvent être trouvées sur [www.core-econ.org](https://www.core-econ.org)."
+  #   credit: "Produit par <a href='https://electricbookworks.com'>Electric Book Works</a>"
+  #   version: "Version"
+  # bookmarks:
+  #   bookmark: "Signet"
+  #   bookmarks: "Signets"
+  #   bookmarks-tip: "Sélectionnez du texte, puis appuyez sur l'icône de signet pour enregistrer un signet."
+  #   last-location: "Dernier lieu"
+  #   last-locations-tip: "La dernière fois que vous avez visité, vous avez arrêté de lire ici."
+  #   last-location-prompt: "Continuez depuis votre dernière visite?"
+  #   delete-bookmark: "Supprimer"
+  #   delete-bookmark-warning: "Êtes vous sûr de vouloir supprimer ce marque-page?"
+  #   delete-all: "Supprimer tout"
+  #   delete-all-bookmarks-warning: "Cela supprimera tous vos signets. Continuer?"
+  #   delete-all-last-locations-warning: "Cela supprimera tous vos emplacements précédents. Continuer?"
+  #   bookmarks-shifted-warning: "Un signet ne semble pas correspondre exactement à son emplacement d'origine. Le contenu de cette page a peut-être changé."
+  # controls:
+  #   dark-mode: "Activez le mode sombre"
+  #   language-select: "Sélectionnez la langue"
+  # pdf:
+  #   notice: ""
+  # footnotes:
+  #   close-footnote: ""
+  #   reversefootnote-alt: ""
+# ff:
+#   iso-name: "Fula, Fulah, Pulaar, Pular"
+#   local-name: ""
+# gl:
+#   iso-name: "Galician"
+#   local-name: ""
+# ka:
+#   iso-name: "Georgian"
+#   local-name: ""
+# de:
+#   iso-name: "German"
+#   local-name: ""
+# el:
+#   iso-name: "Greek (modern)"
+#   local-name: ""
+# gn:
+#   iso-name: "Guaraní"
+#   local-name: ""
+# gu:
+#   iso-name: "Gujarati"
+#   local-name: ""
+# ht:
+#   iso-name: "Haitian, Haitian Creole"
+#   local-name: ""
+# ha:
+#   iso-name: "Hausa"
+#   local-name: ""
+# he:
+#   iso-name: "Hebrew (modern)"
+#   local-name: ""
+# hz:
+#   iso-name: "Herero"
+#   local-name: ""
+# hi:
+#   iso-name: "Hindi"
+#   local-name: ""
+# ho:
+#   iso-name: "Hiri Motu"
+#   local-name: ""
+# hu:
+#   iso-name: "Hungarian"
+#   local-name: ""
+# ia:
+#   iso-name: "Interlingua"
+#   local-name: ""
+# id:
+#   iso-name: "Indonesian"
+#   local-name: ""
+# ie:
+#   iso-name: "Interlingue"
+#   local-name: ""
+# ga:
+#   iso-name: "Irish"
+#   local-name: ""
+# ig:
+#   iso-name: "Igbo"
+#   local-name: ""
+# ik:
+#   iso-name: "Inupiaq"
+#   local-name: ""
+# io:
+#   iso-name: "Ido"
+#   local-name: ""
+# is:
+#   iso-name: "Icelandic"
+#   local-name: ""
+# it:
+#   iso-name: "Italian"
+#   local-name: "Italiano"
+#   project:
+    # Project items are set for the parent language
+    # in meta.yml and can be overridden here.
+  #   organisation: ""
+  #   url: ""
+  #   email: ""
+  #   name: "L'economia"
+  #   creator: "The CORE team"
+  #   description: "Un' introduzione completa della scienza economica e dell'economia; incentrata sugli studenti e motivata da problemi e dati del mondo reale."
+  #   image: ""
+  #   credit: ""
+  # nav:
+  #   home: "Home"
+  #   menu: "Indice"
+  #   next: "Successiva"
+  #   previous: "Precedente"
+  #   back: "←"
+  # links:
+  #   anchor-link: "Collegamento"
+  # home:
+  #   read: "Leggi"
+  #   html-title: "L'economia"
+  # input:
+  #   submit: "Inoltra"
+  #   send: "Invia"
+  # search:
+  #   placeholder: ""
+  #   search-title: "Cerca"
+  #   placeholder-searching: "Sto cercando..."
+  #   notice: ""
+  #   search-results: "Risultati della ricerca"
+  #   results-for-singular: "risultato per"
+  #   results-for-plural: "risultati per"
+  #   results-for-none: "Nessun risultato per"
+  #   jump-to-first: "Vai al primo risultato ↓"
+  # contact:
+  #   placeholder:
+  #     name: "Nome"
+  #     email: "Indirizzo email"
+  #     message: "Messaggio"
+  # questions:
+  #   check-answers-button: "Verifica le risposte"
+  #   feedback-correct: "Corretta!"
+  #   feedback-incorrect: "Errata"
+  #   feedback-unfinished: "Non hai selezionato tutte le risposte corrette."
+  # themes:
+  #   legend-heading: "Temi e unità tematiche"
+  # beta:
+  #   label: "La modificazione"
+  #   message: "L'edizione italiana è un leggero adattamento dell'edizione originale."
+  #   link: "http://www.core-econ.org/contact-us/"
+  # annotator:
+  #   show-sidebar-tooltip-title: "Apri le note"
+  #   show-sidebar-tooltip-description: "Clicca qui per le note a margine. Seleziona il testo per evidenziare e creare una nota in questa pagina."
+  #   show-annotated-text-tooltip-title: "Evidenzia le note"
+  #   show-annotated-text-tooltip-description: "Clicca qui per mostrare o nascondere l'evidenziazione delle note in questa pagina."
+  # accordion:
+  #   show-all: "Espandi tutto"
+  #   close-all: "Chiudi tutto"
+  # figures:
+  #   see-owid: "Visualizza questi dati su OWiD"
+  #   see-more: "Vedi altro"
+  #   link-to-online-prefix: "Per esplorare tutte le diapositive in questa figura, vedere la versione online all'indirizzo " # note hard space at end
+  #   link-to-online-suffix: "."
+  # video:
+  #   options-button: "Other video options"
+  # cross-references:
+  #   pre-page-number: "(pagina "
+  #   post-page-number: ")"
+  # footer:
+  #   text: "Questo ebook è stato sviluppato dal progetto CORE. Ulteriori informazioni e risorse riguardo l'apprendimento e l'insegnamento posso essere trovate su [www.core-econ.org](http://www.core-econ.org)."
+  #   credit: "Produced by <a href='https://electricbookworks.com'>Electric Book Works</a>"
+  #   version: "Version"
+  # bookmarks:
+  #   bookmark: "Segnalibro"
+  #   bookmarks: "Bookmarks"
+  #   bookmarks-tip: "Select text, and then tap the bookmark icon to save a bookmark."
+  #   last-location: "Ultima posizione"
+  #   last-locations-tip: "The last time you visited, you stopped reading here."
+  #   last-location-prompt: "Continue from your last visit?"
+  #   delete-bookmark: "Delete"
+  #   delete-bookmark-warning: "Are you sure you want to delete this bookmark?"
+  #   delete-all: "Delete all"
+  #   delete-all-bookmarks-warning: "This will delete all your bookmarks. Continue?"
+  #   delete-all-last-locations-warning: "This will delete all your previous locations. Continue?"
+  #   bookmarks-shifted-warning: "A bookmark doesn't seem to match its original place exactly. The content on this page may have changed."
+  # controls:
+  #   dark-mode: "Attiva la modalità scura"
+  #   language-select: "Scegli la lingua"
+  # pdf:
+  #   notice: ""
+  # footnotes:
+  #   close-footnote: ""
+  #   reversefootnote-alt: ""
+# iu:
+#   iso-name: "Inuktitut"
+#   local-name: ""
+# ja:
+#   iso-name: "Japanese"
+#   local-name: ""
+# jv:
+#   iso-name: "Javanese"
+#   local-name: ""
+# kl:
+#   iso-name: "Kalaallisut, Greenlandic"
+#   local-name: ""
+# kn:
+#   iso-name: "Kannada"
+#   local-name: ""
+# kr:
+#   iso-name: "Kanuri"
+#   local-name: ""
+# ks:
+#   iso-name: "Kashmiri"
+#   local-name: ""
+# kk:
+#   iso-name: "Kazakh"
+#   local-name: ""
+# km:
+#   iso-name: "Khmer"
+#   local-name: ""
+# ki:
+#   iso-name: "Kikuyu, Gikuyu"
+#   local-name: ""
+# rw:
+#   iso-name: "Kinyarwanda"
+#   local-name: ""
+# ky:
+#   iso-name: "Kyrgyz"
+#   local-name: ""
+# kv:
+#   iso-name: "Komi"
+#   local-name: ""
+# kg:
+#   iso-name: "Kongo"
+#   local-name: ""
+# ko:
+#   iso-name: "Korean"
+#   local-name: ""
+# ku:
+#   iso-name: "Kurdish"
+#   local-name: ""
+# kj:
+#   iso-name: "Kwanyama, Kuanyama"
+#   local-name: ""
+# la:
+#   iso-name: "Latin"
+#   local-name: ""
+# lb:
+#   iso-name: "Luxembourgish, Letzeburgesch"
+#   local-name: ""
+# lg:
+#   iso-name: "Ganda"
+#   local-name: ""
+# li:
+#   iso-name: "Limburgish, Limburgan, Limburger"
+#   local-name: ""
+# ln:
+#   iso-name: "Lingala"
+#   local-name: ""
+# lo:
+#   iso-name: "Lao"
+#   local-name: ""
+# lt:
+#   iso-name: "Lithuanian"
+#   local-name: ""
+# lu:
+#   iso-name: "Luba-Katanga"
+#   local-name: ""
+# lv:
+#   iso-name: "Latvian"
+#   local-name: ""
+# gv:
+#   iso-name: "Manx"
+#   local-name: ""
+# mk:
+#   iso-name: "Macedonian"
+#   local-name: ""
+# mg:
+#   iso-name: "Malagasy"
+#   local-name: ""
+# ms:
+#   iso-name: "Malay"
+#   local-name: ""
+# ml:
+#   iso-name: "Malayalam"
+#   local-name: ""
+# mt:
+#   iso-name: "Maltese"
+#   local-name: ""
+# mi:
+#   iso-name: "Māori"
+#   local-name: ""
+# mr:
+#   iso-name: "Marathi (Marāṭhī)"
+#   local-name: ""
+# mh:
+#   iso-name: "Marshallese"
+#   local-name: ""
+# mn:
+#   iso-name: "Mongolian"
+#   local-name: ""
+# na:
+#   iso-name: "Nauruan"
+#   local-name: ""
+# nv:
+#   iso-name: "Navajo, Navaho"
+#   local-name: ""
+# nd:
+#   iso-name: "Northern Ndebele"
+#   local-name: ""
+# ne:
+#   iso-name: "Nepali"
+#   local-name: ""
+# ng:
+#   iso-name: "Ndonga"
+#   local-name: ""
+# nb:
+#   iso-name: "Norwegian Bokmål"
+#   local-name: ""
+# nn:
+#   iso-name: "Norwegian Nynorsk"
+#   local-name: ""
+# no:
+#   iso-name: "Norwegian"
+#   local-name: ""
+# ii:
+#   iso-name: "Nuosu"
+#   local-name: ""
+# nr:
+#   iso-name: "Southern Ndebele"
+#   local-name: ""
+# oc:
+#   iso-name: "Occitan"
+#   local-name: ""
+# oj:
+#   iso-name: "Ojibwe, Ojibwa"
+#   local-name: ""
+# cu:
+#   iso-name: "Old Church Slavonic, Church Slavonic, Old Bulgarian"
+#   local-name: ""
+# om:
+#   iso-name: "Oromo"
+#   local-name: ""
+# or:
+#   iso-name: "Oriya"
+#   local-name: ""
+# os:
+#   iso-name: "Ossetian, Ossetic"
+#   local-name: ""
+# pa:
+#   iso-name: "Panjabi, Punjabi"
+#   local-name: ""
+# pi:
+#   iso-name: "Pāli"
+#   local-name: ""
+# fa:
+#   iso-name: "فارسی"
+#   local-name: "فارسی"
+#   direction: "rtl"
+#   project:
+#     organisation: ""
+#     url: ""
+#     email: ""
+#     name: "اقتصاد"
+#     creator: "The CORE team"
+#     description: ""
+#     image: ""
+#     credit: ""
+#   nav:
+#     home: "خانه"
+#     menu: "فهرست"
+  #   next: "بعدی"
+  #   previous: "قبلی"
+  #   back: "←"
+  # links:
+  #   anchor-link: "ارتباط دادن"
+  # home:
+  #   read: "اینجا بخوانید"
+  #   html-title: "اقتصاد"
+  # input:
+  #   submit: "تایید"
+  #   send: "فرستاده شود"
+  # search:
+  #   placeholder: ""
+  #   placeholder-searching: "جست‌و‌جو..."
+  #   search-title: "جست‌و‌جو"
+  #   notice: ""
+  #   search-results: "Search results"
+  #   results-for-singular: "result found for"
+  #   results-for-plural: "results found for"
+  #   results-for-none: "No results found for"
+  #   jump-to-first: "Jump to first result ↓"
+  # contact:
+  #   placeholder:
+  #     name: "نام"
+  #     email: "آدرس ایمیل"
+  #     message: "پیام"
+  # questions:
+  #   check-answers-button: "پاسخ‌ها بررسی شوند"
+  #   feedback-correct: "درست!"
+  #   feedback-incorrect: "نادرست"
+  #   feedback-unfinished: "شما همه پاسخ‌های درست را انتخاب نکرده‌اید."
+  # themes:
+  #   legend-heading: "فهرست‌ها و موضوعات فصل‌ها"
+  # beta:
+  #   label: "سایت در حال بروز رسانی می‌باشد"
+  #   message: "این ترجمه در حال بروز رسانی است. ما به کمک شما برای بهتر کردن این سایت نیاز داریم. [لطفا نکات و نظرتتان را برای ما بفرستید](https://iranacademia.com/)"
+  #   link: "https://iranacademia.com/"
+  # annotator:
+  #   show-sidebar-tooltip-title: "Open annotations"
+  #   show-sidebar-tooltip-description: "Tap here to show the annotations sidebar. Select text to highlight and create notes on this page."
+  #   show-annotated-text-tooltip-title: "Highlight annotations"
+  #   show-annotated-text-tooltip-description: "Tap here to show or hide the annotation highlights on this page."
+  # accordion:
+  #   show-all: "Show all"
+  #   close-all: "Close all"
+  # figures:
+  #   see-owid: "این داده ها را در OWiD مشاهده کنید"
+  #   see-more: "See more"
+  #   link-to-online-prefix: "To explore all of the slides in this figure, see the online version at " # note hard space at end
+  #   link-to-online-suffix: "."
+  # video:
+  #   options-button: "Other video options"
+  # cross-references:
+  #   pre-page-number: "(page "
+  #   post-page-number: ")"
+  # footer:
+  #   text: "This ebook is developed by the CORE project. More information and additional resources for learning and teaching can be found at [www.core-econ.org](https://www.core-econ.org)."
+  #   credit: "Produced by <a href='https://electricbookworks.com'>Electric Book Works</a>"
+  #   version: "Version"
+  # bookmarks:
+  #   bookmark: "Bookmark"
+  #   bookmarks: "Bookmarks"
+  #   bookmarks-tip: "Select text, and then tap the bookmark icon to save a bookmark."
+  #   last-location: "Your last visit"
+  #   last-locations-tip: "The last time you visited, you stopped reading here."
+  #   last-location-prompt: "Continue from your last visit?"
+  #   delete-bookmark: "Delete"
+  #   delete-bookmark-warning: "Are you sure you want to delete this bookmark?"
+    # delete-all: "Delete all"
+    # delete-all-bookmarks-warning: "This will delete all your bookmarks. Continue?"
+    # delete-all-last-locations-warning: "This will delete all your previous locations. Continue?"
+    # bookmarks-shifted-warning: "A bookmark doesn't seem to match its original place exactly. The content on this page may have changed."
+  # controls:
+  #   dark-mode: ""
+  #   language-select: ""
+  # pdf:
+  #   notice: ""
+  # footnotes:
+  #   close-footnote: ""
+  #   reversefootnote-alt: ""
+# pl:
+#   iso-name: "Polish"
+#   local-name: ""
+# ps:
+#   iso-name: "Pashto, Pushto"
+#   local-name: ""
+# pt:
+#   iso-name: "Portuguese"
+#   local-name: ""
+# qu:
+#   iso-name: "Quechua"
+#   local-name: ""
+# rm:
+#   iso-name: "Romansh"
+#   local-name: ""
+# rn:
+#   iso-name: "Kirundi"
+#   local-name: ""
+# ro:
+#   iso-name: "Romanian"
+#   local-name: ""
+# ru:
+#   iso-name: "Russian"
+#   local-name: ""
+# sa:
+#   iso-name: "Sanskrit (Saṁskṛta)"
+#   local-name: ""
+# sc:
+#   iso-name: "Sardinian"
+#   local-name: ""
+# sd:
+#   iso-name: "Sindhi"
+#   local-name: ""
+# se:
+#   iso-name: "Northern Sami"
+#   local-name: ""
+# sm:
+#   iso-name: "Samoan"
+#   local-name: ""
+# sg:
+#   iso-name: "Sango"
+#   local-name: ""
+# sr:
+#   iso-name: "Serbian"
+#   local-name: ""
+# gd:
+#   iso-name: "Scottish Gaelic, Gaelic"
+#   local-name: ""
+# sn:
+#   iso-name: "Shona"
+#   local-name: ""
+# si:
+#   iso-name: "Sinhala, Sinhalese"
+#   local-name: ""
+# sk:
+#   iso-name: "Slovak"
+#   local-name: ""
+# sl:
+#   iso-name: "Slovene"
+#   local-name: ""
+# so:
+#   iso-name: "Somali"
+#   local-name: ""
+# st:
+#   iso-name: "Southern Sotho"
+#   local-name: ""
+# es:
+#   iso-name: "Spanish"
+#   local-name: "Español"
+#   project:
+    # Project items are set for the parent language
+    # in meta.yml and can be overridden here.
+  #   organisation: ""
+  #   url: ""
+  #   email: ""
+  #   name: "La Economía"
+  #   creator: "El equipo de CORE"
+  #   description: ""
+  #   image: ""
+  #   credit: ""
+  # nav:
+  #   home: "Inicio"
+  #   menu: "Contenidos"
+  #   next: "Siguiente"
+  #   previous: "Anterior"
+  #   back: "←"
+  # links:
+  #   anchor-link: "Enlace"
+  # home:
+  #   read: "Leer"
+  #   html-title: "La Economía"
+  # input:
+  #   submit: "Enviar"
+  #   send: "Enviar"
+  # search:
+  #   placeholder: ""
+  #   search-title: "Buscar"
+  #   placeholder-searching: "Buscando..."
+  #   notice: ""
+  #   search-results: "Resultados de la búsqueda"
+  #   results-for-singular: "resultado encontrado para"
+  #   results-for-plural: "resultados encontrados para"
+  #   results-for-none: "No se encontraron resultados para"
+  #   jump-to-first: "Ir al primer resultado ↓"
+  # contact:
+  #   placeholder:
+  #     name: "Nombre"
+  #     email: "Correo electrónico"
+  #     message: "Mensaje"
+  # questions:
+  #   check-answers-button: "Validar mis respuestas"
+  #   feedback-correct: "¡Correcto!"
+  #   feedback-incorrect: "Incorrecto"
+  #   feedback-unfinished: "No ha seleccionado todas las respuestas correctas."
+  # themes:
+  #   legend-heading: "Temas y capítulos integradores"
+  # beta:
+  #   label: "Beta"
+  #   message: "Este libro es una edición beta. Está actualmente en desarrollo, y necesitamos de sus aportes para mejorarlo. [Por favor envíenos retroalimentación aquí](http://www.core-econ.org/contact-us/)."
+  #   link: "http://www.core-econ.org/contact-us/"
+  # annotator:
+  #   show-sidebar-tooltip-title: "Anotaciones abiertas"
+  #   show-sidebar-tooltip-description: "Ingrese aquí para mostrar la barra de anotaciones. Seleccione texto para resaltarlo y crear notas en esta página."
+  #   show-annotated-text-tooltip-title: "Resaltar anotaciones"
+  #   show-annotated-text-tooltip-description: "Ingrese aquí para mostrar u ocultar las anotaciones resaltadas en esta página."
+  # accordion:
+  #   show-all: "Expandir todo"
+  #   close-all: "Cerrar todo"
+  # figures:
+  #   see-owid: "Ver estos datos en OWiD"
+  #   see-more: "Ver más"
+  #   link-to-online-prefix: "Para explorar todas las diapositivas de esta figura, ver la versión en línea en " # note hard space at end
+  #   link-to-online-suffix: "."
+  # video:
+  #   options-button: "Other video options"
+  # cross-references:
+  #   pre-page-number: "(página "
+  #   post-page-number: ")"
+  # footer:
+  #   text: "Este libro electrónico es desarrollado por el proyecto CORE. Puede encontrar más información y recursos adicionales para aprender y enseñar en [www.core-econ.org](https://www.core-econ.org)."
+  #   credit: "Producido por <a href='https://electricbookworks.com'>Electric Book Works</a>"
+  #   version: "Versión"
+  # bookmarks:
+  #   bookmark: "Marcador"
+  #   bookmarks: "Bookmarks"
+  #   bookmarks-tip: "Select text, and then tap the bookmark icon to save a bookmark."
+  #   last-location: "Última ubicación"
+  #   last-locations-tip: "The last time you visited, you stopped reading here."
+  #   last-location-prompt: "Continue from your last visit?"
+  #   delete-bookmark: "Delete"
+  #   delete-bookmark-warning: "Are you sure you want to delete this bookmark?"
+  #   delete-all: "Delete all"
+  #   delete-all-bookmarks-warning: "This will delete all your bookmarks. Continue?"
+  #   delete-all-last-locations-warning: "This will delete all your previous locations. Continue?"
+  #   bookmarks-shifted-warning: "A bookmark doesn't seem to match its original place exactly. The content on this page may have changed."
+  # controls:
+  #   dark-mode: "Activar el modo oscuro"
+  #   language-select: "Seleccione idioma"
+  # pdf:
+  #   notice: "Para uso exclusivo de docentes. Por favor, no compartir con estudiantes."
+  # footnotes:
+  #   close-footnote: ""
+  #   reversefootnote-alt: ""
+# su:
+#   iso-name: "Sundanese"
+#   local-name: ""
+# sw:
+#   iso-name: "Swahili"
+#   local-name: ""
+# ss:
+#   iso-name: "Swati"
+#   local-name: ""
+# sv:
+#   iso-name: "Swedish"
+#   local-name: ""
+# ta:
+#   iso-name: "Tamil"
+#   local-name: ""
+# te:
+#   iso-name: "Telugu"
+#   local-name: ""
+# tg:
+#   iso-name: "Tajik"
+#   local-name: ""
+# th:
+#   iso-name: "Thai"
+#   local-name: ""
+# ti:
+#   iso-name: "Tigrinya"
+#   local-name: ""
+# bo:
+#   iso-name: "Tibetan Standard, Tibetan, Central"
+#   local-name: ""
+# tk:
+#   iso-name: "Turkmen"
+#   local-name: ""
+# tl:
+#   iso-name: "Tagalog"
+#   local-name: ""
+# tn:
+#   iso-name: "Tswana"
+#   local-name: ""
+# to:
+#   iso-name: "Tonga (Tonga Islands)"
+#   local-name: ""
+# tr:
+#   iso-name: "Turkish"
+#   local-name: ""
+# ts:
+#   iso-name: "Tsonga"
+#   local-name: ""
+# tt:
+#   iso-name: "Tatar"
+#   local-name: ""
+# tw:
+#   iso-name: "Twi"
+#   local-name: ""
+# ty:
+#   iso-name: "Tahitian"
+#   local-name: ""
+# ug:
+#   iso-name: "Uyghur"
+#   local-name: ""
+# uk:
+#   iso-name: "Ukrainian"
+#   local-name: ""
+# ur:
+#   iso-name: "Urdu"
+#   local-name: ""
+# uz:
+#   iso-name: "Uzbek"
+#   local-name: ""
+# ve:
+#   iso-name: "Venda"
+#   local-name: ""
+# vi:
+#   iso-name: "Vietnamese"
+#   local-name: ""
+# vo:
+#   iso-name: "Volapük"
+#   local-name: ""
+# wa:
+#   iso-name: "Walloon"
+#   local-name: ""
+# cy:
+#   iso-name: "Welsh"
+#   local-name: ""
+# wo:
+#   iso-name: "Wolof"
+#   local-name: ""
+# fy:
+#   iso-name: "Western Frisian"
+#   local-name: ""
+# xh:
+#   iso-name: "Xhosa"
+#   local-name: ""
+# yi:
+#   iso-name: "Yiddish"
+#   local-name: ""
+# yo:
+#   iso-name: "Yoruba"
+#   local-name: ""
+# za:
+#   iso-name: "Zhuang, Chuang"
+#   local-name: ""
+# zu:
+#   iso-name: "Zulu"
+#   local-name: ""
+# nso:
+#   iso-name: "Sepedi/Nothern Sotho"
+#   local-name: ""
+# tuv:
+#   iso-name: "Turkana"
+#   local-name: ""
+# lwg:
+#   iso-name: "Wanga"
+#   local-name: ""
+# nuj:
+#   iso-name: "Nyole"
+#   local-name: ""
+# lgg:
+#   iso-name: "Lugbara"
+#   local-name: ""

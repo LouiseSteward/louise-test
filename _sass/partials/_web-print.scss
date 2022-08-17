@@ -1,0 +1,24 @@
+$web-print: true !default;
+@if $web-print {
+
+    // Print-from-screen styles
+
+    @media print {
+
+        // Hide screen-only elements
+        .masthead,
+        .controls,
+        .nav-buttons,
+        #footer,
+        .accordion-show-all-button,
+        .notification.warning-testing-site {
+            display: none !important;
+        }
+
+        // Change typography
+        body {
+            font-size: initial;
+            background-color: transparent;
+        }
+    }
+}

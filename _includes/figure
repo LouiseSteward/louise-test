@@ -1,0 +1,295 @@
+{% capture this-figure %}
+{% comment %}
+To do: create HTML5 <figure> option here based on site.output
+{% endcomment %}
+
+{% include metadata %}
+
+{% comment %}
+Get the list of images, whether included as `image` or `images`
+and remove spaces that might be around commas.
+Put the comma-separated images into an array.
+Then get the total number of images in the array.
+{% endcomment %}
+{% capture image-list %}{{ include.image | remove: " " }}{% if include.image and include.images %},{% endif %}{{ include.images | remove: " " }}{% endcapture %}
+
+{% assign figure-images = image-list | split: "," %}
+{% assign number-of-images = figure-images | size %}
+
+{% comment %}Detect if this figure has no caption.
+Dunno why this isn't working with assign. Capture it is.{% endcomment %}
+{% if include.reference or include.caption %}
+    {% capture figure-has-caption %}true{% endcapture %}
+    {% else %}
+    {% capture figure-has-caption %}false{% endcapture %}
+{% endif %}
+
+{% comment %}
+Then create our figure, using multiple images if necessary.
+We have to do funky remove: '<p>' | remove: '</p>' | strip_newlines
+because https://github.com/jekyll/jekyll/issues/2248.
+{% endcomment %}
+
+{% comment %}
+First let's replace non-ascii characters in the reference with ascii versions to get a clean id
+{% endcomment %}
+
+{% assign id="" %}
+
+{% if include.reference %}
+    {% capture id %}
+        {% include ascii-version string=include.reference %}
+    {% endcapture %}
+{% endif %}
+
+<div class="figure{% if include.class %} {{ include.class }}{% endif %}{% unless include.source or include.more %} figure-no-source{% endunless %}{% if figure-has-caption == "false" %} figure-no-caption{% endif %}"{% if id %} id="{{ id | slugify }}"{% endif %}{% if include.interactive %} data-interactive="{{ include.interactive }}"{% endif %}>
+
+<div class="figure-body">
+
+{% if include.image or include.images %}
+<div class="figure-images contains-{{ number-of-images }}">
+    {% for image in figure-images %}
+
+    {% comment %} Get the file extension and the filename without it,
+    in a way that allows for full stops in filenames. {% endcomment %}
+    {% assign image-name-array = image | split: "." %}
+    {% assign image-file-extension = image-name-array | last %}
+    {% capture image-extension-with-full-stop %}.{{ image-file-extension }}{% endcapture %}
+    {% assign image-without-file-extension = image | replace: image-extension-with-full-stop, "" %}
+
+    {% comment %}
+    srcset w values come from the default task in our gulpfile.
+    40em in sizes from $max-width-default used on #content not working reliably.
+    So using 600px same as $break-point-width with 1300px same as largest image.
+    {% endcomment %}
+
+        {% comment %} If the liquid tag specifies an image quality,
+        use that quality only. {% endcomment %}
+        {% capture image-default %}{{ image }}{% endcapture %}
+        {% assign image-quality-defined = false %}
+        {% if include.image-quality and include.image-quality != "" %}
+            {% capture image-default %}{{ image-without-file-extension }}-{{ include.image-quality }}.{{ image-file-extension }}{% endcapture %}
+            {% assign image-quality-defined = true %}
+        {% endif %}
+        
+        {% comment %}<img> needs to be a in wrapper for flex display of multiple images{% endcomment %}
+        {% if site.output == "web" or site.output == "app" %}<div class="figure-flex-container">{% endif %}
+            
+            {% if site.output == "web" %}
+
+                <noscript>
+                    <img
+                        src="{{ images }}/{{ image-default }}"
+
+                        {% unless image-file-extension == 'svg' or image-quality-defined %}
+                            srcset="{{ images }}/{{ image-without-file-extension }}-320.{{ image-file-extension }} 320w,
+                                    {{ images }}/{{ image-without-file-extension }}-640.{{ image-file-extension }} 640w,
+                                    {{ images }}/{{ image-without-file-extension }}-1024.{{ image-file-extension }} 1024w,
+                                    {{ images }}/{{ image-without-file-extension }}.{{ image-file-extension }} 1280w"
+                            sizes="(min-width: 600px) 1300px, 100vw"
+                        {% endunless %}
+
+                        alt="{% if include.title %}{{ include.title | markdownify | strip_html }}: {% endif %}{% if include.alt-text %}{{ include.alt-text | markdownify | strip_html }}{% else %}{{ include.caption | markdownify | strip_html }}{% endif %}"
+                        class="{% if include.image-height != nil %}height-{{ include.image-height }}{% endif %}{% unless include.class contains "no-inject-svg" %}{% if image contains '.svg' %} inject-svg{% endif %}{% endunless %}" />
+                </noscript>
+
+                <img
+                    data-src="{{ images }}/{{ image-default }}"
+
+                    {% unless image-file-extension == 'svg' or image-quality-defined %}
+                        data-srcset="{{ images }}/{{ image-without-file-extension }}-320.{{ image-file-extension }} 320w,
+                                     {{ images }}/{{ image-without-file-extension }}-640.{{ image-file-extension }} 640w,
+                                     {{ images }}/{{ image-without-file-extension }}-1024.{{ image-file-extension }} 1024w,
+                                     {{ images }}/{{ image-without-file-extension }}.{{ image-file-extension }} 1280w"
+                        sizes="(min-width: 600px) 1300px, 100vw"
+                    {% endunless %}
+
+                    alt="{% if include.title %}{{ include.title | markdownify | strip_html }}: {% endif %}{% if include.alt-text %}{{ include.alt-text | markdownify | strip_html }}{% else %}{{ include.caption | markdownify | strip_html }}{% endif %}"
+                    class="{% if include.image-height != nil %}height-{{ include.image-height }}{% endif %}{% unless include.class contains "no-inject-svg" %}{% if image contains '.svg' %} inject-svg{% endif %}{% endunless %}" />
+
+            {% else %}
+
+                <img
+                    src="{{ images }}/{{ image }}"
+                    alt="{% if include.title %}{{ include.title | markdownify | strip_html }}: {% endif %}{% if include.alt-text %}{{ include.alt-text | markdownify | strip_html }}{% else %}{{ include.caption | markdownify | strip_html }}{% endif %}"
+                    class="{% if include.image-height != nil %}height-{{ include.image-height }}{% endif %}{% unless include.class contains "no-inject-svg" %}{% if image contains '.svg' %} inject-svg{% endif %}{% endunless %}" />
+
+            {% endif %}
+        {% if site.output == "web" or site.output == "app" %}</div>{% endif %}
+    {% endfor %}
+    
+    {% if site.output == "web" or site.output == "app" %}
+        {% if site.data.settings.images.fullscreen == true %}
+            <div class="fullscreen-button" tabindex="0">{{ locale.figures.enter-fullscreen }}</div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endif %}
+
+{% if include.html %}
+<div class="figure-html">
+{{ include.html }}
+</div>
+{% endif %}
+
+{% if include.markdown %}
+<div class="figure-md">
+{{ include.markdown | markdownify }}
+</div>
+{% endif %}
+
+{% if include.title %}
+<p class="title">
+{{ include.title | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
+</p>
+{% endif %}
+
+{% if include.slide-caption %}
+<p class="slide-caption">
+{{ include.slide-caption | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
+</p>
+{% endif %}
+
+{% if include.slide-caption == nil and include.caption or include.reference %}
+<p class="caption">
+{% if include.reference %}<span class="figure-reference">{{ include.reference }} </span>{% endif %}
+{{ include.caption | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
+    {% if site.output == "web" or site.output == "app" and include.download %}
+        <span class="figure-download">
+        {{ include.download | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
+        </span>
+    {% endif %}
+</p>
+{% endif %}
+
+</div><!--.figure-body-->
+
+{% if include.source or include.more or include.link-to-online %}
+
+<div class="figure-source">
+
+    {% comment %}Add any link to an online version{% endcomment %}
+    {% unless site.output == "web" %}
+        {% if include.link-to-online and include.link-to-online != "" %}
+            <div class="figure-link-to-online">
+                <p class="source figure-link-to-online-text">
+                    <span>{{ locale.figures.link-to-online-prefix | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</span><span>{{ include.link-to-online | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</span><span>{{ locale.figures.link-to-online-suffix | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</span>
+                </p>
+            </div>
+        {% endif %}
+    {% endunless %}
+
+    {% comment %}Add buttons or links for more info{% endcomment %}
+    {% if include.more and include.more != "" %}
+        {% if site.output == "web" or site.output == "app" %}
+            {% if include.more contains '|' %}
+                <button class="button graph-options">{{ locale.figures.options-button }}</button>
+            {% endif %}
+        {% endif %}
+        {% if site.output == "web" or site.output == "app" %}
+            <div class="figure-more {% if include.more contains '|' %}multiple-links visuallyhidden{% endif %}">
+            {% comment %}Web, app and epub output{% endcomment %}
+            
+                {% comment %}If the more is a phrase, treat as text{% endcomment %}
+                {% if include.more contains " " or include.more contains "[" or include.more contains "<" %}
+                    <div class="figure-more-text">
+                        {{ include.more | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
+                    </div>
+                {% comment %}Otherwise, treat as a URL{% endcomment %}
+                {% else %}
+
+                    {% comment %}Create an array of more-links, in case more than one.{% endcomment %}
+                    {% assign more-links = include.more | split: "|" %}
+
+                    {% comment %}Set an index for our loop below.{% endcomment %}
+                    {% assign more-links-index = 0 %}
+
+                    {% assign interactive-graph-texts = "" %}
+
+                    {% if include.interactive-graph-text and include.interactive-graph-text != "" %}
+                        {% assign interactive-graph-texts = include.interactive-graph-text | split: "|" %}
+                    {% endif %}
+
+                    {% comment %}Loop through the more-links to output buttons.{% endcomment %}
+                    {% for link in more-links %}
+                        
+                        <button class="load-iframe-button js-interactive button" data-link="{{ link }}" tabindex="-1">
+                            {% if interactive-graph-texts[more-links-index] %}
+                                {{ interactive-graph-texts[more-links-index] }}
+                            {% else %}
+                                {{ locale.figures.see-interactive-graph }}
+                            {% endif %}
+                        </button>
+
+                        {% comment %}Increment the index for the next loop.{% endcomment %}
+                        {% assign more-links-index = more-links-index | plus: 1 %}
+
+                    {% endfor %}
+                    
+                    <button class="load-iframe-button js-static button visuallyhidden" tabindex="-1">
+                        {{ locale.figures.see-static-graph }}
+                    </button>
+
+                {% endif %}
+            {% comment %}PDF output{% endcomment %}
+            {% else %}
+            <div class="figure-more {% if include.more contains '|' %}multiple-links{% endif %}">
+                {% comment %}If the more is a phrase, treat as text{% endcomment %}
+                {% if include.more contains " " or include.more contains "[" or include.more contains "<" %}
+                    <p class="source figure-more-text">
+                        {{ include.more| markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
+                    </p>
+                {% comment %}Otherwise, treat as a URL{% endcomment %}
+                {% else %}
+                    <p class="source">
+
+                    {% comment %}Create an array of more-links, in case more than one.{% endcomment %}
+                    {% assign more-links = include.more | split: "|" %}
+
+                    {% comment %}Set an index for our loop below.{% endcomment %}
+                    {% assign more-links-index = 0 %}
+
+                    {% comment %}Create an array from more-link-text, if any.{% endcomment %}
+                    {% if include.more-link-text and include.more-link-text != "" %}
+                        {% assign more-link-texts = include.more-link-text | split: "|" %}
+                    {% endif %}
+
+                    {% comment %}Loop through the more-links to output buttons.{% endcomment %}
+                    {% for link in more-links %}
+
+                        <a href="{{ link }}" class="show-url-only">
+                            {% if more-link-texts[more-links-index] %}
+                                {{ more-link-texts[more-links-index] }}
+                            {% elsif site.data.short-urls["ourworldindata.org"] contains link %}
+                                {{ locale.figures.see-owid }}
+                            {% else %}
+                                {{ locale.figures.see-more }}
+                            {% endif %}
+                        </a>
+
+                        {% comment %} Add a linebreak if there is more than one link {% endcomment %}
+                        {% if more-links.size > 1 %}
+                            {% unless forloop.last == true %}<br/>{% endunless %}
+                        {% endif %}
+
+                        {% comment %}Increment the index for the next loop.{% endcomment %}
+                        {% assign more-links-index = more-links-index | plus: 1 %}
+
+                    {% endfor %}
+
+                    </p>
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endif %}
+
+<p class="source">
+{{ include.source | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
+</p>
+</div><!--.figure-source-->
+
+{% endif %}
+
+</div>
+{% endcapture %}
+{{ this-figure }}

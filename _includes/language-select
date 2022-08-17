@@ -1,0 +1,38 @@
+{% include translations %}
+
+{% comment %} If translations of this file exist, add them to a list so that the 
+reader can choose an alternate language version of this page. {% endcomment %}
+{% if translations-of-this-file[0] %}
+
+    <div class="language-select" title="{{ locale.controls.language-select }}">
+
+        {% include globe-icon %}
+
+        <ul class="language-select-list">
+
+            {% for language in translations-of-this-file %}
+                {% if language == parent-language %}
+                
+                <li class="language-select-language language-select-{{ language }}">
+                    <a href="{{ path-to-book-directory }}text/{{ current-file }}.html">
+                       {{ site.data.locales[language].local-name }}
+                   </a>
+                </li>
+                
+                {% else %}
+            
+                <li class="language-select-language language-select-{{ language }}">
+                    <a href="{{ path-to-book-directory }}{{ language }}/text/{{ current-file }}.html">
+                       {{ site.data.locales[language].local-name }}
+                   </a>
+                </li>
+                
+                {% endif %}
+            
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+{% endif %}

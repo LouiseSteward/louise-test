@@ -1,0 +1,101 @@
+<div class="masthead" role="banner">
+
+{% if site.output == "web" and site.data.settings.web.wordpress-user-profile == true %}
+    {% include wordpress-user-profile.html %}
+{% endif %}
+
+{% comment %} Home page, search page, and similar non-book pages {% endcomment %}
+{% if is-book-subdirectory != true %}
+    <ul>
+        <li class="masthead-series-name"><a href="{{ path-to-root-directory }}index.html">{{ series-name }}</a></li>
+    </ul>
+
+    {% comment %} Include annotation. {% endcomment %}
+    {% if site.output == "web" %}
+        {% if build == "development" and site.data.settings.web.annotator.development == true %}
+            {% include annotator.html %}
+        {% elsif build == "live" and site.data.settings.web.annotator.live == true %}
+            {% include annotator.html %}
+        {% endif %}
+    {% endif %}
+
+{% else %}
+    {% if site.output == "app" %}
+        {% capture masthead-contents-page %}{{ app-contents-page }}{% endcapture %}
+        {% assign breadcrumb-nav-tree = app-nav-tree %}
+    {% else %}
+        {% capture masthead-contents-page %}{{ web-contents-page }}{% endcapture %}
+        {% assign breadcrumb-nav-tree = web-nav-tree %}
+    {% endif %}
+
+    <div class="menu-book-details">
+    {% if site.data.settings.masthead.[output-format] == "breadcrumbs" %}
+    <div class="menu-title">
+        <ul>
+            {%if number-of-works == 1 %}
+                <li class="masthead-book-title">
+                    <a href="{{ path-to-root-directory }}index.html">{{ title }}</a>
+                    {% include beta-button %}
+                </li>
+                {% include breadcrumbs breadcrumb-tree=breadcrumb-nav-tree %}
+            {% else %}
+                <li class="masthead-series-name"><a href="{{ path-to-root-directory }}index.html">{{ series-name }}</a></li>
+                <li class="masthead-book-title"><a href="{{ masthead-contents-page }}{% unless masthead-contents-page contains '.html' %}.html{% endunless %}">{{ title }}</a></li>
+                {% include breadcrumbs breadcrumb-tree=breadcrumb-nav-tree %}
+            {% endif %}
+        </ul>
+    </div>
+    {% elsif site.data.settings.masthead.[output-format] == "site-name" %}
+    <div class="menu-title">
+        <ul>
+            <li class="masthead-series-name">
+                <a href="{{ path-to-root-directory }}index.html">{{ series-name }}</a>
+                {% include beta-button %}
+            </li>
+        </ul>
+    </div>
+    {% elsif site.data.settings.masthead.[output-format] == "page-title" %}
+    <div class="menu-title">
+        <ul>
+            {%if number-of-works == 1 %}
+                <li class="masthead-book-title">
+                    <a href="{{ path-to-root-directory }}index.html">{{ title }}</a>
+                    {% include beta-button %}
+                </li>
+            {% else %}
+                <li class="masthead-series-name"><a href="{{ path-to-root-directory }}index.html">{{ series-name }}</a></li>
+                <li class="masthead-book-title"><a href="{{ masthead-contents-page }}{% unless masthead-contents-page contains '.html' %}.html{% endunless %}">{{ title }}</a></li>
+                <li class="masthead-page-title">{{ page.title }}</li>
+            {% endif %}
+        </ul>
+    </div>
+    {% else site.data.settings.masthead.[output-format] == "book-title" %}
+    <div class="menu-title">
+        <ul>
+            {% if number-of-works == 1 %}
+                <li class="masthead-book-title">
+                    <a href="{{ path-to-root-directory }}index.html">{{ title }}</a>
+                    {% include beta-button %}
+                </li>
+            {% else %}
+                <li class="masthead-series-name"><a href="{{ path-to-root-directory }}index.html">{{ series-name }}</a></li>
+                <li class="masthead-book-title"><a href="{{ masthead-contents-page }}{% unless masthead-contents-page contains '.html' %}.html{% endunless %}">{{ title }}</a>
+                {% include beta-button %}</li>
+            {% endif %}
+        </ul>
+    </div>
+    {% endif %}
+    </div>
+
+    {% comment %} Include annotation. {% endcomment %}
+    {% if site.output == "web" %}
+        {% if build == "development" and site.data.settings.web.annotator.development == true %}
+            {% include annotator.html %}
+        {% elsif build == "live" and site.data.settings.web.annotator.live == true %}
+            {% include annotator.html %}
+        {% endif %}
+    {% endif %}
+
+{% endif %}
+
+</div><!--.masthead-->

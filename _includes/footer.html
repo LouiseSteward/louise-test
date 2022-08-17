@@ -1,0 +1,21 @@
+    <div id="footer" dir="ltr" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-logos">
+                <a href="https://www.core-econ.org">
+                    {% if site.data.meta.series.logo and site.data.meta.series.logo != "" %}
+                        <img src="{{ path-to-root-directory }}assets/{{ site.data.meta.series.logo }}" alt="Logo">
+                    {% else %}
+                        <img src="{{ path-to-root-directory }}assets/coreecon_logo_bw.png" alt="CORE logo">
+                    {% endif %}
+                </a>
+            </div>
+            <div class="footer-text">
+                {{ locale.footer.text | markdownify }}
+            </div>
+            <div class="footer-licence">
+                <a title="Licensed under Creative Commons BY NC ND" href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="{{ path-to-root-directory }}assets/cc-byncnd.png" alt="Licensed under Creative Commons BY NC ND"></a>
+                <br />
+                {{ locale.footer.version }} {{ series-version }} &bull; {{ locale.footer.credit }}
+            </div>
+        </div><!--.footer-content-->
+    </div><!--#footer-->

@@ -1,0 +1,270 @@
+{% include metadata %}
+{% if site.output == 'epub' %}
+
+{% if site.data.settings.epub.html-entities == true %}
+<!DOCTYPE html [
+    {% include html-entities.html %}
+]>
+{% else %}
+<!DOCTYPE html>
+{% endif %}
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="{{ language }}"{% if site.data.locales[language].direction %} dir="{{ site.data.locales[language].direction }}"{% endif %}>
+<head>
+    {% include title %}
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="{{ path-to-styles-directory }}/{{ epub-stylesheet }}" />
+
+    {% comment %}Metadata defined in page frontmatter overrides
+    series metadata, which is the default from meta.yml.{% endcomment %}
+    {% if page.title %}{% capture title %}{{ page.title }}{% endcapture %}{% endif %}
+    {% if page.language %}{% capture language %}{{ page.language }}{% endcapture %}{% endif %}
+    {% if page.creator %}{% capture creator %}{{ page.creator }}{% endcapture %}{% endif %}
+    {% if page.publisher %}{% capture publisher %}{{ page.publisher }}{% endcapture %}{% endif %}
+    {% if page.date %}{% capture date %}{{ page.date }}{% endcapture %}{% endif %}
+    {% if page.identifier %}{% capture identifier %}{{ page.identifier }}{% endcapture %}{% endif %}
+    {% if page.relation %}{% capture relation %}{{ page.relation }}{% endcapture %}{% endif %}
+    {% if page.description %}{% capture description %}{{ page.description }}{% endcapture %}{% endif %}
+
+    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+        <meta name="DC.Title" content="{{ title }}" />
+        <meta name="DC.Language" content="{{ language }}" />
+        <meta name="DC.Creator" content="{{ creator }}" />
+        <meta name="DC.Publisher" content="{{ publisher }}" />
+        <meta name="DC.Date" content="{{ date }}" />
+        <meta name="DC.Identifier" content="{{ epub-identifier }}" />
+        <meta name="DC.Relation" content="{{ print-pdf-identifier }}" />
+        <meta name="DC.Description" content="{{ description }}" />
+
+    {% include head-elements %}
+
+    {% comment %}Localise question-answer feedback prompts{% endcomment %}
+    <style>
+        .js-mcq .mcq-correct .mcq-feedback:before {
+            content: "{{ locale.questions.feedback-correct }}";
+        }
+        .js-mcq .mcq-incorrect .mcq-feedback:before {
+            content: "{{ locale.questions.feedback-incorrect }}";
+        }
+        .js-mcq .mcq-partially-correct .mcq-feedback:before {
+            content: "{{ locale.questions.feedback-unfinished }}";
+        }
+    </style>
+
+</head>
+<body class="{{ book-directory }} {{ page.style }}{% if is-homepage == true %} home{% endif %}"
+    data-title="{% if book-title %}{{ book-title }}{% else %}{{ page.title }}{% endif %}"
+    {% if is-translation %}data-translation="{{ language }}" {% endif %}>
+<div id="wrapper">
+
+
+{% elsif site.output == 'screen-pdf' %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ language }}" xml:lang="{{ language }}"{% if site.data.locales[language].direction %} dir="{{ site.data.locales[language].direction }}"{% endif %}>
+<head>
+    {% include title %}
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ path-to-styles-directory }}/{{ screen-pdf-stylesheet }}" />
+
+    {% include head-elements %}
+
+</head>
+<body
+    class="{{ book-directory }} {{ page.style }}{% if is-homepage == true %} home{% endif %}"
+    data-title="{% if book-title %}{{ book-title }}{% else %}{{ page.title }}{% endif %}"
+    {% if is-translation %}data-translation="{{ language }}" {% endif %}
+    {% if site.data.settings.screen-pdf.notice == true %}
+        data-pdf-notice="{{ locale.pdf.notice }}"
+    {% endif %}>
+<div id="wrapper">
+
+{% elsif site.output == 'print-pdf' %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ language }}" xml:lang="{{ language }}"{% if site.data.locales[language].direction %} dir="{{ site.data.locales[language].direction }}"{% endif %}>
+<head>
+    {% include title %}
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ path-to-styles-directory }}/{{ print-pdf-stylesheet }}" />
+
+    {% include head-elements %}
+
+</head>
+<body class="{{ book-directory }} {{ page.style }}{% if is-homepage == true %} home{% endif %}"
+    data-title="{% if book-title %}{{ book-title }}{% else %}{{ page.title }}{% endif %}"
+    {% if is-translation %}data-translation="{{ language }}" {% endif %}>
+<div id="wrapper">
+
+
+{% elsif site.output == "app" %}
+<!DOCTYPE html>
+<html lang="{{ language }}"{% if site.data.locales[language].direction %} dir="{{ site.data.locales[language].direction }}"{% endif %}>
+    <head>
+    {% include title %}
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=yes, initial-scale=1, width=device-width">
+
+    {% comment %}
+    Customize this policy to fit your own app's needs. For more guidance, see:
+        https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+    Some notes:
+        * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+        * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+            * Enable inline JS: add 'unsafe-inline' to default-src
+    {% endcomment %}
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' content: data: gap: https://ssl.gstatic.com https://fonts.googleapis.com; frame-src https://www.youtube.com http://player.vimeo.com https://tinyco.re https://ourworldindata.org https://bit.ly; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' fonts.gstatic.com; media-src *; img-src 'self' data: content: file:;{% if site.mathjax-enabled == true %} script-src 'self' 'unsafe-inline' 'unsafe-eval';{% endif %}">
+
+    {% comment %}If we're not in a book subdirectory, load the first book's stylesheets.
+    Otherwise, load the styles for this book. {% endcomment %}
+    {% if is-homepage == true or is-series-search == true or page.collection == "docs" or is-translation-homepage == true %}
+    {% for book in site.data.meta.works %}
+        <link rel="stylesheet" type="text/css" media="all" href="{{ path-to-root-directory }}{{ book.directory }}/styles/{{ app-stylesheet }}" />
+        {% break %}
+    {% endfor %}
+    {% else %}
+    <link rel="stylesheet" type="text/css" media="all" href="{{ path-to-styles-directory }}/{{ app-stylesheet }}" />
+    {% endif %}
+
+    {% include head-elements %}
+
+    {% comment %}Localise question-answer feedback prompts{% endcomment %}
+    <style>
+        .js-mcq .mcq-correct .mcq-feedback:before {
+            content: "{{ locale.questions.feedback-correct }}";
+        }
+        .js-mcq .mcq-incorrect .mcq-feedback:before {
+            content: "{{ locale.questions.feedback-incorrect }}";
+        }
+        .js-mcq .mcq-partially-correct .mcq-feedback:before {
+            content: "{{ locale.questions.feedback-unfinished }}";
+        }
+    </style>
+
+    </head>
+    <body class="{{ book-directory }} {{ page.style }}{% if is-homepage == true %} home{% endif %}{% if is-search == true %} search-page{% endif %}{% if is-series-search == true %} series-search-page{% endif %}{% if is-book-search == true %} book-search-page{% endif %}"
+        {% if page.accordion %}data-accordion-page="{{ page.accordion }}"{% endif %}
+        data-title="{% if book-title %}{{ book-title }}{% else %}{{ page.title }}{% endif %}"
+        {% if is-translation %}data-translation="{{ language }}" {% endif %}>
+        <div id="wrapper">
+
+
+{% else %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ language }}" xml:lang="{{ language }}"{% if site.data.locales[language].direction %} dir="{{ site.data.locales[language].direction }}"{% endif %}>
+<head>
+    {% include title %}
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% comment %}Add favicon{% endcomment %}
+    <link rel="icon" type="image/png" href="{{ path-to-root-directory }}assets/favicon.png">
+
+    <meta property="og:title" content="{{ page.title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ site.canonical-url}}{{ site.baseurl }}{{ page.url }}" />
+
+    {% comment %}Get appropriate description, in order of preference:
+    1. Page description (from page frontmatter)
+    2. Book description (from meta.yml via metadata include)
+    3. Project description (from meta.yml via metadata include)
+    {% endcomment %}
+    {% if page.description and page.description != "" %}
+    {% capture og-description %}{{ page.description }}{% endcapture %}
+    {% elsif description and description != "" %}
+    {% capture og-description %}{{ description }}{% endcapture %}
+    {% else %}
+    {% capture og-description %}{{ series-description }}{% endcapture %}
+    {% endif %}
+
+    <meta property="og:description" content="{{ og-description }}" />
+
+    {% comment %} Reuse Open Graph description for generic meta description {% endcomment %}
+    <meta name="description" content="{{ og-description }}" />
+
+    {% if page.image %}
+        {% if is-homepage == true or is-series-search == true or is-translation-homepage == true %}
+            {% comment %}If a page.image is specified on the home page, we still use the series image{% endcomment %}
+            {% if is-translation == true %}
+            <meta property="og:image"
+                content="{{ site.canonical-url }}{{ site.baseurl }}/assets/{{ language }}/{{ series-image }}" />
+            {% else %}
+                <meta property="og:image" content="{{ site.canonical-url }}{{ site.baseurl }}/assets/{{ series-image }}" />
+            {% endif %}
+        {% else %}
+            <meta property="og:image" content="{{ site.canonical-url }}{{ site.baseurl }}/{{ book-directory }}/{{ site.image-set }}/{{ page.image }}" />
+        {% endif %}
+    {% elsif is-homepage == true or is-series-search == true or is-translation-homepage == true %}
+        {% if is-translation == true %}
+            <meta property="og:image" content="{{ site.canonical-url }}{{ site.baseurl }}/assets/{{ language }}/{{ series-image }}" />
+        {% else %}
+            <meta property="og:image" content="{{ site.canonical-url }}{{ site.baseurl }}/assets/{{ series-image }}" />
+        {% endif %}
+    {% elsif web-image != "" %}
+        <meta property="og:image" content="{{ site.canonical-url }}{{ site.baseurl }}/{{ book-directory }}/{{ site.image-set }}/{{ web-image }}" />
+    {% elsif image != "" %}
+        <meta property="og:image" content="{{ site.canonical-url }}{{ site.baseurl }}/{{ book-directory }}/{{ site.image-set }}/{{ image }}" />
+    {% else %}
+        <meta property="og:image" content="{{ site.canonical-url }}{{ site.baseurl }}/assets/{{ series-image }}" />
+    {% endif %}
+
+    {% comment %}Load elastic search meta{% endcomment %}
+    {% include elastic-search.html %}
+
+    {% comment %}If we're not in a book subdirectory, load the first book's stylesheets.
+    Otherwise, load the styles for this book. {% endcomment %}
+    {% if is-homepage == true or is-series-search == true or page.collection == "docs" or is-translation-homepage == true %}
+    {% for book in site.data.meta.works %}
+        <link rel="stylesheet" type="text/css" media="all" href="{{ site.baseurl }}/{{ book.directory }}/styles/{{ web-stylesheet }}?date={{ site.time | date: "%Y%m%d%H%M%S" }}" />
+        {% break %}
+    {% endfor %}
+    {% else %}
+    <link rel="stylesheet" type="text/css" media="all" href="{{ path-to-styles-directory }}/{{ web-stylesheet }}?date={{ site.time | date: "%Y%m%d%H%M%S" }}" />
+    {% endif %}
+
+    {% comment %}Localise question-answer feedback prompts{% endcomment %}
+    <style>
+        .js-mcq .mcq-correct .mcq-feedback:before {
+            content: "{{ locale.questions.feedback-correct }}";
+        }
+        .js-mcq .mcq-incorrect .mcq-feedback:before {
+            content: "{{ locale.questions.feedback-incorrect }}";
+        }
+        .js-mcq .mcq-partially-correct .mcq-feedback:before {
+            content: "{{ locale.questions.feedback-unfinished }}";
+        }
+    </style>
+
+    {% comment %}Enable web monetization{% endcomment %}
+    {% if site.data.settings.web.monetization.enabled == true %}
+        <meta name="monetization" content={{ site.data.settings.web.monetization.ilp-pointer }}>
+    {% endif %}
+
+    {% comment %}
+    Self referencing canonicals help tell search engines
+    a specific URL is the master copy of a page avoiding problems
+    caused by ‘duplicate’ content appearing on multiple URLs.
+    https://developers.google.com/search/docs/advanced/crawling/consolidate-duplicate-urls
+    {% endcomment %}
+    {% if site.canonical-url and site.canonical-url != "" %}
+        <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.canonical-url }}">
+    {% endif %}
+
+    {% include hreflang.html %}
+
+    {% include head-elements %}
+
+</head>
+<body class="{{ book-directory }} {{ page.style }}{% if is-homepage == true %} home{% endif %}{% if is-search == true %} search-page{% endif %}{% if is-series-search == true %} series-search-page{% endif %}{% if is-book-search == true %} book-search-page{% endif %}"
+    {% if page.accordion %}data-accordion-page="{{ page.accordion }}"{% endif %}
+    data-title="{% if title %}{{ title }}{% else %}{{ page.title }}{% endif %}"
+    {% if is-translation %} data-translation="{{ language }}"{% endif %}>
+
+{% include testing-site-warning.html %}
+
+<div id="wrapper">
+
+{% endif %}

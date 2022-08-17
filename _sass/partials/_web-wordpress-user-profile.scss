@@ -1,0 +1,127 @@
+.masthead {
+    .menu-user-profile {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        background: #423f43;
+        border-bottom-left-radius: 10px;
+        align-items: center;
+        height: 59px;
+        z-index: 999;
+
+        .buttons {
+            display: flex;
+            padding-left: 10px;
+
+            a {
+                font-family: "Source Sans Pro";
+                font-size: 14px;
+                font-weight: 600;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 0.91;
+                letter-spacing: normal;
+                text-align: center;
+                color: #ffffff;
+                margin: 0 5px;
+                border-radius: 25.6px;
+
+                &.register {
+                    padding: 10px 19px;
+                    border: solid 1px #ffffff;
+                }
+
+                &.login {
+                    color: #2c272c;
+                    padding: 11px 19px;
+                    background-color: #ffffff;
+                }
+            }
+        }
+
+        .avatar {
+            display: flex;
+
+            a {
+                margin: 0 5px;
+                display: block;
+
+                span {
+                    width: 36px;
+                    height: 36px;
+                    min-width: 36px;
+                    min-height: 36px;
+                    margin: 7px 9px 9px;
+                    background-color: #f45755;
+                    font-size: 16px;
+                    font-weight: bold;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: normal;
+                    letter-spacing: normal;
+                    text-align: center;
+                    color: #ffffff;
+                    border-radius: 50%;
+                    font-family: "Source Sans Pro";
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
+
+// mobile styles
+@media (max-width: $break-point-width) {
+    .last-location-prompt {
+        top: 5.75rem;
+
+        .last-location-prompt-open {
+            z-index: 999;
+        }
+    }
+
+    .masthead {
+        border-bottom: 0 none;
+        min-height: none;
+
+        ul {
+            padding: 0.6em 0 0 0;
+        }
+
+        .menu-user-profile {
+            position: relative;
+            float: right;
+            border-bottom-left-radius: 0px;
+            height: 60px;
+
+            .buttons {
+                margin: 0;
+                padding-left: 6px;
+
+                a {
+                    display: block;
+                    line-height: 0.91;
+                    font-size: 14px;
+                    text-align: center;
+
+                    &.login, &.register {
+                        padding: 5px 10px;
+                    }
+                }
+            }
+
+            .avatar {
+                display: flex;
+                padding-top: 3px;
+            }
+        }
+
+        // Hide title on mobile
+        .menu-title {
+            display: none;
+        }
+    }
+}

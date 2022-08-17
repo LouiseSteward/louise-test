@@ -1,0 +1,2319 @@
+// What is this?
+// -------------
+// This is typography for the Electric Book template (see http://ebw.co/template).
+// It is built with Sass. (See http://sass-lang.com, and http://jekyllrb.com/docs/assets for how Jekyll implements Sass.)
+// It sets defaults that can be overridden in each book's own stylesheets, where the variables here are duplicated.
+// 
+// How to use it
+// -------------
+// Edit the default variables below.
+// Comment/uncomment or add font imports below.
+// Add your own custom CSS at the bottom.
+
+// -------------
+// Set variables
+// -------------
+
+// Edition suffix: identifies this edition in certain classes (e.g. in _epub-fitting.scss).
+$edition-suffix: null !default;
+
+// Max width of main body area
+$max-width-default: 35em !default;
+
+// We name font variables for two categories:
+// - 'text' fonts are used for body text and some page features;
+// - 'display' fonts are used for headings and similar short-string features.
+// For each category, we set a main font and a secondary font, allowing up to four fonts.
+// Finally, we set a fifth, monospace font for elements like computer code.
+$font-text-main: "Amiri", serif !default;
+$font-text-secondary: "Source Sans Pro", sans-serif !default;
+$font-display-main: "Source Sans Pro", sans-serif !default;
+$font-display-secondary: "Crimson", serif !default;
+$font-code: "Inconsolata", monospace !default;
+
+// Set font size and line-height in ems or px.
+// These values, especially $line-height-default, are used to compute vertical rhythm
+// for many features in this theme. So do not use a unitless value for line-height,
+// and don't use percentages, which will break layouts computed by multiplying this value.
+$font-size-default: 1.2em !default;
+$line-height-default: 1.5em !default;
+$font-size-smaller: 0.7 !default; // How much smaller than font-size-default for features like sidenotes and footers?
+$font-size-bigger: 2 !default; // How many times bigger than font-size-default for features like headings and pullquotes?
+$font-serif-sans-ratio: 0.9 !default; // Sans fonts are often bigger than serif ones. By what ratio should the sans be reduced to match serif?
+
+// Do you want space between paragraphs, rather than a text-indent?
+$spaced-paras: true !default;
+
+// Buttons
+$button-border-radius: 0.1em !default; // Roundness of button corners.
+
+// Colours
+
+// Project accent colour kept in separate partial
+// so that this file is the same across all CORE projects.
+@import 'color-accent';
+
+$color-text-main: initial !default;
+$color-text-secondary: initial !default;
+$color-text-mid: rgb(130, 130, 130);
+$color-background: initial !default;
+$color-light: #F2F2F2 !default;
+$color-mid: $color-accent-30pc !default;
+$color-links: #037bb5 !default;
+$color-buttons: $color-accent !default;
+$color-highlight: #ffd54d !default;
+
+$theme-17-color: #9F6B5B !default; // 17 Great Depression
+$theme-18-color: #3c919e !default; // 18 World Economy
+$theme-19-color: #dc764d !default; // 19 Economic Inequality
+$theme-20-color: #759757 !default; // 20 Environment
+$theme-21-color: #6064b0 !default; // 21 Innovation
+$theme-22-color: #AD80A6 !default; // 22 Politics and Power
+
+// We also save the hex value without the hash, to use
+// in interpolation when setting background-image file names
+$theme-17-color-hex-chars: 9F6B5B !default;
+$theme-18-color-hex-chars: 4BB4C5 !default;
+$theme-19-color-hex-chars: F48356 !default;
+$theme-20-color-hex-chars: 92BD6D !default;
+$theme-21-color-hex-chars: E4A95A !default;
+$theme-22-color-hex-chars: AD80A6 !default;
+
+// slides percentages
+
+$slides-current-pc: 20% !default;
+$slides-focus-pc: 35% !default;
+$slides-tint: 30% !default;
+
+// Some features rearrange at certain screen sizes.
+// What are your break points for rearrangement?
+$break-point-height: 600px !default;
+$break-point-width: 600px !default;
+
+$break-point-s: 20em !default;
+$break-point-m: 40em !default;
+$break-point-l: 60em !default;
+$break-point-xl: 80em !default;
+
+// Set the default start-depth of pages.
+// This is the distance from the top of the page to the first element on the first page.
+$start-depth: $line-height-default * 2 !default;
+
+// Hyphenation
+// Variables here apply to p, ul, ol, dl.
+// Note: Most browsers and ereaders do not support hyphenation rules.
+$hyphenation: auto !default; // Can be auto, none, or manual (only breaks on hyphens and soft hyphens)
+$hyphenation-dictionary: "" !default; // Path to dictionary file, relative to `/book/styles`. E.g. "../../assets/hyph.dic".
+$hyphenate-after: 3 !default; // Minimum letters on new line after hyphen
+$hyphenate-before: 3 !default; // Minimum letters at end of line before hyphen
+$hyphenate-lines: 1 !default; // Maximum number of consecutive lines ending with hyphens
+
+// ---------------------------------
+// Set to false to turn partials off
+// ---------------------------------
+
+// Reset ereader CSS as best we can
+$epub-css-reset: true !default;
+
+// Structural HTML components
+$epub-wrappers: true !default; // 
+
+// Default typography
+$epub-base-typography: true !default; // 
+
+// Book parts
+$epub-cover: true !default; // 
+$epub-previous-publications-page: true !default; //
+$epub-title-pages: true !default; // 
+$epub-copyright-page: true !default; // 
+$epub-dedications: true !default; // 
+$epub-epigraphs: true !default; // 
+$epub-toc: true !default; // 
+
+// Book-feature classes
+$epub-bibliographies: true !default; // 
+$epub-boxes: true !default; // 
+$epub-buttons: true !default; // 
+$epub-code: true !default; // 
+$epub-figures: true !default; // 
+$epub-glossaries: true !default; //
+$epub-highlighter: true !default; //
+$epub-index: true !default; // 
+$epub-maths: true !default; // 
+$epub-notes: true !default; // 
+$epub-openers: true !default; // 
+$epub-pullquotes: true !default; // 
+$epub-sources: true !default; // 
+$epub-tables: true !default; // 
+$epub-letters: true !default; // 
+$epub-verse: true !default; // 
+
+// Type-control classes
+$epub-smallcaps: true !default; // 
+$epub-fitting: true !default; // 
+
+// Logic (if this then that)
+$epub-reset-sequences: true !default; // 
+
+// ----------------------------------------------------
+// Import font files (@font-face) for fonts you specify
+// ----------------------------------------------------
+
+// No fonts imported in epubs.
+
+// ---------------------
+// Theme modules
+// ---------------------
+
+// Reset ereader CSS as best we can
+@import "partials/epub-css-reset";
+
+// Structural HTML components
+@import "partials/epub-wrappers"; // 
+
+// Default typography
+@import "partials/epub-base-typography"; // 
+
+// Book parts
+@import "partials/epub-cover"; // 
+@import "partials/epub-previous-publications-page"; // 
+@import "partials/epub-title-pages"; // 
+@import "partials/epub-copyright-page"; // 
+@import "partials/epub-dedications"; // 
+@import "partials/epub-epigraphs"; // 
+@import "partials/epub-toc"; // 
+
+// Book-feature classes
+@import "partials/epub-bibliographies"; // 
+@import "partials/epub-boxes"; // 
+@import "partials/epub-buttons"; // 
+@import "partials/epub-code"; // 
+@import "partials/epub-dialogue"; // 
+@import "partials/epub-figures"; // 
+@import "partials/epub-glossaries"; //
+@import "partials/epub-highlighter"; //
+@import "partials/epub-index"; // 
+@import "partials/epub-maths"; // 
+@import "partials/epub-notes"; // 
+@import "partials/epub-openers"; // 
+@import "partials/epub-pullquotes"; // 
+@import "partials/epub-sources"; // 
+@import "partials/epub-tables"; // 
+@import "partials/epub-letters"; // 
+@import "partials/epub-verse"; // 
+
+// Type-control classes
+@import "partials/epub-smallcaps"; // 
+@import "partials/epub-fitting"; // 
+
+// Logic (if this then that)
+@import "partials/epub-reset-sequences"; // 
+
+// -------------
+// Custom styles
+// -------------
+
+// Add any custom Sass or CSS here.
+
+$core-element-border-radius: 2em;
+
+// Used on web for nav, and reused for popups
+$nav-bar-close: "\00D7" !default; // &times; ×
+$nav-bar-label-color: $color-mid !default;
+$nav-bar-children-prompt: "+" !default;
+$nav-bar-children-prompt-hide: "\2212" !default; // \2212 is an actual minus sign
+
+// Base typography
+// ---------------
+
+// Headings
+
+h1 {
+    font-family: $font-display-main;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 0.9;
+    color: $color-accent;
+    .frontmatter &,
+    .chapter.frontmatter &,
+    .contents-page &,
+    .endmatter &,
+    .chapter.endmatter &,
+    .search-page &,
+    .chapter.search-page &,
+    .chapter.leibniz &,
+    .quiz & {
+        // Override unit-head styles
+        font-family: $font-text-secondary;
+        text-transform: none;
+        letter-spacing: 0;
+        position: static;
+        margin: 2em 0;
+        color: $color-accent;
+        background-color: transparent;
+        &:before, &:after {
+            background: none;
+        }
+    }
+}
+
+// Used for h2 and subheadline
+@mixin h2() {
+    font-family: $font-text-secondary;
+    font-size: $font-size-default;
+    // text-transform: uppercase;
+    // letter-spacing: 0.025em;
+    font-weight: bold;
+    color: $color-accent;
+    line-height: 1.3;
+    margin: ($line-height-default) 0 ($line-height-default * 0.5) 0;
+}
+
+h2 {
+    @include h2();
+}
+
+h3 {
+    font-family: $font-text-main;
+    font-style: italic;
+    color: $color-accent;
+    em {
+        font-style: normal;
+    }
+}
+
+h4 {
+    font-family: $font-text-main;
+    font-style: italic;
+}
+
+// Adds a label above an h1, e.g. on Leibniz pages
+.title-label {
+    color: $color-accent;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: $font-text-secondary;
+    text-align: center;
+    font-size: 1.4em;
+    margin-bottom: 0;
+}
+
+// Maths
+
+// HTML/CSS superscripts over subscripts
+// Only works for single-digit superscripts
+.align-sup-on-sub {
+    position: relative;
+    sup {
+        position: relative;
+        left: -0.5em;
+        font-size: 0.6em;
+    }
+    sub {
+        font-size: 0.6em;
+    }
+}
+
+
+// Chapter openers
+
+@mixin unit-head() {
+    color: $color-accent;
+    background-color: transparent;
+    border-radius: 0.5em;
+    font-size: $font-size-default * 1.2;
+    // position: absolute; // not valid in epub
+    // top: 20%;
+    // top: 20vh;
+    top: 3em;
+    left: 10%;
+    right: 10%;
+    padding: 0.25em 0.5em 0.5em 0.5em;
+    margin: 15% 0 0 0;
+    // The chapter number, if <strong> in the HTML
+    strong:first-of-type {
+        display: block;
+        margin-bottom: 0.5em;
+        font-weight: normal;
+        font-size: $font-size-default / $font-size-bigger;
+        line-height: $line-height-default;
+        position: relative;
+        &:after {
+            // position: absolute; // not valid in epub
+            content: "";
+            left: 1em;
+            right: 1em;
+            display: block;
+            border-top: 0.1em solid white;
+        }
+    }
+
+    // pinch
+    // &:before,
+    // &:after {
+    //     content: "";
+    //     display: block;
+    //     background-repeat: no-repeat;
+    //     background-position: center center;
+    //     background-size: 1em;
+    //     height: 0.5em;
+    //     position: absolute;
+    //     left: 0;
+    //     right: 0;
+    //     @media (min-width: $break-point-l) {
+    //         background-size: 2em;
+    //         height: 1em;
+    //     }
+
+    // }
+    &:before {
+        // background-image: url("../images/pinch-top.svg"); // not in epub
+        top: -0.45em;
+    }
+    &:after {
+        // background-image: url("../images/pinch-bottom.svg"); // not in epub
+        bottom: -0.45em;
+    }
+}
+
+.chapter-opener-image {
+    // magic number hacks for fixing height
+    height: 20em;
+    overflow-y: hidden;
+    margin: 0 0 2em ;
+    img {
+        display: flex;
+        vertical-align: middle;
+        align-items: center;
+        width: 100%;
+        object-fit: cover;
+        height: 100%; // this will not work in IE and Edge and must still be polyfilled
+        color: white; // hides alt text during loading
+    }
+    &.chapter-opener-image-none {
+        height: $line-height-default;
+    }
+}
+.chapter-opener-image-caption {
+    color: $color-mid;
+    font-family: $font-text-secondary;
+    font-weight: 300;
+    margin-bottom: ($line-height-default * 2);
+    margin-top: -($line-height-default);
+    text-align: center;
+}
+
+.chapter h1 {
+    @include unit-head();
+}
+
+// Subheadlines should look just like h2s
+.subheadline {
+    @include h2();
+}
+
+// Boxes
+
+.box {
+    background-color: inherit;
+    ul, ol {
+        margin-left: 1em;
+    }
+}
+
+// Contents page (TOC)
+
+// Need #content here to override inherited template styles
+.contents-page #content {
+    .theme-legend {
+        margin-bottom: $line-height-default;
+        .theme-legend-heading {}
+        .theme-legend-list {}
+    }
+    .toc-list {
+        li {
+            font-family: $font-display-main;
+            font-weight: bold;
+            a {
+                color: $color-accent;
+                &:hover {
+                    color: $color-links;
+                }
+            }
+            &.toc-entry-title {
+                &.theme-17 {
+                    background-color: transparent; // overrides html bg color for themes
+                    a {
+                        color: $theme-17-color;
+                    }
+                    ol li a {
+                        color: $color-text-main;
+                        &:hover {
+                            color: $color-links;
+                        }
+                    }
+                }
+                &.theme-18 {
+                    background-color: transparent;
+                    a {
+                        color: $theme-18-color;
+                    }
+                    ol li a {
+                        color: $color-text-main;
+                        &:hover {
+                            color: $color-links;
+                        }
+                    }
+                }
+                &.theme-19 {
+                    background-color: transparent;
+                    a {
+                        color: $theme-19-color;
+                    }
+                    ol li a {
+                        color: $color-text-main;
+                        &:hover {
+                            color: $color-links;
+                        }
+                    }
+                }
+                &.theme-20 {
+                    background-color: transparent;
+                    a {
+                        color: $theme-20-color;
+                    }
+                    ol li a {
+                        color: $color-text-main;
+                        &:hover {
+                            color: $color-links;
+                        }
+                    }
+                }
+                &.theme-21 {
+                    background-color: transparent;
+                    a {
+                        color: $theme-21-color;
+                    }
+                    ol li a {
+                        color: $color-text-main;
+                        &:hover {
+                            color: $color-links;
+                        }
+                    }
+                }
+                &.theme-22 {
+                    background-color: transparent;
+                    a {
+                        color: $theme-22-color;
+                    }
+                    ol li a {
+                        color: $color-text-main;
+                        &:hover {
+                            color: $color-links;
+                        }
+                    }
+                }
+            }
+            .toc-entry-text {}
+            &.toc-frontmatter, &.toc-endmatter {
+                margin-top: $line-height-default / 2;
+                margin-bottom: $line-height-default / 2;
+                margin-left: $line-height-default;
+            }
+            // Unit numbers
+            strong:first-of-type {
+                font-weight: inherit;
+                display: inline-block;
+                width: $line-height-default * 0.75; // allow 0.25 for width of space between number and text
+            }
+            ul, ol {
+                margin-bottom: $line-height-default;
+                li {
+                    font-weight: normal;
+                    font-family: $font-text-main;
+                    a {
+                        color: $color-text-main;
+                    }
+                    .toc-entry-text {}
+                    // Section numbers
+                    strong:first-of-type {
+                        font-weight: inherit;
+                        display: inline-block;
+                        width: $line-height-default * 1.5;
+                    }
+                }
+            }
+            // Inline theme keys in TOC
+            .theme-key {
+                display: inline-block;
+                margin: 0 0 0 0.25em;
+            }
+            .theme-key-label {
+                display: none;
+            }
+        }
+    }
+}
+
+// Einstein and Great Economists boxes
+// Also see figures in these boxes defined below Figures section
+
+.einstein,
+.great-economist,
+.great-economists,
+.economists,
+.expandable-box {
+    background: $color-light;
+    padding-top: 0;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-bottom: $line-height-default / 2;
+    h2, h3, h4, h5, h6 {
+        color: $color-accent;
+        font-style: italic;
+        font-weight: normal;
+        // Put the first bold word, e.g. 'Einstein', in a bar at the top
+        strong:first-of-type {
+            display: block;
+            background: $color-accent;
+            color: white;
+            text-transform: uppercase;
+            font-family: $font-text-secondary;
+            font-style: normal;
+            font-weight: bold;
+             // magic numbers, depend on box padding:
+            padding-right: 0.35em;
+            padding-left: 0.35em;
+            margin-right: -(0.35em);
+            margin-bottom: 0.5em;
+            margin-left: -(0.35em);
+        }
+    }
+    h4, h5, h6 {
+        color: $color-text-main; 
+    }
+    .question {
+        h3 {
+            font-weight: bold;
+            strong:first-of-type {
+                color: $color-accent;
+                background: transparent;
+                display: inline;
+            }
+        }
+    }
+}
+
+// Type features
+
+// Allow extra emphasis in body text
+.extra-emphasis {
+    color: $color-accent;
+}
+
+.allsmallcaps {
+    // If the browser and font support font-feature-settings,
+    // the web-smallcaps partia will do the trick to
+    // make this caps-to-small-caps and small-caps.
+    // For Amiri, however, we have to use font-variant with
+    // text-transform: lowercase. Note that these will
+    // not work reliably in epub. There, we must use
+    // text-transform: uppercase and a 0.8em font-size.
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 0.025em;
+}
+
+// Boxes
+
+.box {
+    border-color: $color-accent;
+    display: inline-block; // to create page-break before, see http://www.pigsgourdsandwikis.com/2010/06/goodbye-widows-and-orphans-or-yes-you.html
+}
+
+// Info boxes
+
+.info,
+.exercise {
+    border: 0.2em solid $color-accent;
+    border-bottom-right-radius: $core-element-border-radius;
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+    line-height: $line-height-default;
+    padding: ($line-height-default / 2);
+    clear: both;
+    display: inline-block; // to create page-break before, see http://www.pigsgourdsandwikis.com/2010/06/goodbye-widows-and-orphans-or-yes-you.html
+    h2, h3, h4, h5, h6 {
+        font-family: $font-text-secondary;
+        font-style: normal;
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+        margin-top: 0;
+    }
+}
+
+.info {
+    color: $color-accent;
+    // on very large screens, place info boxes in the margin
+    @include outside-right();
+}
+
+// Instructor tips
+.instructor-tip {
+    background-color: $color-light;
+    border-left: 0.2em solid $color-accent;
+    box-sizing: border-box;
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-size-smaller;
+    line-height: ($line-height-default * $font-size-smaller);
+    // margin values are /$font-size-smaller to scale up to $font-size-default
+    margin: (-$line-height-default/$font-size-smaller) 0 0 (1em/$font-size-smaller + 0.2em);
+    padding: $line-height-default / 2;
+}
+
+// definition lists
+
+.definition {
+    padding: ($line-height-default / 2);
+    background: $color-accent;
+    color: white;
+    border-bottom-right-radius: $core-element-border-radius;
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+    line-height: ($line-height-default * $font-size-smaller) * 1.4; // 1.4 retains good proportion of font height to line height
+    display: inline-block; // to create page-break before, see http://www.pigsgourdsandwikis.com/2010/06/goodbye-widows-and-orphans-or-yes-you.html
+}
+
+.js-definitions {
+    .definition {
+        background-color: $color-background;
+        color: $color-accent;
+        border: 0.2em solid $color-accent;
+    }
+}
+
+[data-term] {
+    // color: $color-links;
+    // cursor: pointer;
+    &.data-term-clickable {
+        color: $color-links;
+        cursor: pointer;
+        font-weight: bold;
+    }
+}
+// Fallback when ereaders don't support our popups
+// after we convert these data terms in text to links
+.data-term-clickable:focus + .definition-description-hover.visuallyhidden {
+    display: block;
+}
+
+.definition-term {
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 0.25em;
+}
+
+.definition-description {
+    display: inline;
+    margin-bottom: 0;
+    // Create a line break after each definition in a multiple-definitions box
+    &:after {
+        content: "";
+        display: block;
+    }
+    &.no-definition {
+        background: $color-highlight;
+    }
+}
+
+.definitions {
+    display: none;
+}
+.definition-description-hover {
+    &.visuallyhidden {
+        display: none!important; // important because we need this to override the display: block below
+    }
+    // pull definition-description-hover out of the doc flow so they hover above text
+    z-index: 1;
+    // ADE and other readers hate this, so we use relative plus display block
+    // and change a few other positioning rules below (compared to web).
+    // position: absolute;
+    position: relative;
+    display: block;
+    // look and feel
+    margin-top: $line-height-default;
+    max-width: 100%;
+    margin-left: $line-height-default;
+    margin-right: $line-height-default;
+    // left: $max-width-default * 0.25 / 3;
+    // right: $max-width-default * 0.25 / 3;
+    background-color: $color-background;
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+    font-weight: normal;
+    color: $color-text-main;
+    border: 0.2em solid $color-accent;
+    border-bottom-right-radius: $core-element-border-radius / 2;
+    padding: ($line-height-default / 2);
+    box-shadow: 1px 2px 7px grey;
+    // when these are attached to an italic term,
+    // they must not inherit that font style
+    font-style: initial;
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.definition-hover-term {
+    font-weight: bold;
+}
+
+.definition-description-hover {
+    .close {
+        position: absolute;
+        right: -($line-height-default / 2);
+        top: -($line-height-default / 2);
+        line-height: 1;
+        color: white;
+        vertical-align: inherit;
+        display: inline-block;
+        min-width: 1em;
+        background: $color-accent;
+        border-radius: 1em;
+        padding: 0.1em;
+        text-align: center;
+        font-weight: bold;
+        font-family: $font-text-secondary;
+        border: 0;
+        cursor: pointer;
+        &:before {
+            content: $nav-bar-close;
+            display: inline-block;
+            width: 1em;
+            position: relative;
+            top: -0.1em;
+        }
+    }
+}
+
+.hidden-definition-list {
+    display: none;
+}
+
+// Figures
+
+@mixin flex-parent() {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+@mixin flex-child() {
+    // Set these with shorthand as recommended:
+    // flex-grow: 1;
+    // flex-shrink: 1;
+    // flex-basis: auto;
+    flex: 0 1 auto;
+    max-height: none; // overrides figure partial
+}
+
+// Caption and source styles to use in figures and slidelines
+@mixin figure-caption() {
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+    text-align: left;
+    margin-bottom: $line-height-default;
+    .figure-reference {
+        font-weight: bold;
+    }
+}
+@mixin figure-source() {
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-size-smaller;
+    font-style: normal;
+    color: $color-text-mid;
+    text-align: left;
+    line-height: 1.2;
+    p.source {
+        font-style: normal;
+    }
+    a {
+        color: $color-text-mid;
+    }
+    .figure-more {
+        text-align: center;
+        margin-bottom: $line-height-default;
+        .figure-more-text {
+            text-align: left;
+            border: 1px solid $color-light;
+            border-radius: $button-border-radius;
+            padding: $line-height-default / 2;
+            a {
+                color: $color-links;
+            }
+        }
+        .button {
+            color: $color-light;
+            padding: 0.5em;
+        }
+    }
+}
+
+.figure {
+    background-color: transparent; // overrides inherit from figure partial
+    display: inline-block; // to create page-break before, see http://www.pigsgourdsandwikis.com/2010/06/goodbye-widows-and-orphans-or-yes-you.html
+    .figure-body {
+        .title {
+            display: none;
+        }
+        .caption {
+            @include figure-caption();
+        }
+        .figure-images {
+            display: inline-block; // our fallback for browsers without flex support
+            margin-bottom: 0; // overrides template $line-height-default
+            max-width: 100%; // required for IE to prevent images expanding out of viewport
+            // Add some white space around the jpg
+            border: 0.5em solid white;
+            box-sizing: border-box;
+            a {
+                padding: 0 $line-height-default/4 $line-height-default $line-height-default/4;
+            }
+            img {
+                // Paginated epubs break tall figures, so we keep images short
+                // with space for captions
+                max-height: 60%;
+                // SVG images must have a width
+                &[src*="svg"] {
+                    width: 100vw;
+                    background-color: white;
+                }
+            }
+        }
+    }
+    .figure-source {
+        @include figure-source;
+    }
+    &.image-rows-1-2 {
+        .figure-images {}
+    }
+
+    p {
+        font-style: normal;
+        font-family: $font-text-secondary;
+        font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+        text-align: left;
+        &.source {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    em {
+        font-style: italic;
+    }
+
+    .caption {
+        .figure-reference {
+            font-weight: bold;
+        }
+    }
+
+    // override _web-figures.scss default
+    .caption,
+    p:nth-child(2),
+    p:nth-child(2) + p,
+    p:nth-child(2) + p + p,
+    p:nth-child(2) + p + p + p,
+    p:nth-child(2) + p + p + p + p {
+        text-align: left;
+    }
+}
+
+.figure.visuallyhidden {
+    margin: -1px;
+    padding: 0;
+}
+
+// slides
+
+$slide-flex-basis: 80%;
+
+.slides {
+    clear: both;
+    margin-bottom: 2em;
+    display: inline-block; // to create page-break before, see http://www.pigsgourdsandwikis.com/2010/06/goodbye-widows-and-orphans-or-yes-you.html
+    .figure {
+        margin: 0 0 ($line-height-default * 0.5) 0; // default figures have margin-top
+        width: calc(100% - 1.6em); // even narrow figures fill the slide width
+        display: inline-block; // to create page-break before, see http://www.pigsgourdsandwikis.com/2010/06/goodbye-widows-and-orphans-or-yes-you.html
+        .figure-body {
+            .figure-images {
+                width: 100%; // centres figure image on small screens when display: inline-block
+                background-color: white;
+            }
+            .slide-caption {
+                display: block;
+                margin-bottom: 0;
+            }
+            .title {
+                display: block;
+                font-weight: bold;
+                color: $color-accent;
+                margin-bottom: 0;
+            }
+            // temp: slides sets are supposed to have just one caption,
+            // so hide the individual ones
+            .caption {
+                display: none;
+            }
+        }
+        // Show the summary figure with caption only and white background
+        &.summary {
+            display: inline-block; // to create page break before
+            background-color: white;
+            .figure-body {
+                .title, .description {
+                    display: none;
+                }
+                .caption {
+                    display: block;
+                }
+                .figure-source {
+                    display: block;
+                }
+            }
+        }
+    }
+    .figure-source {
+        display: none;
+    }
+    .figure-summary-meta {
+        margin-top: $line-height-default * 0.5;
+        padding: 1em ($line-height-default * 0.5);
+        clear: both;
+        background-color: white;
+        .caption {
+            display: block; // these were hidden for slide figures, shown for the summary
+            @include figure-caption(); // these were hidden for slide figures, shown for the summary
+        }
+        .figure-source {
+            @include figure-source();
+            display: block;
+            p.source {
+                margin: 0;
+            }
+        }
+    }
+}
+
+img[src$="svg"] {
+    background-color: white;
+}
+
+// slide colours
+
+$colour-slides: mix(white, $color-accent, $slides-tint);
+
+.slides {
+    background-color: $color-light;
+    border-top: 1px solid $color-light;
+    .figure-source {
+        color: $color-text-mid;
+        a {
+            color: $color-text-mid;
+        }
+    }
+    img {
+        background-color: white;
+    }
+}
+
+.nav-slides {
+    color: $nav-bar-label-color;
+    background-color: $colour-slides;
+    a {
+        color: $nav-bar-label-color;
+        background-color: $colour-slides;
+        display: block;
+        &:hover, &:active, &:focus {
+            outline: $line-height-default / 4 solid darken($colour-slides, $slides-focus-pc);
+            background-color: darken($colour-slides, $slides-current-pc);
+        }
+    }
+}
+
+.slide-current {
+    a {
+        outline: $line-height-default / 4 solid darken($colour-slides, $slides-current-pc);
+        background-color: darken($colour-slides, $slides-current-pc);
+    }
+}
+
+
+// slide nav
+
+.slides:before,
+.slides:after {
+    content: " ";
+    display: table;
+}
+
+.slides:after {
+    clear: both;
+}
+
+.slides {
+    .figure {
+        float: left;
+        clear: none;
+    }
+}
+
+$nav-slides-width: 8em;
+$nav-slides-denominator: 2;
+
+$nav-slides-many-width: 6em;
+$nav-slides-many-denominator: 3;
+
+$nav-slides-portrait-width: 3em;
+$nav-slides-portrait-denominator: 4;
+
+.nav-slides {
+    padding: $line-height-default / 4 0;
+    ol {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        list-style-type: none;
+    }
+    li {
+        padding: 0 $line-height-default / 4;
+        flex-basis: 15%;
+    }
+}
+
+.slide-current {}
+
+.nav-slides {
+    &.nav-slides-many {}
+    &.nav-slides-portrait {}
+}
+
+// Figure advancer
+// The figure advancer is a script that provides a better
+// UX for slides in epub, because ereaders support
+// our standard slides nav badly (e.g. clicks load wrong page).
+.slides {
+    .slides-link-to-next-figure {
+        display: none; // hidden in epub because paginated readers don't use it well
+    }
+}
+
+// Multiple-choice questions
+
+.mcq, .question {
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+    line-height: $line-height-default;
+    background-color: $color-accent-15pc;
+    background-color: rgba($color-accent, 0.15);
+    border-bottom-right-radius: $core-element-border-radius;
+    page-break-inside: avoid;
+    padding: ($line-height-default / 2);
+    margin: $line-height-default 0;
+    h2, h3, h4, h5, h6 {
+        font-family: $font-text-secondary;
+        font-style: normal;
+        text-transform: uppercase;
+        line-height: $line-height-default;
+        margin: 0;
+    }
+    p {
+        text-indent: 0;
+    }
+    .figure {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.mcq-questions, .mcq-options {
+    margin-bottom: 0;
+    list-style-type: circle;
+    [type="checkbox"] {
+        display: inline-block;
+        width: auto;
+        margin: 0 ($line-height-default / 2) 0 0;
+        cursor: pointer;
+    }
+    label {
+        display: block;
+        cursor: pointer;
+    }
+    li {
+        // Rarely, we use inline tables inside a list item
+        .table-wrapper {
+            display: inline;
+            vertical-align: top;
+        }
+        table {
+            display: inline-block;
+            width: calc(100% - 2em);
+            margin: 0;
+            vertical-align: middle;
+            tbody {
+                display: block;
+                width: 100%;
+            }
+            tr {
+                width: 100%;
+                display: block;
+                border: 0;
+            }
+            // where rows have only two cells, space them 50/50
+            td:nth-of-type(1):nth-last-of-type(2),
+            td:nth-of-type(2):nth-last-of-type(1) {
+                display: inline-block;
+                width: calc(50% - 1em);
+                vertical-align: top;
+            }
+        }
+    }
+}
+
+.mcq-feedback {
+    display: none;
+}
+
+.js-mcq {
+    .mcq-options {
+        list-style-type: none;
+        margin-left: 0;
+        li {
+            &:before {
+                content: "\2610"; // unchecked ballot box
+                margin-right: ($line-height-default / 2);
+            }
+            cursor: pointer;
+            margin-bottom: $line-height-default / 2;
+            margin-left: -($line-height-default / 2);
+            padding: 0 ($line-height-default / 2);
+            border: $button-border-radius solid transparent;
+            border-radius: $button-border-radius;
+        }
+        .selected {
+            border-color: $color-accent;
+            &:before {
+                content: "\2611"; // checked ballot box
+            }
+        }
+    }
+}
+
+.js-mcq {
+    .mcq-feedback {
+        display: block;
+        position: relative;
+        margin-top: $line-height-default;
+        list-style-type: none;
+        margin-left: 0;
+        background-color: $color-light;
+        border-radius: $button-border-radius;
+        &:before {
+            display: block;
+            padding: ($line-height-default / 2) 0 ($line-height-default / 2) ($line-height-default / 2);
+        }
+        &:after {
+            // position: absolute; // not valid in epub
+            top: $line-height-default / 2;
+            left: $line-height-default;
+        }
+        li {
+            display: none;
+            padding: 0 ($line-height-default / 2) ($line-height-default / 2) ($line-height-default / 2);
+        }
+        .mcq-feedback-show {
+            display: block;
+        }
+    }
+    .mcq-incorrect {
+        .mcq-feedback {
+            &:before {
+                content: "Incorrect";
+                text-transform: uppercase;
+            }
+            // We don't use this in epub, because its position
+            // requires position: absolute, which throws epubcheck warnings
+            // &:after {
+            //     content: "\2717";
+            // }
+        }
+    }
+    .mcq-partially-correct {
+        .mcq-feedback {
+            background-color: $color-light;
+            &:before {
+                content: "Good so far but you haven't selected all the correct answers.";
+            }
+        }
+    }
+    .mcq-correct {
+        .mcq-feedback {
+            background-color: white;
+            &:before {
+                content: "Correct!";
+                text-transform: uppercase;
+                // display: block;
+            }
+            // We don't use this in epub, because its position
+            // requires position: absolute, which throws epubcheck warnings
+            // &:after {
+            //     content: "\2713";
+            // }
+        }
+    }
+}
+
+.question {
+    .check-answer-button {
+        display: none;
+    }
+}
+
+.js-mcq {
+    .question {
+        .check-answer-button {
+            display: inline-block;
+            font-family: $font-text-secondary;
+            font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+            line-height: $line-height-default;
+            padding: $line-height-default/2 $line-height-default;
+            background-color: $color-accent;
+            color: white;
+            border: 0;
+            border-radius: $button-border-radius;
+            cursor: pointer;
+        }
+    }
+}
+
+// Images
+
+img {
+    max-width: 100%;
+    &.thumbnail {
+        max-width: 40%;
+    }
+    
+    &.inline-icon {
+        height: 1em;
+    }
+}
+
+.figure.thumbnail {
+    position: static;
+    .figure-body {
+        font-size: $font-size-default * $font-size-smaller * $font-size-smaller;
+        line-height: $line-height-default;
+    }
+}
+
+.team-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+    text-align: center;
+    .team-gallery-member {
+        width: 5em;
+        margin-bottom: 1em;
+        display: inline-block; // epub specific
+        vertical-align: top; // epub specific
+        img {
+            width: 100%;
+        }
+        .team-gallery-member-name {
+            font-weight: bold;
+            display: block;
+        }
+    }
+}
+
+.team-gallery-center-web {
+    justify-content: space-evenly;
+}
+
+// theme legends
+
+.theme-legend-heading {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.theme-legend {
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+        @include outside-right();
+}
+
+.theme-legend-list {
+    list-style-type: none;
+    margin: 0;
+}
+
+.theme-legend-theme{
+    svg {
+        width: 1.5em;
+        height: 1.5em;
+        position: relative;
+        top: 0.4em;
+    }
+}
+
+// theme keys
+
+// Capstone legends
+
+@mixin theme-marker($color) {
+    font-family: $font-text-secondary;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    background-color: $color;
+    display: inline-block;
+    line-height: $line-height-default;
+    padding: 0 0.25em;
+    border-radius: 1em;
+}
+
+.theme-key-theme {}
+
+// Capstone legends
+
+.theme-legend {
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * 0.7; // 7pt;
+    line-height: $line-height-default;
+    margin-top: $line-height-default * 1; // Adjust to align with baseline of text area, after sidenote top padding
+    .theme-legend-heading {
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+        margin: 0 0 0 ($line-height-default * 2);
+    }
+    .theme-legend-list {
+        list-style: none;
+        margin: 0;
+        li {
+            display: block;
+            padding: 0 0 0 ($line-height-default); // Adjust 4pt/1.4mm for bullet's character width and 2.5 mm for sidebar padding;
+            line-height: $line-height-default;
+            &:before {
+                display: block;
+                float: left;
+                margin-left: -($line-height-default * 1.5);
+                line-height: $line-height-default;
+                vertical-align: top;
+                margin-top: 1pt; // this varies from font to font
+            }
+        }
+    }
+    // When given as an example, the legend must be in the running text area
+    &.theme-legend-example {
+        float: none;
+        margin-outside: 0;
+    }
+}
+
+// Don't show the SVG circles, which are in the HTML for web display only
+.theme-legend-theme {
+    svg {
+        display: none;
+    }
+}
+
+.theme-legend-theme-17 {
+    &:before {
+        @include theme-marker($theme-17-color);
+    }
+}
+.theme-legend-theme-18 {
+    &:before {
+        @include theme-marker($theme-18-color);
+    }
+}
+.theme-legend-theme-19 {
+    &:before {
+        @include theme-marker($theme-19-color);
+    }
+}
+.theme-legend-theme-20 {
+    &:before {
+        @include theme-marker($theme-20-color);
+    }
+}
+.theme-legend-theme-21 {
+    &:before {
+        @include theme-marker($theme-21-color);
+    }
+}
+.theme-legend-theme-22 {
+    &:before {
+        @include theme-marker($theme-22-color);
+    }
+}
+
+// Capstone keys
+
+.theme-key {
+    line-height: 0;
+    margin: $line-height-default 0 0 0;
+    text-indent: 0;
+    page-break-after: avoid;
+    // Remove space between the key and the element it precedes.
+    & + * {
+        margin-top: 0;
+    }
+    // No space above when following certain elements
+    h1 + &,
+    h1 + .theme-legend + & {
+        margin-top: 0;
+    }
+    &.page-break-before {
+        // page-break-before: always; // inherited already, just noted here for clarity
+        margin-top: 0; // because it's the top of the page
+    }
+}
+
+.theme-key-17 {
+    @include theme-marker($theme-17-color);
+}
+.theme-key-18 {
+    @include theme-marker($theme-18-color);
+}
+.theme-key-19 {
+    @include theme-marker($theme-19-color);
+}
+.theme-key-20 {
+    @include theme-marker($theme-20-color);
+}
+.theme-key-21 {
+    @include theme-marker($theme-21-color);
+}
+.theme-key-22 {
+    @include theme-marker($theme-22-color);
+}
+
+// theme keys for subheadlines
+.theme-key.hide-theme-key {
+    display: none;
+}
+
+
+// Capstone chapter feature colours
+
+@mixin capstone-color-overrides($color, $color-hex-chars) {
+    html & {
+        // background-color: transparent;
+    }
+
+    // background color
+    &.chapter h1 {
+        color: $color!important;
+        // We don't show the SVGs in epub because they make validation complicated
+        // &:before {
+        //     background-image: url("../images/pinch-top-#{$color-hex-chars}.svg");
+        // }
+        // &:after {
+        //     background-image: url("../images/pinch-bottom-#{$color-hex-chars}.svg");
+        // }
+    }
+
+    // h2, h3 color
+    h2, h3, .subheadline {
+        color: $color;
+    }
+    // Override accordion styles
+    [role="tab"] a {
+        color: $color;
+    }
+    // definition background
+    .definition {
+        background: $color;
+    }
+    .definition-description-hover {
+        border-color: $color;
+        .close {
+            background: $color;
+        }
+    }
+
+    .js-definitions {
+        .definition {
+            background-color: white;
+            color: $color;
+            border: 0.2em solid $color;
+        }
+    }
+
+
+    // faux border on sidenote and footnote-detail
+    .sidenote, .footnote-detail {
+        &:before {
+            background-color: $color;
+        }
+    }
+    // h3:strong background
+    .einstein, .great-economist, .great-economists, .economist, .economists, .expandable-box {
+        h3 strong:first-of-type {
+            background-color: $color;
+            color: white;
+        }
+        .sidenote, .footnote-detail {
+            &:before {
+                background-color: white;
+            }
+        }
+    }
+    // background shade
+    .mcq, .question {
+        background-color: lighten($color, 30%);
+        background-color: rgba($color, 0.15);
+        .check-answer-button {
+            background-color: $color;
+        }
+    }
+
+    // mcq selected option
+    .mcq-options {
+        .selected {
+            border-color: $color;
+        }
+    }
+
+    // border
+    .exercise, .info, .box {
+        border-color: $color;
+    }
+    // font color in info boxes
+    .info {
+        color: $color;
+    }
+
+    // footnotes
+    sup[id^=fnref] {
+        background-color: $color;
+    }
+
+    .footnote-detail {
+        border-color: $color;
+        .reversefootnote {
+            background-color: $color;
+        }
+    }
+
+    // navigation
+    .masthead,
+    [href="#nav"],
+    #footer {
+        background-color: $color;
+        color: white;
+        a {
+            color: white;
+        }
+    }
+
+    // when the nav is open (`html.js-nav-open`), the overlay across the page
+    .js-nav-open & [href="#nav"] {
+        background-color: transparent;
+    }
+
+    #footer {
+        border-top-color: $color;
+    }
+
+    [data-toggle] {
+        &:after {
+            color: mix(white, $color, 30%); // 30% tint
+        }
+    }
+
+    #nav {
+        .nav-list {
+            ol, ul {
+                li {
+                    &:hover, &:focus, &:active, &.active {
+                        background-color: $color;
+                    }
+                }
+            }
+        }
+    }
+
+    // figures
+    .figure .figure-source .button,
+    .figure-summary-meta .figure-source .button {
+        background-color: $color;
+    }
+
+    // slidelines
+    $colour-slides: mix(white, $color, $slides-tint);
+
+    .slides {
+        border-color: $colour-slides;
+        .figure {
+            .title {
+                color: $color;
+            }
+        }
+    }
+
+
+    .nav-slides {
+        color: $nav-bar-label-color;
+        background-color: $colour-slides;
+        a {
+            color: $nav-bar-label-color;
+            background-color: $colour-slides;
+            &:hover, &:active, &:focus {
+                outline-color: darken($colour-slides, $slides-focus-pc);
+                background-color: darken($colour-slides, $slides-focus-pc);
+            }
+        }
+    }
+
+    .slide-current {
+        a {
+            outline-color: darken($colour-slides, $slides-current-pc);
+            background-color: darken($colour-slides, $slides-current-pc);
+        }
+    }
+}
+
+// Load the overrides
+.theme-17 {
+    @include capstone-color-overrides($theme-17-color, $theme-17-color-hex-chars);
+}
+.theme-18 {
+    @include capstone-color-overrides($theme-18-color, $theme-18-color-hex-chars);
+}
+.theme-19 {
+    @include capstone-color-overrides($theme-19-color, $theme-19-color-hex-chars);
+}
+.theme-20 {
+    @include capstone-color-overrides($theme-20-color, $theme-20-color-hex-chars);
+}
+.theme-21 {
+    @include capstone-color-overrides($theme-21-color, $theme-21-color-hex-chars);
+    // background shade, don't lighten as much as other units
+    .mcq, .question {
+        background-color: lighten($theme-21-color, 25%);
+    }
+}
+.theme-22 {
+    @include capstone-color-overrides($theme-22-color, $theme-22-color-hex-chars);
+}
+
+// Tables
+
+
+table {
+    tr {
+        border-bottom: 1px solid darken($color-light, 10%);
+        &:first-child {
+            border-top: 1px solid darken($color-light, 10%);
+        }
+        td, th {
+            border: none;
+            // text-align: right;
+            padding: 0 0.5em 0 0;
+        }
+        td {
+            .MathJax_Display {
+                margin: 0;
+            }
+            .table-row-stub {
+                text-align: left;
+                font-weight: bold;
+            }
+        }
+        th {
+            &:first-child,
+            &[colspan] {
+                // text-align: center; // this was a bad default
+            }
+            &[rowspan] {
+                text-align: left;
+            }
+        }
+
+    }
+    ul, ol {
+        margin-left: 1em; // so markers don't extend into neighbouring cell
+    }
+    // Some special classes for layout needs
+    
+    // even-columns can be applied to a table or to a figure include
+    &.even-columns, 
+    .figure.even-columns & {
+        td:nth-of-type(1):nth-last-of-type(2) {
+            width: 50%;
+        }
+        td:nth-of-type(1):nth-last-of-type(3),
+        td:nth-of-type(2):nth-last-of-type(2),
+        td:nth-of-type(3):nth-last-of-type(1) {
+            width: 33%;
+        }
+        td:nth-of-type(1):nth-last-of-type(4),
+        td:nth-of-type(2):nth-last-of-type(3),
+        td:nth-of-type(3):nth-last-of-type(2),
+        td:nth-of-type(4):nth-last-of-type(4) {
+            width: 25%;
+        }
+        td:nth-of-type(1):nth-last-of-type(5),
+        td:nth-of-type(2):nth-last-of-type(4),
+        td:nth-of-type(3):nth-last-of-type(3),
+        td:nth-of-type(4):nth-last-of-type(2),
+        td:nth-of-type(5):nth-last-of-type(1), {
+            width: 20%;
+        }
+    }
+    // extend even-columns for variable number of columns
+    @for $i from 1 through 15 {
+        .figure.even-columns-#{$i} & td {
+            width: 100% / $i;
+        }
+    }
+
+    // Let users specify cell text alignment
+    &.align-right, .align-right {
+        text-align: right;
+    }
+    &.align-left, .align-left {
+        text-align: left;
+    }
+    &.align-center, .align-center {
+        text-align: center;
+    }
+    &.vertical-align-middle, .vertical-align-middle {
+        vertical-align: middle;
+    }
+
+    // Let users shrink font, e.g. in big tables
+    .shrink-95pc & {
+        font-size: 95%;
+    }
+    // Let users shrink font, e.g. in big tables
+    .shrink-90pc & {
+        font-size: 90%;
+    }
+    // Let users shrink font, e.g. in big tables
+    .shrink-85pc & {
+        font-size: 85%;
+    }
+    // Let users shrink font, e.g. in big tables
+    .shrink-80pc & {
+        font-size: 80%;
+    }
+    // Let users shrink font, e.g. in big tables
+    .shrink-75pc & {
+        font-size: 75%;
+    }
+    // Let users shrink font, e.g. in big tables
+    .shrink-70pc & {
+        font-size: 70%;
+    }
+
+    // Let users add vertical rules between columns
+    &.table-vertical-rules {
+        td, th {
+            border-right: 1px solid darken($color-light, 10%);
+            &:last-of-type {
+                border-right: 0;
+                padding-left: 0.5em;
+            }
+        }
+    }
+}
+
+// Let users force table elements to look like thead rows
+.thead {
+    text-align: center;
+    font-weight: bold;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+// footnotes
+
+@mixin number-marker() {
+    vertical-align: inherit;
+    display: inline-block;
+    min-width: 1em;
+    background: $color-accent;
+    border-radius: 1em;
+    padding: 0 0.1em 0.1em 0.1em;
+    text-align: center;
+    font-weight: bold;
+    font-family: $font-text-secondary;
+}
+
+sup[id^=fnref] {
+    @include number-marker();
+    margin-left: 0.25em;
+    a {
+        color: white;
+        cursor: pointer;
+    }
+}
+
+// .footnote-detail {
+//     // pull footnote-detail out of the doc flow so they hover above text
+//     z-index: 1;
+//     position: absolute;
+//     // look and feel
+//     margin-top: $line-height-default;
+//     max-width: $max-width-default;
+//     margin-left: auto;
+//     margin-right: auto;
+//     left: $max-width-default * 0.25 / 3;
+//     right: $max-width-default * 0.25 / 3;
+//     background-color: $color-background;
+//     font-family: $font-text-secondary;
+//     font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+//     border: 0.2em solid $color-accent;
+//     border-bottom-right-radius: $core-element-border-radius / 2;
+//     padding: ($line-height-default / 2);
+//     box-shadow: 1px 2px 7px grey;
+//     p {
+//         margin-bottom: 0;
+//     }
+// }
+
+.footnotes {
+    color: $color-text-secondary;
+}
+
+
+$footnote-close: $nav-bar-close;
+
+// .footnote-detail {
+//     .reversefootnote {
+//         position: absolute;
+//         right: -($line-height-default / 2);
+//         top: -($line-height-default / 2);
+//         line-height: 1;
+//         @include number-marker();
+//         padding: 0.15em 0.1em 0em 0.1em; // override number-marker padding
+//         color: white;
+//         &:before {
+//             content: $footnote-close;
+//             display: inline-block;
+//             width: 1em;
+//             position: relative;
+//             top: -0.1em;
+//         }
+//     }
+// }
+
+// Glossary
+
+.glossary {
+    dt {
+        font-family: $font-text-secondary;
+        font-weight: bold;
+        font-size: inherit;
+        line-height: initial;
+        margin-right: 0.5em;
+        &:after {
+            content: normal;
+        }
+    }
+}
+
+.sidenote {
+    font-size: $font-size-default * $font-size-smaller * $font-size-smaller;
+    // adjust to match others
+    @include outside-right();
+}
+
+// Boxes that should be full-width on screen
+// Partials already allow for `web-wide` sidenotes
+.web-full-width {
+    float: none;
+    max-width: 100%;
+}
+
+// blockquote have $line-height-default padding on the right
+// which we want to add to the margin-right
+// but sidenotes have font-size $font-size-default * $font-size-smaller
+// so we get this beast:
+blockquote {
+    .sidenote {}
+}
+
+// Try and avoid overlapping boxes: info, definition, and sidenote
+@each $class in info, definition, sidenote {
+    .#{$class} + .#{$class},
+    .#{$class} + * + .#{$class},
+    .#{$class} + * + * + .#{$class},
+    .info + .#{$class},
+    .info + * + .#{$class},
+    .info + * + * + .#{$class},
+    .definition + .#{$class},
+    .definition + * + .#{$class},
+    .definition + * + * + .#{$class},
+    .sidenote + .#{$class},
+    .sidenote + * + .#{$class},
+    .sidenote + * + * + .#{$class} {
+        @include outside-left();
+    }
+}
+
+@each $class in info, definition, sidenote {
+    .#{$class} + .#{$class} + .#{$class},
+    .#{$class} + * + .#{$class} + * + .#{$class},
+    .info + .#{$class} + .#{$class},
+    .info + * + .#{$class} + * + .#{$class},
+    .info + * + * + .#{$class} + * + * + .#{$class},
+    .definition + .#{$class} + .#{$class},
+    .definition + * + .#{$class} + * + .#{$class},
+    .definition + * + * + .#{$class} + * + * + .#{$class},
+    .sidenote + .#{$class} + .#{$class},
+    .sidenote + * + .#{$class} + * + .#{$class},
+    .sidenote + * + * + .#{$class} + * + * + .#{$class} {
+        @include outside-right();
+    }
+}
+
+// Dialogue
+// Inherits some styles from underlying template
+
+dl.dialogue {
+    dt {
+        // If the browser supports font-feature-settings,
+        // make this caps-to-small-caps and small-caps.
+        // Otherwise use font-variant: small-caps with
+        // text-transform: lowercase. Note that these will
+        // not work reliably in epub. There, we must use
+        // text-transform: uppercase and a 0.8em font-size.
+        text-transform: lowercase;
+        font-variant: small-caps;
+        letter-spacing: 0.025em;
+        font-feature-settings: "c2sc", "smcp";
+    }
+}
+
+// Video
+.video {
+    margin-bottom: $line-height-default;
+}
+// Videos in sidenotes
+.sidenote .video,
+.sidenote.video {
+    .video-description {
+        padding: 0;
+    }
+}
+.video-wrapper {
+    clear: both;
+    > a {
+        position: relative;
+        display: block;
+        // &:after {
+        //     display: block;
+        //     content: "\25B6";
+        //     font-size: $font-size-default * $font-size-bigger * $font-size-smaller;
+        //     color: $color-background;
+        //     background-color: $color-text-secondary;
+        //     opacity: 0.7;
+        //     padding: 0.8em 1em 0.5em 1.2em;
+        //     border-radius: 0.35em;
+        //     position: absolute;
+        //     top: 50%;
+        //     left: 50%;
+        //     transform: translate(-50%,-50%);
+        //     text-align: center;
+        // }
+        &:hover {
+            &:after {
+                background-color: $color-accent;
+            }
+        }
+    }
+    // // Give the iframe an intrinsic ratio on all screens
+    // // Credit to https://alistapart.com/article/creating-intrinsic-ratios-for-video
+    // position: relative;
+    // padding-bottom: 56.25%; /* 16:9 */
+    // padding-top: 25px;
+    // height: 0;
+    // iframe {
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 100%;
+    // }
+}
+
+.video-description {
+    margin: $line-height-default 0;
+    padding: 0 $line-height-default;
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+}
+
+// Nav and search
+
+#nav {
+    [data-nav-close] {
+        font-size: 2em;
+    }
+    max-width: calc(100% - 1em);
+    .search {
+        input {
+            // Override template style
+            color: $color-text-secondary;
+        }
+    }
+    a {
+        cursor: pointer;
+    }
+    .js-nav & {
+        max-width: 80%; // let narrow-screen users see that this is a flyout menu not a new page
+    }
+}
+
+// Masthead template overrides
+
+.masthead {
+    ul {
+        padding: 0.6em 0 0.5em 0; // to align with 'Contents' #nav button
+        li {
+            display: none;
+            &:after {
+                content: initial;
+            }
+            &.masthead-book-title,
+            &.masthead-series-name {
+                display: inline-block;
+                margin-right: 0;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+// Footer credit
+#footer {
+    width: auto; // overrides template 100% to fix horiz scroll on some browsers (e.g. Chrome on Ubuntu)
+    p, ol, ul {
+        font-size: $font-size-default * $font-size-smaller * $font-size-smaller;
+        a {
+            text-decoration: none;
+        }
+    }
+}
+
+// Landing page
+
+.landing-page {
+    .masthead,
+    [href="#nav"] {
+        display: none;
+    }
+    .button {
+        text-align: center;
+    }
+}
+
+// Leibniz supplements
+
+.leibniz {
+    &.chapter h1 {
+        // In addition to styles set at general h1 above
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+    }
+    .intro {
+        font-family: $font-text-secondary;
+    }
+}
+
+// Frontmatter
+
+.half-title-page, .title-page {
+    .title-page-title {
+        @include unit-head();
+    }
+    .title-page-subtitle {
+        font-size: 1em;
+    }
+}
+
+// ---------------------------
+// Fixes for accommodating the Italian edition
+// ---------------------------
+
+.no-show {
+    display: none;
+}
+
+
+// Projects pages (designed originally for Doing Economics)
+
+// number questions within h2 sections
+h2 {
+    counter-reset: section;
+}
+.text-question {
+    counter-reset: question;
+    list-style-type: none; // remove list style because we're creating our own counters
+    margin-left: 1.5em; // no list indentation
+    padding: 0; // necessary when text-question is used for a blockquote to group paras
+    // counter
+    &:before {
+        color: $color-accent;
+        counter-increment: section;
+        content: counter(section);
+        float: left;
+        margin-right: 1em;
+        font-weight: bold;
+        font-family: $font-text-secondary;
+        margin-top: -0.1em; // accounts for font's low baseline
+        margin-left: -1.5em;
+    }
+    // When h3 with no margin-bottom precedes a text-question,
+    // add margin to force the counter number downwards
+    // to align with the text.
+    h3 + & {
+        margin-top: $line-height-default;
+    }
+    li ol, li ul {
+        margin-top: 0;
+        margin-bottom: $line-height-default;
+    }
+}
+.text-sub-question {
+    margin-left: 1.5em;
+    padding: 0;
+    list-style-type: none; // remove list style because we're creating our own counters
+    // Reduce space between sub-questions
+    & + & {
+        margin-top: -1em;
+    }
+    // counter
+    &:before {
+        counter-increment: question;
+        content: "(" counter(question, lower-alpha) ") ";
+        float: left;
+        margin-right: 0.5em;
+        margin-top: -0.1em; // accounts for font's low baseline
+        font-style: italic;
+    }
+    ul, ol {
+        margin-left: $line-height-default * 2;
+    }
+}
+// Solutions pages get extra treatment
+body.solutions {
+    // This is a fragile hack to use the .text-question class
+    // for the first para in solutions. It indents everything,
+    // except h2s and h3s, after a solution's first para (if it's
+    // tagged with text-question) until the next text-question.
+    .text-question {
+        & ~ :not(.text-question):not(h2):not(h3) {
+            margin-left: 1.5em;
+        }
+    }
+    .text-sub-question {
+        & ~ ul:not(.text-question):not(.text-sub-question),
+        & ~ ol:not(.text-question):not(.text-sub-question) {
+            margin-left: 4.5em !important; // important to override more specific :not above
+        }
+    }
+}
+
+
+// Rouge syntax highlighting
+// CSS adapted from https://github.com/jwarby/jekyll-pygments-themes
+// These styles adapted from Tango, adding .highlighter-rouge to apply to code spans
+.highlight, .highlighter-rouge {
+    background-color: $color-light;
+    .hll { background-color: #ffffcc }
+    .c { color: #8f5902; font-style: italic } /* Comment */
+    // The line below is commented out because a bug in rouge makes some underscores red blocks
+    // .err { color: #a40000; border: 1px solid #ef2929 } /* Error */
+    .g { color: #000000 } /* Generic */
+    .k { color: #204a87; font-weight: bold } /* Keyword */
+    .l { color: #000000 } /* Literal */
+    .n { color: #000000 } /* Name */
+    .o { color: #ce5c00; font-weight: bold } /* Operator */
+    .x { color: #000000 } /* Other */
+    .p { color: #000000; font-weight: bold } /* Punctuation */
+    .cm { color: #8f5902; font-style: italic } /* Comment.Multiline */
+    .cp { color: #8f5902; font-style: italic } /* Comment.Preproc */
+    .c1 { color: #8f5902; font-style: italic } /* Comment.Single */
+    .cs { color: #8f5902; font-style: italic } /* Comment.Special */
+    .gd { color: #a40000 } /* Generic.Deleted */
+    .ge { color: #000000; font-style: italic } /* Generic.Emph */
+    .gr { color: #ef2929 } /* Generic.Error */
+    .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+    .gi { color: #00A000 } /* Generic.Inserted */
+    .go { color: #000000; font-style: italic } /* Generic.Output */
+    .gp { color: #8f5902 } /* Generic.Prompt */
+    .gs { color: #000000; font-weight: bold } /* Generic.Strong */
+    .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+    .gt { color: #a40000; font-weight: bold } /* Generic.Traceback */
+    .kc { color: #204a87; font-weight: bold } /* Keyword.Constant */
+    .kd { color: #204a87; font-weight: bold } /* Keyword.Declaration */
+    .kn { color: #204a87; font-weight: bold } /* Keyword.Namespace */
+    .kp { color: #204a87; font-weight: bold } /* Keyword.Pseudo */
+    .kr { color: #204a87; font-weight: bold } /* Keyword.Reserved */
+    .kt { color: #204a87; font-weight: bold } /* Keyword.Type */
+    .ld { color: #000000 } /* Literal.Date */
+    .m { color: #0000cf; font-weight: bold } /* Literal.Number */
+    .s { color: #4e9a06 } /* Literal.String */
+    .na { color: #c4a000 } /* Name.Attribute */
+    .nb { color: #204a87 } /* Name.Builtin */
+    .nc { color: #000000 } /* Name.Class */
+    .no { color: #000000 } /* Name.Constant */
+    .nd { color: #5c35cc; font-weight: bold } /* Name.Decorator */
+    .ni { color: #ce5c00 } /* Name.Entity */
+    .ne { color: #cc0000; font-weight: bold } /* Name.Exception */
+    .nf { color: #000000 } /* Name.Function */
+    .nl { color: #f57900 } /* Name.Label */
+    .nn { color: #000000 } /* Name.Namespace */
+    .nx { color: #000000 } /* Name.Other */
+    .py { color: #000000 } /* Name.Property */
+    .nt { color: #204a87; font-weight: bold } /* Name.Tag */
+    .nv { color: #000000 } /* Name.Variable */
+    .ow { color: #204a87; font-weight: bold } /* Operator.Word */
+    // This line commented out so that spaces do not appear as white lines
+    // .w { color: #f8f8f8; text-decoration: underline } /* Text.Whitespace */
+    .mf { color: #0000cf; font-weight: bold } /* Literal.Number.Float */
+    .mh { color: #0000cf; font-weight: bold } /* Literal.Number.Hex */
+    .mi { color: #0000cf; font-weight: bold } /* Literal.Number.Integer */
+    .mo { color: #0000cf; font-weight: bold } /* Literal.Number.Oct */
+    .sb { color: #4e9a06 } /* Literal.String.Backtick */
+    .sc { color: #4e9a06 } /* Literal.String.Char */
+    .sd { color: #8f5902; font-style: italic } /* Literal.String.Doc */
+    .s2 { color: #4e9a06 } /* Literal.String.Double */
+    .se { color: #4e9a06 } /* Literal.String.Escape */
+    .sh { color: #4e9a06 } /* Literal.String.Heredoc */
+    .si { color: #4e9a06 } /* Literal.String.Interpol */
+    .sx { color: #4e9a06 } /* Literal.String.Other */
+    .sr { color: #4e9a06 } /* Literal.String.Regex */
+    .s1 { color: #4e9a06 } /* Literal.String.Single */
+    .ss { color: #4e9a06 } /* Literal.String.Symbol */
+    .bp { color: #3465a4 } /* Name.Builtin.Pseudo */
+    .vc { color: #000000 } /* Name.Variable.Class */
+    .vg { color: #000000 } /* Name.Variable.Global */
+    .vi { color: #000000 } /* Name.Variable.Instance */
+    .il { color: #0000cf; font-weight: bold } /* Literal.Number.Integer.Long */
+}

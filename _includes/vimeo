@@ -1,0 +1,11 @@
+{% include video
+    host="vimeo"
+    id=include.id
+    image=include.image
+    link=include.link
+    language=include.language
+    subtitles=include.subtitles
+    description=include.description
+    options=include.options
+    class=include.class
+%}

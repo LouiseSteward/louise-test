@@ -1,0 +1,62 @@
+// If small caps aren't working, you can try to force
+// 'fake' small caps
+@mixin force-allsmallcaps() {
+    .allsmallcaps {
+        -moz-font-feature-settings: normal;
+        -ms-font-feature-settings: normal;
+        -o-font-feature-settings: normal;
+        -webkit-font-feature-settings: normal;
+        font-feature-settings: normal;
+        font-style: inherit;
+        font-weight: inherit;
+        font-size: 0.85em;
+        text-transform: uppercase;
+    }
+}
+@mixin allsmallcaps-disabled() {
+    .allsmallcaps {
+        -moz-font-feature-settings: normal;
+        -ms-font-feature-settings: normal;
+        -o-font-feature-settings: normal;
+        -webkit-font-feature-settings: normal;
+        font-feature-settings: normal;
+        font-style: inherit;
+        font-weight: inherit;
+        font-size: 100%;
+        text-transform: none;
+    }
+}
+
+$print-smallcaps: true !default;
+@if $print-smallcaps {
+
+    // Use small-cap alternate glyphs
+    .smallcaps {
+        letter-spacing: 0.025em;
+        font-variant: prince-opentype(smcp, onum);
+        font-style: inherit;
+        font-weight: inherit;
+        line-height: 100%;
+        &.italic {
+            font-style: italic;
+        }
+        &.bold {
+            font-weight: bold;
+        }
+    }
+
+    // Convert both upper and lowercase to small caps (affects punctuation also)
+    .allsmallcaps {
+        letter-spacing: 0.025em;
+        font-variant: prince-opentype(c2sc, smcp, onum);
+        font-style: inherit;
+        font-weight: inherit;
+        line-height: 100%;
+        &.italic {
+            font-style: italic;
+        }
+        &.bold {
+            font-weight: bold;
+        }
+    }
+}

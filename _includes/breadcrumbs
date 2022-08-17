@@ -1,0 +1,57 @@
+
+{% comment %}
+Works much like nav-list, passing child items to itself
+as new parameters to drill down through web-nav-tree,
+and outputting only list items relevant to the current file.
+Include in content with {% include breadcrumbs breadcrumb-tree=web-nav-tree %}.
+The crumbs-array is created empty in _includes/metadata.
+{% endcomment %}
+
+{% if include.breadcrumb-tree %}
+    {% for item in include.breadcrumb-tree %}
+
+        {% comment %}Put the label and link, if there is a link,
+        in a variable called 'label'{% endcomment %}
+        {% capture label %}
+            {% if item.file %}
+                <a href="{{ item.file }}{% if item.id %}#{{ item.id }}{% endif %}">
+            {% endif %}
+                {{ item.label | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}{% if item.file %}</a>{% endif %}
+        {% endcapture %}
+        {% capture label %}{{ label | strip_newlines | strip }}{% endcapture %}
+
+        {% comment %}Add that label to an array of crumbs.
+        This array is empty the first time this include runs, and then
+        each time it includes itseld, the array fills with the crumbs
+        it created on its previous run. It left breadcrumbs where it walked!
+        Each crumb in the array is a potential parent of the crumbs
+        that we'll create on the next pass.{% endcomment %}
+        {% assign crumbs-array = crumbs-array | push: label %}
+
+        {% comment %}If the item we're on has children, put them in a variable.{% endcomment %}
+        {% assign children = item.children %}
+
+        {% comment %}As we run through the breadcrumb-tree, we're looking for the name
+        of the current HTML file we're generating. When the names match:
+        - create a list item for each crumb we've collected in the crumbs-array, and
+        - add a list item for the file we're generating.
+        Voila, a list of parents in the breadcrumb tree, ending with the current file.{% endcomment %}
+        {% if item.file == current-file %}
+            {% for crumb in include.crumbs-array %}
+                <li>{{ crumb | strip | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</li>
+            {% endfor %}
+            <li>{{ item.label | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</li>
+            {% comment %}We don't break here because some files
+            appear more than once in nav/breadcrumbs.{% endcomment %}
+
+        {% comment %}If we've not yet found the current file in the breadcrumb-tree,
+        let's go looking for it in this breadcrumb-tree item's children.
+        To do that, include this include again, using the children as the breadcrumb-tree
+        to look through. And pass along the crumbs-array we've collected so far.{% endcomment %}
+        {% else %}
+            {% include breadcrumbs breadcrumb-tree=children crumbs-array=crumbs-array %}
+        {% endif %}
+    {% endfor %}
+{% else %}
+    {% assign crumbs-array = "" | split: "|" %}
+{% endif %}

@@ -1,0 +1,23 @@
+$web-wrappers: true !default;
+@if $web-wrappers {
+
+    #wrapper {
+        background-color: $color-background;
+        overflow-x: hidden; // Prevents horizontal scroll esp. on small screens
+    }
+
+    #content {
+        clear: none;
+        padding: 0 0.5em;
+        @media (min-width: $break-point-m) {
+            padding: 0 1em;
+        }
+        margin: 0 auto $line-height-default auto;
+        max-width: $max-width-default;
+    }
+
+    section {
+        position: relative;
+    }
+
+}

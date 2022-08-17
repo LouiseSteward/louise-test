@@ -1,0 +1,19 @@
+// Custom styles to outline focussed elements for keyboard accessibility
+
+$web-focus: true !default;
+@if $web-focus {
+    // List of elements that need to be outlined when in focus 
+    a,
+    .bookmarks-list-header,
+    button,
+    .controls svg,
+    input[type="checkbox"],
+    .last-locations-list-header,
+    strong[data-term],
+    sup[id^="fnref"] {
+        &:focus {
+            outline: 5px auto Highlight;
+            outline: 5px auto -webkit-focus-ring-color;
+        }
+    }    
+}

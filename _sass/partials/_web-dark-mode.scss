@@ -1,0 +1,548 @@
+// Controls
+
+.dark-mode-control {
+    cursor: pointer;
+    text-align: right;
+    z-index: 100;
+
+    svg.dark-mode-icon {
+        display: inline-block;
+        height: 1.5em;
+        margin-left: 0.5em;
+        width: 1.5em;
+
+        .dark-mode-icon-outline {
+            fill: $color-accent;
+        }
+
+        .dark-mode-icon-fill {
+            fill: $color-background;
+        }
+    }
+}
+
+
+// Dark-mode styles
+
+$dark-mode-black: #222222 !default;
+$dark-mode-grey: #444444 !default;
+$dark-mode-light-grey: #ccc !default;
+$dark-mode-white: #f2f0f0 !default;
+$dark-mode-links: lighten($color-links, 50%) !default;
+
+body.dark-mode {
+
+    // Wrappers
+    color: $dark-mode-white;
+
+    #wrapper {
+        background-color: $dark-mode-black;
+    }
+
+    // Masthead
+    .masthead {
+
+        a {
+            color: $dark-mode-black;
+        }
+    }
+
+    // Nav
+    .nav-buttons {
+
+        a {
+            color: $dark-mode-black;
+        }
+    }
+    #nav {
+        background-color: $dark-mode-black;
+        border-right-color: $color-accent;
+
+        ol {
+            background-color: $dark-mode-black;
+
+            li {
+
+                a {
+                    color: $dark-mode-white;
+                }
+            }
+        }
+        [data-toggle-nav]:after {
+            color: $dark-mode-white;
+        }
+
+        .search {
+            background-color: $dark-mode-black;
+
+            input {
+                background-color: $dark-mode-black;
+                color: $dark-mode-white;
+
+                &::placeholder {
+                    color: $dark-mode-white;
+                }
+            }
+        }
+    }
+
+    // Typography
+
+    p, ul, ol, dl {
+        color: $dark-mode-white;
+    }
+
+    a {
+        color: $dark-mode-links;
+    }
+
+    p.subheadline {
+        color: $color-accent;
+    }
+
+    &.chapter h1 {
+        color: $dark-mode-black;
+
+        strong {
+
+            &:first-of-type::after {
+                border-top-color: $dark-mode-black;
+            }
+        }
+    }
+
+    &.frontmatter,
+    &.endmatter,
+    &.leibniz {
+
+        h1 {
+            color: $color-accent;
+        }
+    }
+
+    &.subchapter {
+
+        h1 {
+            border-top-color: $color-accent;
+            border-bottom-color: $color-accent;
+            color: $color-accent;
+        }
+    }
+
+    // Footnotes
+
+    .footnote-detail {
+        background-color: $dark-mode-grey;
+    }
+
+    // Accordion
+    [role="tab"] a {
+        color: $color-accent;
+    }
+
+    [data-accordion="open"]::after,
+    [data-accordion="closed"]::after {
+        color: $color-accent;
+    }
+    
+    .accordion-show-all-button {
+        border-color: $color-accent;
+        color: $color-accent;
+    }
+
+    // Table of contents
+
+    &.contents-page #content .toc-list li ol li a {
+        color: $dark-mode-white !important;
+    }
+
+    // Figures and slides
+
+    .slides {
+        background-color: $dark-mode-grey;
+        border-top-color: $dark-mode-grey;
+
+        .nav-slides {
+            background-color: $dark-mode-grey;
+
+            a {
+                background-color: $dark-mode-grey;
+            }
+        }
+
+        .figure-summary-meta {
+            background-color: $dark-mode-black;
+
+            .figure-source a {
+                color: $dark-mode-links;
+            }
+        }
+    }
+
+    // Questions
+
+    .js-mcq & .mcq-feedback {
+        background-color: $dark-mode-grey;
+    }
+
+    // Themes
+
+    .theme-key-label {
+        color: $dark-mode-white;
+    }
+
+    // Anchor links
+
+    a.anchorjs-link {
+        color: $color-mid; // avoid being overridden
+        border-color: $color-mid; // avoid being overridden
+    }
+
+    // Boxes
+
+    .sidenote {
+        background-color: $dark-mode-black;
+    }
+
+    .einstein,
+    .great-economist,
+    .great-economists,
+    .economists,
+    .economist,
+    .expandable-box {
+        background-color: $dark-mode-grey;
+
+        h4, h5, h6 {
+            color: $dark-mode-white;
+        }
+
+        .slides {
+
+            .figure-summary-meta {
+                background-color: $dark-mode-grey;
+            }
+        }
+    }
+
+    // Maths
+
+    .MathJax_Display {
+        color: $dark-mode-white;
+    }
+
+    // Definitions
+
+    [data-term] {
+        color: $dark-mode-links;
+    }
+
+    .definition-description-hover {
+        background-color: $dark-mode-grey;
+        color: $dark-mode-white;
+    }
+
+    // Video
+    .video-options-content {
+        background-color: $dark-mode-black;
+    }
+
+    // Bookmarks
+
+    .bookmarks {
+
+        svg.bookmark-icon {
+
+            .bookmark-icon-fill {
+                fill: $dark-mode-black;
+            }
+        }
+
+        svg.history-icon {
+
+            path {
+                fill: $color-accent;
+            }
+        }
+
+    }
+
+    .last-location-prompt {
+        background-color: $dark-mode-black;
+        a {
+            color: $color-accent;
+        }
+        button {
+            color: $color-accent;
+        }
+    }
+
+    .bookmarks-modal {
+        background-color: $dark-mode-black;
+
+        .bookmarks-list,
+        .last-locations-list {
+
+            .bookmarks-list-header,
+            .last-locations-list-header {
+                color: $dark-mode-links;
+
+                &.bookmarks-list-header-open {
+                    border-bottom-color: $dark-mode-black;
+                    color: $dark-mode-white;
+                }
+            }
+
+            .bookmarks-list-content,
+            .last-locations-list-content {
+
+                a {
+                    color: $dark-mode-links;
+                }
+
+                .bookmarks-list-tip,
+                .last-locations-list-tip {
+                    color: $dark-mode-light-grey;
+                }
+            }
+        }
+    }
+
+    .bookmark-button {
+
+        svg.bookmark-icon {
+
+            .bookmark-icon-fill {
+                fill: $dark-mode-grey;
+            }
+
+            .bookmark-icon-outline {
+                fill: $color-accent;
+            }
+        }
+
+        svg.history-icon {
+
+            path {
+                fill: $color-accent;
+            }
+        }
+    }
+
+    [data-bookmarked] {
+
+        & > button svg[class*="icon"].bookmark-icon .bookmark-icon-fill {
+            fill: $color-accent;
+        }
+    }
+
+    // Language selector
+
+    .language-select {
+
+        svg {
+            fill: $dark-mode-black;
+        }
+
+        .language-select-list {
+            background-color: $dark-mode-black;
+
+            a {
+                color: $dark-mode-links;
+            }
+        }
+    }
+
+    // Dark mode switch
+
+    svg.dark-mode-icon {
+
+        .dark-mode-icon-fill {
+            fill: $dark-mode-black;
+        }
+    }
+
+    // Notifications
+
+    .notification {
+        color: $dark-mode-black;
+    }
+
+    // Buttons
+    .button {
+        a {
+            background-color: $color-accent;
+            color: $dark-mode-black;
+            &:hover {
+                color: $dark-mode-white;
+            }
+        }
+    }
+
+    // Overrides
+    // ---------
+
+    // Landing page
+
+    &.landing-page {
+
+        #wrapper {
+            // background-color: $color-accent;
+        }
+
+        h1 {
+            background-color: transparent;
+            color: $color-accent;
+
+            &::after {
+                border-top-color: $color-accent;
+            }
+
+            strong:first-of-type::after {
+                border-top-color: $color-accent;
+            }
+        }
+
+        svg.dark-mode-icon {
+
+            .dark-mode-icon-outline {
+                fill: $color-accent;
+            }
+
+            .dark-mode-icon-fill {
+                fill: $dark-mode-black;
+            }
+        }
+    }
+    
+    // Thumbnail-style homepage (CORE Insights)
+    &.landing-page.thumbnail-homepage {
+        #wrapper {
+            background-color: $dark-mode-black;
+        }
+        h1 {
+            background-color: $dark-mode-black;
+            color: $color-accent;
+            strong::after, &::after {
+                border-top-color: $color-accent;
+            }
+        }
+        .homepage-container {
+            background-color: $color-accent;
+            border-top: 2px solid $color-accent;
+            .homepage-thumbnail {
+                box-shadow: 2px 2px 24px 12px rgba(256, 256, 256, 0.1);
+                background-color: $dark-mode-black;
+            }
+        }
+    }
+
+    // Search page
+
+    &.search-page {
+
+        h1 {
+            color: $color-accent;
+        }
+
+        #search-box {
+            background-color: $dark-mode-black;
+        }
+
+        #___gcse_0,
+        .gsc-control-cse,
+        .gsc-control-wrapper-cse,
+        .gsc-webResult.gsc-result,
+        .gsc-results .gsc-imageResult,
+        .gs-no-results-result .gs-snippet, .gs-error-result .gs-snippet {
+            background-color: $dark-mode-black;
+            border-color: $dark-mode-black;
+        }
+
+        #___gcse_0 .gsc-results .gs-title a, #___gcse_0 .gsc-results .gs-title b, #___gcse_0 .gs-result .gs-title a, #___gcse_0 .gs-result .gs-title b, #___gcse_1 .gsc-results .gs-title a, #___gcse_1 .gsc-results .gs-title b, #___gcse_1 .gs-result .gs-title a, #___gcse_1 .gs-result .gs-title b, #___gcse_2 .gsc-results .gs-title a, #___gcse_2 .gsc-results .gs-title b, #___gcse_2 .gs-result .gs-title a, #___gcse_2 .gs-result .gs-title b,
+        .gcsc-find-more-on-google {
+            color: $dark-mode-links;
+        }
+
+        .gcsc-find-more-on-google-magnifier {
+            fill: $dark-mode-white;
+        }
+
+        .gs-webResult .gs-snippet, .gs-imageResult .gs-snippet, .gs-fileFormatType {
+            color: $dark-mode-white;
+        }
+    }
+
+    // Code
+    // Rouge syntax highlighting
+    @include dark-mode-code();
+
+    // Add options for testing
+    &.fruity {
+        @include dark-mode-code('fruity');
+    }
+    &.native {
+        @include dark-mode-code('native');
+    }
+
+    // Themes
+
+    @mixin dark-capstone-color-overrides($color, $color-hex-chars) {
+        [role="tab"] a,
+        [data-accordion="open"]::after,
+        [data-accordion="closed"]::after {
+            color: $color;
+        }
+        .accordion-show-all-button {
+            border-color: $color;
+            color: $color;
+        }
+        #nav {
+            border-right-color: $color;
+        }
+        p.subheadline {
+            color: $color;
+        }
+        .last-location-prompt {
+
+            a {
+                color: $color;
+            }
+
+            button {
+                color: $color;
+            }
+        }
+        .bookmark-button svg.bookmark-icon .bookmark-icon-outline,
+        [data-bookmarked] > button svg[class*="icon"].bookmark-icon .bookmark-icon-fill,
+        svg[class*="icon"].history-icon path {
+            fill: $color;
+        }
+        .anchorjs-link {
+            border-color: $color;
+            color: $color;
+        }
+    }
+
+    &.theme-17 {
+        @include dark-capstone-color-overrides($theme-17-color, $theme-17-color-hex-chars);
+    }
+    &.theme-18 {
+        @include dark-capstone-color-overrides($theme-18-color, $theme-18-color-hex-chars);
+    }
+    &.theme-19 {
+        @include dark-capstone-color-overrides($theme-19-color, $theme-19-color-hex-chars);
+    }
+    &.theme-20 {
+        @include dark-capstone-color-overrides($theme-20-color, $theme-20-color-hex-chars);
+    }
+    &.theme-21 {
+        @include dark-capstone-color-overrides($theme-21-color, $theme-21-color-hex-chars);
+        // background shade, don't lighten as much as other units
+        .mcq, .question {
+            background-color: lighten($theme-21-color, 15%);
+        }
+    }
+    &.theme-22 {
+        @include dark-capstone-color-overrides($theme-22-color, $theme-22-color-hex-chars);
+    }
+}

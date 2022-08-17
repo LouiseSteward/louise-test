@@ -1,0 +1,86 @@
+$web-video: true !default;
+@if $web-video {
+
+    // Video
+    // Works specifically with our `youtube` video include
+
+    .videowrapper {
+        float: none;
+        clear: left;
+        width: 100%;
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 25px;
+    	margin: 1em 0;
+    }
+    .videowrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .videowrapper + p {
+    	text-indent: 0; // Don't indent a paragraph after a video.
+    }
+
+    .video-options {
+        margin-top: 1rem;
+        position: relative;
+
+        .video-options-button {
+            display: block;
+            font-size: 1em * $font-serif-sans-ratio;
+            margin: auto;
+            padding: 0.5rem 1rem;
+        }
+
+        .video-options-content {
+
+            // Always visible by default
+            @include dialog-styles();
+            background-color: $color-background;
+            margin-top: 1rem;
+            padding: 0;
+
+            // When triggered by JS, display as 'dropdown'
+            &.js-video-options-content {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 2rem;
+                visibility: hidden;
+
+                &.js-video-options-content-visible {
+                    visibility: visible;
+                    z-index: 1;
+                }
+            }
+            
+            ul {
+                margin: 0;
+                
+                li {
+                    list-style-type: none;
+                    
+                    a {
+                        background-color: $color-background;
+                        color: $color-text-main !important;
+                        display: block;
+                        font-size: 1em * $font-serif-sans-ratio;
+                        line-height: 1;
+                        margin: 0 !important;
+                        padding: 0.5em;
+                        text-decoration: none;
+                        width: -webkit-fill-available;
+                        
+                        &:hover, &:focus {
+                            background-color: $color-accent;
+                            color: $color-background !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

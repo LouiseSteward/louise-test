@@ -1,0 +1,40 @@
+{% comment %}
+After this comment block, include any links and scripts
+that you want just before the </body> tag in your HTML.
+Use Liquid logic tags to include only in certain outputs, e.g.
+`if site.output == "web"` for scripts like search.js.
+{% endcomment %}
+
+{% if site.output == "web" or site.output == "app" %}
+
+    <script src="{{ path-to-root-directory }}assets/js/bundle.js{% if site.output == "web" %}?date={{ site.time | date: "%Y%m%d%H%M%S" }}{% endif %}"></script>
+
+    {% comment %}
+    These scripts provide client-side search. See:
+    http://elasticlunr.com/
+    https://markjs.io/
+    {% endcomment %}
+    {% if is-series-search or is-book-search %}
+        {% if site.data.settings.search-type == "elasticlunr" or site.output == "app" %}
+
+        <script>
+            if (searchTerm) {
+                // display the placeholder
+                // we do this here because we can't wait for locales.js
+                // and bundle-search to load it. Sorry about the hack.
+                var searchResultsContainer = document.getElementById('search-results');
+                if (searchResultsContainer) {
+                    searchResultsContainer.innerHTML = '<p>' + locales[pageLanguage].search['placeholder-searching'] + '</p>';
+                }
+            }
+        </script>
+        <script src="{{ path-to-root-directory }}assets/js/bundle-search.js"></script>
+
+        {% endif %}
+    {% endif %}
+
+{% endif %}
+
+{% if site.output == "print-pdf" or site.output == "screen-pdf" or site.output == "epub" %}
+    <script src="{{ path-to-root-directory }}assets/js/bundle.js"></script>
+{% endif %}

@@ -1,0 +1,63 @@
+$web-fullscreen-images: true !default;
+@if $web-fullscreen-images {
+    
+    .fullscreen-button {
+        border-radius: $button-border-radius;
+        border: 1px solid $color-accent;
+        color: $color-accent;
+        cursor: pointer;
+        display: inline-block;
+        font-family: $font-text-secondary;
+        font-size: $font-size-default / 3;
+        font-style: normal;
+        font-weight: bold;
+        letter-spacing: 0.05em;
+        line-height: 1;
+        padding: 0.2em 0.3em;
+        text-transform: uppercase;
+        
+        position: absolute;
+        bottom: -2em;
+        right: 0;
+        height: fit-content;
+        
+        .thumbnail & {
+            font-size: ($font-size-default / 3) / $font-size-smaller;
+        }
+    }
+    
+    .figure .figure-body .figure-images {
+        position: relative;
+        
+        margin-bottom: 1.5em !important;
+        
+        &.fullscreen {
+            background-color: white;
+            border: calc(min(2vw, 2vh)) solid white;
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            
+            .fullscreen-button {
+                bottom: 0;
+                right: 0;
+            }
+            
+            img, svg {
+                box-shadow: 3.2046px 3.2046px 12.8184px rgba(0, 0, 0, 0.16);
+            }
+        }    
+        // when there is only one image in the fullscreen, center it
+        &.fullscreen.contains-1 {
+            svg {
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }
+            img {
+                margin: 0 auto;
+            }
+        }    
+    }
+}

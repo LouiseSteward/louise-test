@@ -1,0 +1,259 @@
+# Set site.output == "screen-pdf"
+output: "screen-pdf"
+# Set site.image-set == "images/screen-pdf"
+image-set: "images/screen-pdf"
+# Jekyll will ignore these files and folders.
+# Useful for temporarily speeding up processing for particular files
+# Once your CSS is stable, exclude `css` here and keep it below under `keep_files`.
+# Include the file extension too. E.g. book/text/01.md
+exclude:
+  - README*
+  - run-linux*
+  - run-mac*
+  - run-windows*
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+  - node_modules
+  - gulpfile.js
+  - eslint.json
+  - /*/images/source
+# -----------------------------------
+# Scripts we only want the minified versions of
+# -----------------------------------
+  - /assets/js/nav.js
+  - /assets/js/get-query-variable.js
+  - /assets/js/mark-search-terms.js
+  - /assets/js/slides.js
+  - /assets/js/lazyload.js
+  - /assets/js/videos.js
+  - /assets/js/accordions.js
+  - /assets/js/tables.js
+  - /assets/js/new-tabs.js
+  - /assets/js/definitions.js
+  - /assets/js/footnotes.js
+  - /assets/js/mcqs.js
+# -----------------------------------
+# Files we don't need for PDF output
+# -----------------------------------
+  - /*/package.opf
+  - /*/images/web
+  - /*/images/print-pdf
+  - /*/images/epub
+  - /*/images/app
+  - /*/styles/app*
+  - /*/styles/web*
+  - /*/styles/print-pdf*
+  - /*/styles/epub*
+  - /*/text/0-7-resources-list*
+  - search*
+# -----------------------------------
+# Book files
+# -----------------------------------
+  # - /*/fonts
+  # - /*/styles
+  # - /*/text/0-0-cover*
+  # - /*/text/0-1-0-halftitlepage*
+  # - /*/text/0-1-titlepage*
+  # - /*/text/0-2-copyright*
+  # - /*/text/0-3-contents*
+  # - /*/text/0-4-preface*
+  # - /*/text/0-5-note-to-instructors*
+  # - /*/text/0-6-contributors*
+  # - /*/text/01*
+  # - /*/text/02*
+  # - /*/text/03*
+  # - /*/text/04*
+  # - /*/text/05*
+  # - /*/text/06*
+  # - /*/text/07*
+  # - /*/text/08*
+  # - /*/text/09*
+  # - /*/text/10*
+  # - /*/text/11*
+  # - /*/text/12*
+  # - /*/text/13*
+  # - /*/text/14*
+  # - /*/text/15*
+  # - /*/text/16*
+  # - /*/text/17*
+  # - /*/text/18*
+  # - /*/text/19*
+  # - /*/text/20*
+  # - /*/text/21*
+  # - /*/text/22*
+  # - /*/text/50-01-looking-forward*
+  # - /*/text/50-02-glossary*
+  # - /*/text/50-03-bibliography*
+  # - /*/text/50-04-copyright-acknowledgements*
+  # - /*/text/50-05-index*
+  # - /*/text/leibniz-02*
+  # - /*/text/leibniz-03*
+  # - /*/text/leibniz-04*
+  # - /*/text/leibniz-05*
+  # - /*/text/leibniz-06*
+  # - /*/text/leibniz-07*
+  # - /*/text/leibniz-08*
+  # - /*/text/leibniz-11*
+  # - /*/text/leibniz-12*
+  # - /*/text/leibniz-22*
+  # - /*/text/search*
+  # - /*/text/glossary*
+  - /*/text/question*
+  - /*/text/quiz*
+  - /*/text/glossary-as-table*
+# ---------------------------------
+# English book
+# ---------------------------------
+  # - /book/text/
+# ---------------------------------
+# French book
+# ---------------------------------
+  - /*/fr
+  # - /*/fr/text/0-0-cover*
+  # - /*/fr/text/0-1-0-halftitlepage*
+  # - /*/fr/text/0-1-titlepage*
+  # - /*/fr/text/0-2-copyright*
+  # - /*/fr/text/0-3-contents*
+  # - /*/fr/text/0-4-preface*
+  # - /*/fr/text/0-5-note-to-instructors*
+  # - /*/fr/text/0-6-contributors*
+  # - /*/fr/text/01*
+  # - /*/fr/text/02*
+  # - /*/fr/text/03*
+  # - /*/fr/text/04*
+  # - /*/fr/text/05*
+  # - /*/fr/text/06*
+  # - /*/fr/text/07*
+  # - /*/fr/text/08*
+  # - /*/fr/text/09*
+  # - /*/fr/text/10*
+  # - /*/fr/text/11*
+  # - /*/fr/text/12*
+  # - /*/fr/text/13*
+  # - /*/fr/text/14*
+  # - /*/fr/text/15*
+  # - /*/fr/text/16*
+  # - /*/fr/text/17*
+  # - /*/fr/text/18*
+  # - /*/fr/text/19*
+  # - /*/fr/text/20*
+  # - /*/fr/text/21*
+  # - /*/fr/text/22*
+  # - /*/fr/text/50-01-looking-forward*
+  # - /*/fr/text/50-02-glossary*
+  # - /*/fr/text/50-03-bibliography*
+  # - /*/fr/text/50-04-copyright-acknowledgements*
+  # - /*/fr/text/50-05-index*
+  # - /*/fr/text/leibniz-02*
+  # - /*/fr/text/leibniz-03*
+  # - /*/fr/text/leibniz-04*
+  # - /*/fr/text/leibniz-05*
+  # - /*/fr/text/leibniz-06*
+  # - /*/fr/text/leibniz-07*
+  # - /*/fr/text/leibniz-08*
+  # - /*/fr/text/leibniz-11*
+  # - /*/fr/text/leibniz-12*
+  # - /*/fr/text/leibniz-22*
+  - /*/fr/text/question-01*
+  - /*/fr/text/question-02*
+  - /*/fr/text/question-03*
+  - /*/fr/text/question-04*
+  - /*/fr/text/question-05*
+  - /*/fr/text/question-06*
+  - /*/fr/text/question-07*
+  - /*/fr/text/question-08*
+  - /*/fr/text/question-09*
+  - /*/fr/text/question-10*
+  - /*/fr/text/question-11*
+  - /*/fr/text/question-12*
+  - /*/fr/text/question-13*
+  - /*/fr/text/question-14*
+  - /*/fr/text/question-15*
+  - /*/fr/text/question-16*
+  - /*/fr/text/question-17*
+  - /*/fr/text/question-18*
+  - /*/fr/text/question-19*
+  - /*/fr/text/question-20*
+  - /*/fr/text/question-21*
+  - /*/fr/text/question-22*
+# ---------------------------------
+# Farsi book
+# ---------------------------------
+  - /*/fa
+  # - /*/fa/text/01*
+  # - /*/fa/text/02*
+  # - /*/fa/text/03*
+  # - /*/fa/text/04*
+  # - /*/fa/text/05*
+# ---------------------------------
+# Italian book
+# ---------------------------------
+  - /*/it
+  # - /*/it/text/01*
+  # - /*/it/text/02*
+  # - /*/it/text/03*
+  # - /*/it/text/04*
+  # - /*/it/text/05*
+# ---------------------------------
+# Spanish book
+# ---------------------------------
+  - /*/es
+  # - /*/es/text/01*
+  # - /*/es/text/02*
+  # - /*/es/text/03*
+  # - /*/es/text/04*
+  # - /*/es/text/05*
+
+# Can be useful to stop Jekyll overwriting files in _site.
+# E.g. generate CSS once, then exclude above but keep here
+# to make content regeneration faster.
+# The file path is relative to the site.output directory.
+keep_files:
+# -----------------------------------
+# Book files
+# -----------------------------------
+  # - book/images/print-pdf
+  # - book/images/screen-pdf
+  # - book/images/web
+  # - book/images/epub
+  # - book/images/app
+  # - book/fonts
+  # - book/styles
+  # - book/text
+  # - book/text/0-0-cover.html
+  # - book/text/0-1-0-halftitlepage.html
+  # - book/text/0-1-titlepage.html
+  # - book/text/0-2-copyright.html
+  # - book/text/0-3-contents.html
+  # - book/text/0-4-preface.html
+  # - book/text/0-5-note-to-instructors.html
+  # - book/text/0-6-contributors.html
+  # - book/text/01.html
+  # - book/text/02.html
+  # - book/text/03.html
+  # - book/text/04.html
+  # - book/text/05.html
+  # - book/text/06.html
+  # - book/text/07.html
+  # - book/text/08.html
+  # - book/text/09.html
+  # - book/text/10.html
+  # - book/text/11.html
+  # - book/text/12.html
+  # - book/text/13.html
+  # - book/text/14.html
+  # - book/text/15.html
+  # - book/text/16.html
+  # - book/text/17.html
+  # - book/text/18.html
+  # - book/text/19.html
+  # - book/text/20.html
+  # - book/text/21.html
+  # - book/text/22.html
+  # - book/text/50-01-looking-forward.html
+  # - book/text/50-02-glossary.html
+  # - book/text/50-03-bibliography.html
+  # - book/text/50-04-copyright-acknowledgements.html
+  # - book/text/50-05-index.html

@@ -1,0 +1,21 @@
+{% capture definition %}
+
+{% if include.term and include.definition %}
+
+{% comment %}Don't indent this, or kramdown thinks its a code block{% endcomment %}
+<dt class="definition-term">{{ include.term }}</dt> <dd class="definition-description">{{ include.definition | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}{% if include.example and include.example != "" %} <span class="definition-example">{{ include.example | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</span>{% endif %}{% if include.cross-reference and include.cross-reference != "" %} <em class="definition-cross-reference">{{ include.cross-reference | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</em>{% endif %}</dd>
+
+{% else %}
+
+  {% assign error = "no-definition" %}
+  Error: Term or definition missing from custom definition.
+
+{% endif %}
+
+{% endcapture %}{% comment %}i.e. definition{% endcomment %}
+
+{% comment %}Now that we've got the definition, output the surrounding HTML
+with a fallback warning if the term is not in the glossary.{% endcomment %}
+<dl class="definition{% if error %} {{ error }}{% endif %}">
+{{ definition | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
+</dl>

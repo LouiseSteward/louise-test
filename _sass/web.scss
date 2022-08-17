@@ -1,0 +1,3844 @@
+// What is this?
+// -------------
+// This is typography for the Electric Book template (see http://ebw.co/template).
+// It is built with Sass. (See http://sass-lang.com, and http://jekyllrb.com/docs/assets for how Jekyll implements Sass.)
+// It sets defaults that can be overridden in each book's own stylesheets, where the variables here are duplicated.
+//
+// How to use it
+// -------------
+// Edit the default variables below.
+// Comment/uncomment or add font imports below.
+// Add your own custom CSS at the bottom.
+
+// -------------
+// Set variables
+// -------------
+
+// Edition suffix: identifies this edition in certain classes (e.g. in _epub-fitting.scss).
+$edition-suffix: null !default;
+
+// The path to the project root, for settings paths to things like project assets.
+// Override this for translation styles, which need an extra leading ../
+$path-to-root-directory: "../.." !default;
+
+// Max width of main body area
+$max-width-default: 35em !default;
+
+// We name font variables for two categories:
+// - 'text' fonts are used for body text and some page features;
+// - 'display' fonts are used for headings and similar short-string features.
+// For each category, we set a main font and a secondary font, allowing up to four fonts.
+// Finally, we set a fifth, monospace font for elements like computer code.
+$font-text-main: "Amiri", serif !default;
+$font-text-secondary: "Source Sans Pro", sans-serif !default;
+$font-display-main: "Source Sans Pro", sans-serif !default;
+$font-display-secondary: "Crimson", serif !default;
+$font-code: "Inconsolata", monospace !default;
+
+// Set font size and line-height in ems or px.
+// These values, especially $line-height-default, are used to compute vertical rhythm
+// for many features in this theme. So do not use a unitless value for line-height,
+// and don't use percentages, which will break layouts computed by multiplying this value.
+$font-size-default: 1.4em !default;
+$line-height-default: 1.5em !default;
+$font-size-smaller: 0.7 !default; // How much smaller than font-size-default for features like sidenotes and footers?
+$font-size-bigger: 2 !default; // How many times bigger than font-size-default for features like headings and pullquotes?
+$font-serif-sans-ratio: 0.9 !default; // Sans fonts are often bigger than serif ones. By what ratio should the sans be reduced to match serif?
+
+// Do you want space between paragraphs, rather than a text-indent?
+$spaced-paras: true !default;
+
+// Buttons
+$button-border-radius: 0.1rem !default; // Roundness of button corners.
+$box-border-radius: 0.1rem !default; // Roundness of box corners
+
+// Shadows
+$box-shadow: 1px 2px 7px grey !default;
+
+// Rule thickness
+$rule-thickness: 1px !default;
+
+// Colours
+
+// Project accent colour kept in separate partial
+// so that this file is the same across all CORE projects.
+@import 'color-accent';
+
+$color-text-main: #222222 !default;
+$color-text-secondary: #222222 !default;
+$color-dark-grey: #666666 !default;
+$color-background: white !default;
+$color-light: #F2F2F2 !default;
+$color-mid: $color-accent-30pc !default;
+$color-links: #037bb5 !default;
+$color-buttons: $color-accent !default;
+$color-buttons-hover: darken( $color-buttons, 20% ) !default;
+$color-highlight: #ffd54d !default;
+$color-notifications: #ffd54d !default;
+$color-notification-low-text: $color-light !default;
+$color-notification-medium-text: $color-light !default;
+$color-notification-high-text: $color-light !default;
+$color-notification-low-background: $color-accent !default;
+$color-notification-medium-background: $color-notifications !default;
+$color-notification-high-background: #ff7c4d !default;
+
+$theme-17-color: #9F6B5B !default; // 17 Great Depression
+$theme-18-color: #3c919e !default; // 18 World Economy
+$theme-19-color: #dc764d !default; // 19 Economic Inequality
+$theme-20-color: #759757 !default; // 20 Environment
+$theme-21-color: #6064b0 !default; // 21 Innovation
+$theme-22-color: #AD80A6 !default; // 22 Politics and Power
+
+// We also save the hex value without the hash, to use
+// in interpolation when setting background-image file names
+$theme-17-color-hex-chars: 9F6B5B !default;
+$theme-18-color-hex-chars: 4BB4C5 !default;
+$theme-19-color-hex-chars: F48356 !default;
+$theme-20-color-hex-chars: 92BD6D !default;
+$theme-21-color-hex-chars: E4A95A !default;
+$theme-22-color-hex-chars: AD80A6 !default;
+
+// Slides percentages
+$slides-current-pc: 20% !default;
+$slides-focus-pc: 35% !default;
+$slides-tint: 30% !default;
+
+// Some features rearrange at certain screen sizes.
+// What are your break points for rearrangement?
+$break-point-height: 600px !default;
+$break-point-width: 600px !default;
+
+$break-point-s: 20em !default;
+$break-point-m: 40em !default;
+$break-point-l: 60em !default;
+$break-point-xl: 80em !default;
+
+// Set the default start-depth of pages.
+// This is the distance from the top of the page to the first element on the first page.
+$start-depth: $line-height-default * 2 !default;
+
+// Hyphenation
+// Variables here apply to p, ul, ol, dl.
+// Note: Most browsers and ereaders do not support hyphenation rules.
+$hyphenation: auto !default; // Can be auto, none, or manual (only breaks on hyphens and soft hyphens)
+$hyphenation-dictionary: "" !default; // Path to dictionary file, relative to `/book/styles`. E.g. "../../assets/hyph.dic".
+$hyphenate-after: 3 !default; // Minimum letters on new line after hyphen
+$hyphenate-before: 3 !default; // Minimum letters at end of line before hyphen
+$hyphenate-lines: 1 !default; // Maximum number of consecutive lines ending with hyphens
+
+// Footer
+$footer-text-color: $color-text-main !default;
+$footer-background-color: $color-accent !default;
+$footer-border-color: $color-accent !default;
+
+// Website masthead
+$masthead-text-color: $color-light !default;
+$masthead-background-color: $color-accent !default;
+$masthead-border-color: transparent !default;
+
+// Website sidebar/navigation
+$nav-bar-text-size: 0.8em !default;
+$nav-bar-item-collapse: false !default; // Does the nav list fully expand, or collapse until mouseover?
+$nav-bar-close: "\00D7" !default; // &times; ×
+$nav-bar-children-prompt: "+" !default;
+$nav-bar-children-prompt-hide: "\2212" !default; // \2212 is an actual minus sign
+$nav-bar-scrollbar: true !default;
+$nav-bar-width: 20em !default;
+$nav-bar-fixed: true !default; // fixed is not fully supported on many mobile browsers
+$nav-bar-label-color: white !default;
+$nav-bar-label-background-color: $masthead-background-color !default;
+$nav-bar-border-color: $color-light !default;
+$nav-bar-background-color: white !default;
+$nav-bar-search-background-color: white !default;
+$nav-bar-parent-background-color: white !default;
+$nav-bar-parent-text-color: black !default;
+$nav-bar-parent-hover-color:$color-accent !default;
+$nav-bar-parent-text-hover-color: white !default;
+$nav-bar-children-prompt-color: $color-dark-grey !default;
+$nav-bar-child-background-color: $color-light !default;
+$nav-bar-child-text-color: black !default;
+$nav-bar-child-hover-color: $color-accent !default;
+$nav-bar-child-text-hover-color: white !default;
+
+// Accordion
+$accordion-show-button: '+' !default;
+$accordion-hide-button: '\2212' !default;
+$accordion-show-all-button: '+' !default; // ⊕
+
+// Theme legend
+$theme-legend-filter-button: "\2261" !default;
+$theme-legend-filter-button-active: "\2262" !default;
+$theme-legend-filter-button-color: $color-mid !default;
+$theme-legend-filter-button-color-hover: $color-links !default;
+
+// Language selector
+$language-select-icon-line-color: $color-accent !default;
+$language-select-icon-background-color: $color-background !default;
+$language-select-text-color: $color-text-secondary !default;
+$language-select-links-color: $color-links !default;
+$language-select-background-color: $color-background !default;
+$language-select-icon-thickness: 0.75px !default;
+
+// Annotator
+$annotator-sidebar-width: 16em !default;
+$annotator-icon-line-color-active: $color-background !default;
+$annotator-icon-line-color-inactive: $color-accent !default;
+$annotator-icon-background-color-active: $color-accent !default;
+$annotator-icon-background-color-inactive: $color-background !default;
+$annotator-icon-thickness: 1.5px !default;
+
+// Bookmarks
+$bookmark-border-color: $color-mid !default;
+$bookmark-text-color: $color-text-main !default;
+$bookmark-text-color-secondary: lighten($color-text-main, 30%) !default;
+$bookmark-background-color: $color-background !default;
+$bookmark-icon-color-inactive: $color-background !default;
+$bookmark-icon-color-active: $color-accent !default;
+$bookmark-icon-outline-color-inactive: $color-accent !default;
+$bookmark-icon-outline-color-active: $color-accent !default;
+$bookmark-icon-text-size: 1.5em !default;
+
+// ---------------------------------
+// Set to false to turn partials off
+// ---------------------------------
+
+// Reset browser CSS as best we can
+$web-css-reset: true !default;
+
+// Structural HTML components
+$web-wrappers: true !default;
+$web-notifications: true !default;
+$web-login-prompts: true !default;
+
+// Default typography
+$web-base-typography: true !default;
+
+// Navigation
+$web-masthead: true !default;
+$web-search: true !default;
+$web-nav-bar: true !default;
+$web-footer: true !default;
+
+// Book parts
+$web-cover: true !default;
+$web-previous-publications-page: true !default;
+$web-title-pages: true !default;
+$web-copyright-page: true !default;
+$web-dedications: true !default;
+$web-epigraphs: true !default;
+$web-toc: true !default;
+
+// Book-feature classes
+$web-bibliographies: true !default;
+$web-boxes: true !default;
+$web-buttons: true !default;
+$web-code: true !default;
+$web-figures: true !default;
+$web-highlighter: true !default;
+$web-glossaries: true !default;
+$web-index: true !default;
+$web-interactive-graphs: true !default;
+$web-maths: true !default;
+$web-notes: true !default;
+$web-openers: true !default;
+$web-pullquotes: true !default;
+$web-sources: true !default;
+$web-tables: true !default;
+$web-letters: true !default;
+$web-verse: true !default;
+$web-video: true !default;
+
+// Type-control classes
+$web-smallcaps: true !default;
+$web-fitting: true !default;  // E.g. tracking and shrinking
+
+// Controls
+$web-controls: true !default;
+$web-language-select: true !default;
+$web-annotator: true !default;
+$web-bookmarks: true !default;
+$web-fullscreen-images: true !default;
+
+// Print styles
+$web-print: true !default;
+
+// Logic (if this then that)
+$web-reset-sequences: true !default; // This should stay last in the @import list
+
+// ----------------------------------------------------
+// Import font files (@font-face) for fonts you specify
+// ----------------------------------------------------
+
+// Import fonts from book-specific CSS.
+
+// Usually in the Electric Book template we import fonts here.
+// Instead, we're using a webfonts script in _includes/head-elements.
+
+// Force SVGs to use correct font on 'Asap-Medium'
+[style*="font-family:'Asap-Medium'"],
+[style*="font-family:'Asap Medium'"],
+[style*="font-family:Asap Medium"] {
+    font-family: 'Asap'!important; // !important overrides inline style
+    font-weight: 600!important;
+}
+
+// Force SVGs to use correct font on 'Asap-Regular'
+[style*="font-family:'Asap-Regular'"],
+[style*="font-family:'Asap Regular'"],
+[style*="font-family:Asap Regular"] {
+    font-family: 'Asap'!important; // !important overrides inline style
+}
+
+// Force SVGs to use correct font on 'Asap-MediumItalic'
+[style*="font-family:'Asap-MediumItalic'"],
+[style*="font-family:'Asap Medium Italic'"],
+[style*="font-family:Asap Medium Italic"] {
+    font-family: 'Asap'!important; // !important overrides inline style
+    font-weight: 600;
+    font-style: italic;
+}
+
+// Force SVGs to use correct font on 'Asap-Italic'
+[style*="font-family:'Asap-Italic'"],
+[style*="font-family:'Asap Italic'"],
+[style*="font-family:Asap Italic"] {
+    font-family: 'Asap'!important; // !important overrides inline style
+    font-style: italic;
+}
+
+// Force SVGs to use correct font on 'Asap-Bold'
+[style*="font-family:'Asap-Bold'"],
+[style*="font-family:'Asap Bold'"],
+[style*="font-family:Asap Bold"] {
+    font-family: 'Asap'!important; // !important overrides inline style
+    font-weight: bold;
+}
+
+// Force SVGs to use correct font on 'SourceSansPro-Regular'
+[style*="font-family:'SourceSansPro-Regular'"],
+[style*="font-family:'SourceSansPro Regular'"],
+[style*="font-family:SourceSansPro Regular"] {
+    font-family: 'Source Sans Pro'!important; // !important overrides inline style
+    font-weight: 400;
+}
+
+// Force SVGs to use correct font on 'SourceSansPro-SemiBold'
+[style*="font-family:'SourceSansPro-Semibold'"],
+[style*="font-family:'SourceSansPro Semibold'"],
+[style*="font-family:SourceSansPro Semibold"] {
+    font-family: 'Source Sans Pro'!important; // !important overrides inline style
+    font-weight: 600;
+}
+
+// Force SVGs to use correct font on 'SourceSansPro-Bold'
+[style*="font-family:'SourceSansPro-Bold'"],
+[style*="font-family:'SourceSansPro Bold'"],
+[style*="font-family:SourceSansPro Bold"] {
+    font-family: 'Source Sans Pro'!important; // !important overrides inline style
+    font-weight: 700;
+}
+
+// ---------------------
+// Theme modules
+// ---------------------
+
+// Reset browser CSS as best we can
+@import "partials/web-css-reset";
+
+// Mixins
+@import "partials/web-mixins--dialogs";
+
+// Structural HTML components
+@import "partials/web-wrappers";
+@import "partials/web-notifications";
+@import "partials/web-login-prompts";
+
+// Default typography
+@import "partials/web-base-typography";
+
+// Navigation
+@import "partials/web-masthead";
+@import "partials/web-nav-bar";
+@import "partials/web-search";
+@import "partials/web-footer";
+
+// Book parts
+@import "partials/web-cover";
+@import "partials/web-previous-publications-page";
+@import "partials/web-title-pages";
+@import "partials/web-copyright-page";
+@import "partials/web-dedications";
+@import "partials/web-epigraphs";
+@import "partials/web-toc";
+
+// Book-feature classes
+@import "partials/web-bibliographies";
+@import "partials/web-boxes";
+@import "partials/web-buttons";
+@import "partials/web-code";
+@import "partials/web-dialogue";
+@import "partials/web-figures";
+@import "partials/web-glossaries";
+@import "partials/web-highlighter";
+@import "partials/web-index";
+@import "partials/web-interactive-graphs";
+@import "partials/web-maths";
+@import "partials/web-notes";
+@import "partials/web-openers";
+@import "partials/web-pullquotes";
+@import "partials/web-sources";
+@import "partials/web-tables";
+@import "partials/web-letters";
+@import "partials/web-verse";
+@import "partials/web-video";
+
+// Type-control classes
+@import "partials/web-smallcaps";
+@import "partials/web-fitting";  // E.g. tracking and shrinking
+
+// User features
+@import "partials/web-controls";
+@import "partials/web-annotator";
+@import "partials/web-language-select";
+@import "partials/web-bookmarks";
+@import "partials/web-dark-mode-code";
+@import "partials/web-dark-mode";
+@import "partials/web-fullscreen-images";
+@import "partials/web-wordpress-user-profile";
+
+// Accessibility
+@import "partials/web-focus";
+
+// Print styles
+@import "partials/web-print";
+
+// Logic (if this then that)
+@import "partials/web-reset-sequences"; // This should stay last in the @import list
+
+
+// -------------
+// Custom styles
+// -------------
+
+// Add any custom Sass or CSS here.
+
+$core-element-border-radius: 2em;
+
+// Base typography
+// ---------------
+
+// Headings
+
+h1 {
+    font-family: $font-display-main;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 0.9;
+    color: $color-accent;
+    .frontmatter &,
+    .chapter.frontmatter &,
+    .contents-page &,
+    .endmatter &,
+    .chapter.endmatter &,
+    .search-page &,
+    .chapter.search-page &,
+    .chapter.leibniz &,
+    .quiz & {
+        // Override unit-head styles
+        font-family: $font-text-secondary;
+        text-transform: none;
+        letter-spacing: 0;
+        position: static;
+        margin: 2em 0;
+        color: $color-accent;
+        background-color: transparent;
+        &:before, &:after {
+            background: none;
+        }
+    }
+    // Less space below on the search page
+    .search-page &,
+    .chapter.search-page & {
+        margin-bottom: 0;
+    }
+}
+
+// Used for h2 and subheadline
+@mixin h2() {
+    font-family: $font-text-secondary;
+    font-size: $font-size-default;
+    // text-transform: uppercase;
+    // letter-spacing: 0.025em;
+    font-weight: bold;
+    color: $color-accent;
+    line-height: 1.3;
+    margin: ($line-height-default) 0 ($line-height-default * 0.5) 0;
+    @media (min-width: $break-point-l) {
+       font-size: $font-size-default * 1.5;
+    }
+}
+
+h2 {
+    @include h2();
+}
+
+h3 {
+    font-family: $font-text-main;
+    font-style: italic;
+    color: $color-accent;
+    em {
+        font-style: normal;
+    }
+}
+
+h4 {
+    font-family: $font-text-main;
+    font-style: italic;
+}
+
+// Adds a label above an h1, e.g. on Leibniz pages
+.title-label {
+    color: $color-accent;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: $font-text-secondary;
+    text-align: center;
+    font-size: 1.4em;
+    margin-bottom: 0;
+}
+
+// Links
+
+a {
+    // Links are underlined by default for accessibility
+    text-decoration: underline;
+    text-underline-offset: 0.1em;
+
+    // There are some exceptions, for design reasons
+    .masthead &,
+    &.nav-button,
+    &.nav-back-button,
+    .nav-list &,
+    .subheadline &,
+    &.accordion-show-all-button,
+    &.theme-legend-filter-button,
+    &.footnote,
+    h2 &,
+    .contents-page &,
+    .resources-page &,
+    .bookmark-title &,
+    .bookmark-date &,
+    .language-select &,
+    &.figure-image-link,
+    .nav-slides &,
+    .homepage-thumbnail &,
+    .expandable-box &.toggle {
+        text-decoration: none;
+    }
+}
+
+// Lists
+
+// Remove the space after a list,
+// e.g. for nested lists where space after looks wrong
+.list-nospace-web {
+    margin-bottom: 0;
+}
+
+// Type features
+
+// Allow extra emphasis in body text
+.extra-emphasis {
+    color: $color-accent;
+}
+
+.allsmallcaps {
+    // If the browser and font support font-feature-settings,
+    // the web-smallcaps partia will do the trick to
+    // make this caps-to-small-caps and small-caps.
+    // For Amiri, however, we have to use font-variant with
+    // text-transform: lowercase. Note that these will
+    // not work reliably in epub. There, we must use
+    // text-transform: uppercase and a 0.8em font-size.
+    text-transform: lowercase;
+    font-variant: small-caps;
+    letter-spacing: 0.025em;
+    font-feature-settings: "c2sc", "smcp";
+}
+
+// Maths
+
+// HTML/CSS superscripts over subscripts
+// Only works for single-digit superscripts
+.align-sup-on-sub {
+    position: relative;
+    sup {
+        position: relative;
+        left: -0.5em;
+        font-size: 0.6em;
+    }
+    sub {
+        font-size: 0.6em;
+    }
+}
+// Properly hide MathJax_Display when visuallyhidden
+.MathJax_Display.visuallyhidden,
+.MathJax_SVG_Display.visuallyhidden {
+    margin: 0;
+}
+// Correct line spacing in maths
+#content .MathJax nobr,
+#content .MathJax,
+#content .MathJax span {
+    line-height: 0;
+}
+
+// Chapter openers
+
+@mixin unit-head() {
+    color: white;
+    background-color: $color-accent;
+    border-radius: 0.5em;
+    font-size: $font-size-default * 0.9;
+    position: absolute;
+    // top: 20%;
+    // top: 20vh;
+    top: 3em;
+    left: 10%;
+    right: 10%;
+    padding: 0.25em 0.5em 0.5em 0.5em;
+    margin: 15% 0 0 0;
+    @media (min-width: $break-point-m) {
+        font-size: $font-size-default * 1.1;
+        margin: 10% 0 0 0;
+    }
+    @media (min-width: $break-point-l) {
+        font-size: $font-size-default * 1.5;
+        margin: 5% 0 0 0;
+    }
+    // The chapter number, if <strong> in the HTML
+    strong:first-of-type {
+        display: block;
+        margin-bottom: 0.5em;
+        font-weight: normal;
+        font-size: $font-size-default / $font-size-bigger;
+        line-height: $line-height-default;
+        position: relative;
+        &:after {
+            position: absolute;
+            content: "";
+            left: 1em;
+            right: 1em;
+            display: block;
+            border-top: 0.1em solid white;
+        }
+    }
+
+    // pinch
+    &:before,
+    &:after {
+        content: "";
+        display: block;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 1em;
+        height: 0.5em;
+        position: absolute;
+        left: 0;
+        right: 0;
+        @media (min-width: $break-point-l) {
+            background-size: 2em;
+            height: 1em;
+        }
+
+    }
+    &:before {
+        background-image: url("../images/pinch-top.svg");
+        top: -0.45em;
+        @media (min-width: $break-point-l) {
+            top: -0.93em;
+        }
+    }
+    &:after {
+        background-image: url("../images/pinch-bottom.svg");
+        bottom: -0.45em;
+        @media (min-width: $break-point-l) {
+            bottom: -0.93em;
+        }
+    }
+}
+
+.chapter-opener-image {
+    // magic number hacks for fixing height
+    height: 20em;
+    @media (min-width: $break-point-m) {
+        height: 25em;
+    }
+    overflow-y: hidden;
+    margin: 0 0 2em ;
+    img {
+        display: flex;
+        vertical-align: middle;
+        align-items: center;
+        width: 100%;
+        object-fit: cover;
+        height: 100%; // this will not work in IE and Edge and must still be polyfilled
+        color: white; // hides alt text during loading
+        // Text visible while image loads
+        font-family: $font-text-secondary;
+        font-size: 1em * $font-size-smaller;
+        text-align: center;
+    }
+    // Reduce space if there is no image
+    &.chapter-opener-image-none {
+        height: 15em;
+        @media (min-width: $break-point-m) {
+            height: 15em;
+        }
+        & + #content h1 {
+            margin-top: 0;
+            @media (min-width: $break-point-m) {
+                margin-top: 1em;
+            }
+        }
+        // If a unit opens with an h2, remove the space
+        // normally reserved for the h1
+        & + #content > h2:first-child {
+            margin-top: -10em;
+            @media (min-width: $break-point-m) {
+                margin-top: -5em;
+            }
+        }
+    }
+}
+.chapter-opener-image-caption {
+    color: $color-mid;
+    font-family: $font-text-secondary;
+    font-weight: 300;
+    margin-bottom: ($line-height-default * 2);
+    margin-top: -($line-height-default);
+    text-align: center;
+}
+
+.chapter h1 {
+    @include unit-head();
+}
+
+// Subheadlines should look just like h2s
+.subheadline {
+    @include h2();
+}
+
+// Subchapters are structured like normal chapters,
+// but their opening h1s look less prominent
+.subchapter h1 {
+    background: none;
+    border-top: 2px solid $color-mid;
+    border-bottom: 2px solid $color-mid;
+    border-radius: 0;
+    color: $color-accent;
+    padding: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    &:before, &:after {
+        content: normal;
+    }
+}
+
+// Boxes
+
+.box {
+    background-color: inherit;
+    ul, ol {
+        margin-left: 1em;
+    }
+    p:last-child, ul:last-child, ol:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// Buttons
+
+// A group of `p.button`s in a blockquote
+.buttons {
+    text-align: center;
+    padding: 0;
+    overflow: auto;
+    p.button {
+        float: left;
+        margin-right: 1em;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+// Question download Buttons
+.question-download-buttons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    a {
+        max-width: $max-width-default / 5;
+        min-width: $max-width-default / 6;
+    }
+}
+
+// Navigation
+
+#nav {
+    // Avoid li with class name from meta
+    // from getting accent colour background
+    li[class*="theme-"] {
+        background-color: transparent;
+    }
+}
+
+// Contents page (TOC)
+
+// Need #content here to override inherited template styles
+.contents-page #content {
+    .theme-legend {
+        margin-bottom: $line-height-default;
+        .theme-legend-heading {}
+        .theme-legend-list {}
+    }
+    .toc-list {
+        li {
+            font-family: $font-display-main;
+            font-weight: bold;
+            a {
+                color: $color-accent;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+            ol li a {
+                // color: $color-text-main;
+                &:hover {
+                    color: $color-links;
+                }
+            }
+            &.toc-entry-title {
+                &.theme-17 {
+                    background-color: transparent; // overrides html bg color for themes
+                    a {
+                        color: $theme-17-color;
+                    }
+                    ol li a {
+                        color: $color-text-main;
+                        &:hover {
+                            color: $color-links;
+                        }
+                    }
+                }
+                &.theme-18 {
+                    background-color: transparent;
+                    a {
+                        color: $theme-18-color;
+                    }
+                    ol li a {
+                        color: $color-text-main;
+                        &:hover {
+                            color: $color-links;
+                        }
+                    }
+                }
+                &.theme-19 {
+                    background-color: transparent;
+                    a {
+                        color: $theme-19-color;
+                    }
+                    ol li a {
+                        color: $color-text-main;
+                        &:hover {
+                            color: $color-links;
+                        }
+                    }
+                }
+                &.theme-20 {
+                    background-color: transparent;
+                    a {
+                        color: $theme-20-color;
+                    }
+                    ol li a {
+                        color: $color-text-main;
+                        &:hover {
+                            color: $color-links;
+                        }
+                    }
+                }
+                &.theme-21 {
+                    background-color: transparent;
+                    a {
+                        color: $theme-21-color;
+                    }
+                    ol li a {
+                        color: $color-text-main;
+                        &:hover {
+                            color: $color-links;
+                        }
+                    }
+                }
+                &.theme-22 {
+                    background-color: transparent;
+                    a {
+                        color: $theme-22-color;
+                    }
+                    ol li a {
+                        color: $color-text-main;
+                        &:hover {
+                            color: $color-links;
+                        }
+                    }
+                }
+            }
+            .toc-entry-text {}
+            &.toc-frontmatter, &.toc-endmatter {
+                margin-top: $line-height-default / 2;
+                margin-bottom: $line-height-default / 2;
+                margin-left: $line-height-default;
+            }
+            // Unit numbers
+            strong:first-of-type {
+                font-weight: inherit;
+                display: inline-block;
+                width: $line-height-default * 0.75; // allow 0.25 for width of space between number and text
+            }
+            ul, ol {
+                margin-bottom: $line-height-default;
+                li {
+                    font-weight: normal;
+                    font-family: $font-text-main;
+                    a {
+                        color: $color-text-main;
+                    }
+                    .toc-entry-text {}
+                    // Section numbers
+                    strong:first-of-type {
+                        font-weight: inherit;
+                        display: inline-block;
+                        width: $line-height-default * 1.5;
+                    }
+                }
+            }
+            // Inline theme keys in TOC
+            .theme-key {
+                display: inline-block;
+                margin: 0 0 0 0.25em;
+            }
+            .theme-key-label {
+                display: none;
+            }
+        }
+    }
+}
+
+// Resources page
+
+.resources-page #content a:hover:not(.anchorjs-link) {
+    text-decoration: underline;
+
+}
+
+// Einstein and Great Economists boxes
+// Also see figures in these boxes defined below Figures section
+
+.einstein,
+.great-economist,
+.great-economists,
+.economists,
+.economist,
+.expandable-box {
+    background: $color-light;
+    margin: 1.5em 0;
+    padding-top: 0;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-bottom: $line-height-default / 2;
+    h2, h3, h4, h5, h6 {
+        color: $color-accent;
+        font-style: italic;
+        font-weight: normal;
+        // Put the first bold word, e.g. 'Einstein', in a bar at the top
+        strong:first-of-type {
+            display: block;
+            background: $color-accent;
+            color: white;
+            text-transform: uppercase;
+            font-family: $font-text-secondary;
+            font-style: normal;
+            font-weight: bold;
+             // magic numbers, depend on box padding:
+            padding-right: 0.35em;
+            padding-left: 0.35em;
+            margin-right: -(0.35em);
+            margin-bottom: 0.5em;
+            margin-left: -(0.35em);
+            // use overflow: auto to ensure that the + expander gets the correct styling
+            overflow: auto;
+        }
+        // Italics in headings should be roman
+        em {
+            font-style: normal;
+        }
+    }
+    h4, h5, h6 {
+        color: $color-text-main;
+    }
+    // Give code a white background in grey boxes
+    pre, code, .highlight, .highlighter-rouge {
+        background-color: white;
+    }
+    .question {
+        h3 {
+            font-weight: bold;
+            strong:first-of-type {
+                color: $color-accent;
+                background: transparent;
+                display: inline;
+            }
+        }
+    }
+    p:last-child, ol:last-child, ul:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.expandable-box {
+    .sidenote {
+        @media (min-width: $break-point-m) {
+            float: none;
+            max-width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        @media (min-width: $break-point-xl) {
+            @include outside-right();
+        }
+    }
+}
+
+// Rouge syntax highlighting
+// CSS adapted from https://github.com/jwarby/jekyll-pygments-themes
+// These styles adapted from Tango, adding .highlighter-rouge to apply to code spans
+.highlight, .highlighter-rouge {
+    background-color: $color-light;
+    .hll { background-color: #ffffcc }
+    .c { color: #8f5902; font-style: italic } /* Comment */
+    // The line below is commented out because a bug in rouge makes some underscores red blocks
+    // .err { color: #a40000; border: 1px solid #ef2929 } /* Error */
+    .g { color: #000000 } /* Generic */
+    .k { color: #204a87; font-weight: bold } /* Keyword */
+    .l { color: #000000 } /* Literal */
+    .n { color: #000000 } /* Name */
+    .o { color: #ce5c00; font-weight: bold } /* Operator */
+    .x { color: #000000 } /* Other */
+    .p { color: #000000; font-weight: bold } /* Punctuation */
+    .cm { color: #8f5902; font-style: italic } /* Comment.Multiline */
+    .cp { color: #8f5902; font-style: italic } /* Comment.Preproc */
+    .c1 { color: #8f5902; font-style: italic } /* Comment.Single */
+    .cs { color: #8f5902; font-style: italic } /* Comment.Special */
+    .gd { color: #a40000 } /* Generic.Deleted */
+    .ge { color: #000000; font-style: italic } /* Generic.Emph */
+    .gr { color: #ef2929 } /* Generic.Error */
+    .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+    .gi { color: #00A000 } /* Generic.Inserted */
+    .go { color: #000000; font-style: italic } /* Generic.Output */
+    .gp { color: #8f5902 } /* Generic.Prompt */
+    .gs { color: #000000; font-weight: bold } /* Generic.Strong */
+    .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+    .gt { color: #a40000; font-weight: bold } /* Generic.Traceback */
+    .kc { color: #204a87; font-weight: bold } /* Keyword.Constant */
+    .kd { color: #204a87; font-weight: bold } /* Keyword.Declaration */
+    .kn { color: #204a87; font-weight: bold } /* Keyword.Namespace */
+    .kp { color: #204a87; font-weight: bold } /* Keyword.Pseudo */
+    .kr { color: #204a87; font-weight: bold } /* Keyword.Reserved */
+    .kt { color: #204a87; font-weight: bold } /* Keyword.Type */
+    .ld { color: #000000 } /* Literal.Date */
+    .m { color: #0000cf; font-weight: bold } /* Literal.Number */
+    .s { color: #4e9a06 } /* Literal.String */
+    .na { color: #c4a000 } /* Name.Attribute */
+    .nb { color: #204a87 } /* Name.Builtin */
+    .nc { color: #000000 } /* Name.Class */
+    .no { color: #000000 } /* Name.Constant */
+    .nd { color: #5c35cc; font-weight: bold } /* Name.Decorator */
+    .ni { color: #ce5c00 } /* Name.Entity */
+    .ne { color: #cc0000; font-weight: bold } /* Name.Exception */
+    .nf { color: #000000 } /* Name.Function */
+    .nl { color: #f57900 } /* Name.Label */
+    .nn { color: #000000 } /* Name.Namespace */
+    .nx { color: #000000 } /* Name.Other */
+    .py { color: #000000 } /* Name.Property */
+    .nt { color: #204a87; font-weight: bold } /* Name.Tag */
+    .nv { color: #000000 } /* Name.Variable */
+    .ow { color: #204a87; font-weight: bold } /* Operator.Word */
+    // This line commented out so that spaces do not appear as white lines
+    // .w { color: #f8f8f8; text-decoration: underline } /* Text.Whitespace */
+    .mf { color: #0000cf; font-weight: bold } /* Literal.Number.Float */
+    .mh { color: #0000cf; font-weight: bold } /* Literal.Number.Hex */
+    .mi { color: #0000cf; font-weight: bold } /* Literal.Number.Integer */
+    .mo { color: #0000cf; font-weight: bold } /* Literal.Number.Oct */
+    .sb { color: #4e9a06 } /* Literal.String.Backtick */
+    .sc { color: #4e9a06 } /* Literal.String.Char */
+    .sd { color: #8f5902; font-style: italic } /* Literal.String.Doc */
+    .s2 { color: #4e9a06 } /* Literal.String.Double */
+    .se { color: #4e9a06 } /* Literal.String.Escape */
+    .sh { color: #4e9a06 } /* Literal.String.Heredoc */
+    .si { color: #4e9a06 } /* Literal.String.Interpol */
+    .sx { color: #4e9a06 } /* Literal.String.Other */
+    .sr { color: #4e9a06 } /* Literal.String.Regex */
+    .s1 { color: #4e9a06 } /* Literal.String.Single */
+    .ss { color: #4e9a06 } /* Literal.String.Symbol */
+    .bp { color: #3465a4 } /* Name.Builtin.Pseudo */
+    .vc { color: #000000 } /* Name.Variable.Class */
+    .vg { color: #000000 } /* Name.Variable.Global */
+    .vi { color: #000000 } /* Name.Variable.Instance */
+    .il { color: #0000cf; font-weight: bold } /* Literal.Number.Integer.Long */
+}
+
+// Boxes
+
+.box {
+    border-color: $color-accent;
+}
+
+// Info boxes
+
+.info,
+.exercise {
+    border: 0.2em solid $color-accent;
+    border-bottom-right-radius: $core-element-border-radius;
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+    line-height: $line-height-default;
+    margin: 1.5em 0;
+    padding: ($line-height-default / 2);
+    clear: both;
+    h2, h3, h4, h5, h6 {
+        font-family: $font-text-secondary;
+        font-style: normal;
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+        margin-top: 0;
+    }
+    p:last-child, ol:last-child, ul.last-child {
+        margin-bottom: 0;
+    }
+}
+
+.info {
+    color: $color-accent;
+    // on very large screens, place info boxes in the margin
+    // outside-right() is in _web-notes.scss
+    @include outside-right();
+}
+
+// Instructor tips
+.instructor-tip {
+    background-color: $color-light;
+    border-left: 0.2em solid $color-accent;
+    box-sizing: border-box;
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-size-smaller;
+    line-height: ($line-height-default * $font-size-smaller) * 1.4;
+    // margin values are /$font-size-smaller to scale up to $font-size-default
+    margin: -$line-height-default/$font-size-smaller 0 0 1em/$font-size-smaller;
+    padding: $line-height-default / 2;
+}
+
+// definition lists
+
+.definition {
+    padding: ($line-height-default / 2);
+    background: $color-accent;
+    color: white;
+    border-bottom-right-radius: $core-element-border-radius;
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+    line-height: ($line-height-default * $font-size-smaller) * 1.4; // 1.4 retains good proportion of font height to line height
+    // on larger screens, text wraps around definitions
+    @media (min-width: $break-point-m) {
+        float: right;
+        clear: right;
+        position: relative;
+        min-width: 5em;
+        max-width: 40%;
+        margin: 0 0 ($line-height-default / 2) 2em;
+    }
+    // on very large screens, place definitions in the margin
+    @include outside-right();
+}
+
+.js-definitions {
+    .definition {
+        background-color: $color-background;
+        color: $color-accent;
+        border: 0.2em solid $color-accent;
+    }
+}
+
+[data-term] {
+    color: $color-links;
+    cursor: pointer;
+}
+
+.definition-term {
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 0.25em;
+}
+
+.definition-description {
+    display: inline;
+    margin-bottom: 0;
+    // Create a line break after each definition in a multiple-definitions box
+    &:after {
+        content: "";
+        display: block;
+    }
+    &.no-definition {
+        background: $color-highlight;
+    }
+}
+
+.definition-example {
+    // Put a line break before the example
+    &:before {
+        content: "";
+        display: block;
+        margin-top: 0.5em;
+    }
+}
+
+.definitions {
+    display: none;
+}
+
+.definition-description-hover {
+    // pull definition-description-hover out of the doc flow so they hover above text
+    z-index: 1;
+    position: absolute;
+    // look and feel
+    @include dialog-styles();
+    margin-top: $line-height-default;
+    max-width: $max-width-default * 0.8;
+    margin-left: auto;
+    margin-right: auto;
+    left: $max-width-default * 0.25 / 3;
+    right: $max-width-default * 0.25 / 3;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+    font-weight: normal;
+    color: $color-text-main;
+    border-bottom-right-radius: $core-element-border-radius / 2;
+    // when these are attached to an italic term,
+    // they must not inherit that font style
+    font-style: initial;
+    p {
+        margin-bottom: 0;
+    }
+    // Make wider when in a sidenote
+    .sidenote & {
+        left: 0;
+        right: 0;
+    }
+}
+
+.definition-hover-term {
+    font-weight: bold;
+}
+
+// This mixin used for close button here
+// and on footnotes close button below
+@mixin number-marker() {
+    vertical-align: inherit;
+    display: inline-block;
+    min-width: 1em;
+    background: $color-accent;
+    border-radius: 1em;
+    padding: 0 0.1em 0.1em 0.1em;
+    text-align: center;
+    font-weight: bold;
+    font-family: $font-text-secondary;
+}
+
+.definition-description-hover {
+    .close {
+        position: absolute;
+        right: -($line-height-default / 2);
+        top: -($line-height-default / 2);
+        line-height: 1;
+        @include number-marker();
+        padding: 0.15em 0.1em 0em 0.1em; // override number-marker padding
+        color: white;
+        border: 0;
+        font-size: 1em;
+        // vertical-align: inherit;
+        // display: inline-block;
+        // min-width: 1em;
+        // background: $color-accent;
+        // border-radius: 1em;
+        // padding: 0.1em;
+        // text-align: center;
+        // font-weight: bold;
+        // font-family: $font-text-secondary;
+        // border: 0;
+        // cursor: pointer;
+        &:before {
+            content: $nav-bar-close;
+            display: inline-block;
+            width: 1em;
+            position: relative;
+            top: -0.1em;
+        }
+    }
+}
+
+.hidden-definition-list {
+    display: none;
+}
+
+// Figures
+
+@mixin flex-parent() {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+@mixin flex-child() {
+    // Set these with shorthand as recommended:
+    // flex-grow: 1;
+    // flex-shrink: 1;
+    // flex-basis: auto;
+    flex: 0 1 auto;
+    max-height: none; // overrides figure partial
+}
+
+// Caption and source styles to use in figures and slidelines
+@mixin figure-caption() {
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+    text-align: left;
+    margin-bottom: $line-height-default;
+    .figure-reference {
+        font-weight: bold;
+    }
+}
+@mixin figure-source() {
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-size-smaller;
+    font-style: normal;
+    color: $color-dark-grey;
+    text-align: left;
+    line-height: 1.2;
+    position: relative;
+    p.source {
+        font-style: normal;
+    }
+    a {
+        color: $color-links;
+    }
+    .figure-more {
+        text-align: center;
+        margin-bottom: $line-height-default / 2;
+        a, button {
+            margin-bottom: $line-height-default / 2;
+        }
+        .figure-more-text {
+            text-align: left;
+            border: 1px solid $color-light;
+            border-radius: $button-border-radius;
+            padding: $line-height-default / 2;
+            a {
+                color: $color-links;
+            }
+        }
+        .button {
+            color: $color-light;
+            padding: 0.5em;
+            font-size: $font-size-default * $font-serif-sans-ratio;
+        }
+    }
+}
+
+.figure {
+    background-color: transparent; // overrides inherit from figure partial
+    svg {
+        background-color: white;
+    }
+    .figure-body {
+        .title {
+            display: none;
+        }
+        .caption {
+            @include figure-caption();
+        }
+        .figure-images {
+            margin-bottom: 0; // overrides template $line-height-default
+            max-width: 100%; // required for IE to prevent images expanding out of viewport
+            @media (min-width: $break-point-m) {
+                display: flex;
+            }
+            .figure-flex-container {
+                padding: 0 $line-height-default/4 0 $line-height-default/4;
+            }
+            // Remove padding from first and last .figure-flex-container
+            @for $i from 1 through 4 {
+                &.contains-#{$i} .figure-flex-container {
+                    @media (min-width: $break-point-m) {
+                        flex-basis: 100%;
+                        &:first-child {
+                            padding-left: 0;
+                        }
+                        &:nth-child(#{$i}) {
+                            padding-right: 0;
+                        }
+                    }
+                }
+            }
+            // For IE we have to set this explicit max-width on the images
+            // but setting a global max-width breaks other images that rely on max-width
+            // hence commenting out this nuclear solution.
+            // img {
+            //     max-width: $max-width-default - $line-height-default;
+            // }
+        }
+    }
+    .figure-source {
+        @include figure-source;
+    }
+    &.image-rows-1-2 {
+        .figure-images.contains-3 {
+            @media (min-width: $break-point-m) {
+                flex-wrap: wrap;
+                justify-content: space-around;
+                .figure-flex-container {
+                    // take up 50% of the space
+                    flex-basis: $max-width-default/2 - $line-height-default;
+                    &:first-child {
+                        // except the first one, which should be full-width
+                        flex-basis: $max-width-default;
+                    }
+                }
+            }
+        }
+    }
+    &.image-rows-1 {
+        .figure-images.contains-1 {
+            @media (min-width: $break-point-m) {
+                flex-wrap: wrap;
+                justify-content: space-around;
+                .figure-flex-container {
+                    // take up 33% of the space
+                    flex-basis: $max-width-default/3 - $line-height-default;
+                }
+            }
+        }
+    }
+    &.image-rows-1-1-1 {
+        .figure-images.contains-3 {
+            @media (min-width: $break-point-m) {
+                flex-wrap: wrap;
+                justify-content: space-around;
+                .figure-flex-container {
+                    // each image should fill the row
+                    flex-basis: $max-width-default - $line-height-default;
+                }
+            }
+        }
+    }
+    &.image-rows-1-1 {
+        .figure-images.contains-2 {
+            @media (min-width: $break-point-m) {
+                flex-wrap: wrap;
+                justify-content: space-around;
+                .figure-flex-container {
+                    // each image should fill the row
+                    flex-basis: $max-width-default - $line-height-default;
+                }
+            }
+        }
+    }
+
+    p {
+        font-style: normal;
+        font-family: $font-text-secondary;
+        font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+        text-align: left;
+        &.source {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    em {
+        font-style: italic;
+    }
+
+    .caption {
+        .figure-reference {
+            font-weight: bold;
+        }
+    }
+
+    // override _web-figures.scss default
+    .caption,
+    p:nth-child(2),
+    p:nth-child(2) + p,
+    p:nth-child(2) + p + p,
+    p:nth-child(2) + p + p + p,
+    p:nth-child(2) + p + p + p + p {
+        text-align: left;
+    }
+}
+
+.figure.visuallyhidden {
+    margin: -1px;
+    padding: 0;
+}
+
+img[src$="svg"] {
+    background-color: white;
+}
+
+// slides
+
+$slide-flex-basis: 80%;
+
+.slides {
+    clear: both;
+    margin-bottom: 2em;
+    svg {
+        background-color: white;
+    }
+    // Don't show the summary figure in a slides div
+    .summary {
+        display: none;
+    }
+    .figure {
+        margin: 0 0 ($line-height-default * 0.5) 0; // default figures have margin-top
+        width: calc(100% - 1.6em); // even narrow figures fill the slide width
+        .figure-body {
+            .figure-images {
+                width: 100%; // centres figure image on small screens when display: inline-block
+            }
+            .slide-caption {
+                display: block;
+                margin-bottom: 0;
+            }
+            .title {
+                display: block;
+                font-weight: bold;
+                color: $color-accent;
+                margin-bottom: 0;
+            }
+            // temp: slides sets are supposed to have just one caption,
+            // so hide the individual ones
+            .caption {
+                display: none;
+            }
+        }
+    }
+    .figure-source {
+        display: none;
+    }
+    .figure-summary-meta {
+        margin-top: $line-height-default * 0.5;
+        padding: 1em ($line-height-default * 0.5);
+        clear: both;
+        background-color: white;
+        .caption {
+            display: block; // these were hidden for slide figures, shown for the summary
+            @include figure-caption(); // these were hidden for slide figures, shown for the summary
+        }
+        .figure-source {
+            @include figure-source();
+            display: block;
+            p.source {
+                margin: 0;
+            }
+        }
+    }
+    // When in boxes
+    .einstein &,
+    .great-economist &,
+    .great-economists &,
+    .economist &,
+    .economists &,
+    .expandable-box & {
+        .figure-summary-meta {
+            background-color: inherit;
+        }
+    }
+}
+
+
+// slide colours
+
+$colour-slides: mix(white, $color-accent, $slides-tint);
+
+.slides {
+    background-color: $color-light;
+    border-top: 1px solid $color-light;
+    .figure-source {
+        color: lighten($color-text-main, 60%);
+        a {
+            color: lighten($color-text-main, 60%);
+        }
+    }
+}
+
+.nav-slides {
+    color: $nav-bar-label-color;
+    background-color: $colour-slides;
+    a {
+        color: $nav-bar-label-color;
+        background-color: $colour-slides;
+        display: block;
+        &:hover, &:active, &:focus {
+            outline: $line-height-default / 4 solid darken($colour-slides, $slides-focus-pc);
+            background-color: darken($colour-slides, $slides-current-pc);
+        }
+    }
+}
+
+.slide-current {
+    a {
+        outline: $line-height-default / 4 solid darken($colour-slides, $slides-current-pc);
+        background-color: darken($colour-slides, $slides-current-pc);
+    }
+}
+
+
+// slide nav
+
+.slides:before,
+.slides:after {
+    content: " ";
+    display: table;
+}
+
+.slides:after {
+    clear: both;
+}
+
+.slides {
+    .figure {
+        float: left;
+        clear: none;
+    }
+}
+
+$nav-slides-width: 8em;
+$nav-slides-denominator: 2;
+
+$nav-slides-many-width: 6em;
+$nav-slides-many-denominator: 3;
+
+$nav-slides-portrait-width: 6em;
+$nav-slides-portrait-denominator: 4;
+
+.nav-slides {
+    padding: $line-height-default / 4 0;
+    // on very large screens, place it in the margin
+    @media (min-width: $break-point-xl) {
+        padding: 0;
+        margin-top: -1px;
+        max-width: $nav-slides-width;
+        float: right;
+        margin-right: -$nav-slides-width;
+    }
+    ol {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        list-style-type: none;
+        @media (min-width: $break-point-xl) {
+            display: block;
+        }
+    }
+    li {
+        padding: 0 $line-height-default / 4;
+        flex-basis: 15%;
+        // fallback for browsers that don't support flex
+        max-width: 15%;
+        display: inline-block;
+        img {
+            padding: 0.1em; // important when browser doesn't support flex
+        }
+        // SVG thumbnails require a fixed width for flex to work
+        svg {
+            width: 100%;
+        }
+        @media (min-width: $break-point-xl) {
+            padding: $line-height-default / $nav-slides-denominator;
+            max-width: 80%; // max-width: none doesn't work on IE
+            svg, img[src$="svg"] {
+                min-width: 4.8em; // a real width is required to show SVGs; magic number :(
+            }
+        }
+    }
+    a {
+        @media (min-width: $break-point-xl) {
+            &:hover, &:active, &:focus {
+                outline-width: $line-height-default / $nav-slides-denominator;
+            }
+        }
+        .slide-thumbnail-text {
+            font-size: 0.75em;
+            font-family: $font-text-secondary;
+            display: inline-block;
+            @media (min-width: $break-point-xl) {
+                width: 8.65em; // aligns with width of nav-slides container
+            }
+        }
+    }
+}
+
+.slide-current {
+    a {
+        @media (min-width: $break-point-xl) {
+            outline-width: $line-height-default / $nav-slides-denominator;
+        }
+    }
+}
+
+.nav-slides {
+    &.nav-slides-many {
+        @media (min-width: $break-point-xl) {
+            max-width: $nav-slides-many-width;
+            margin-right: -$nav-slides-many-width;
+            li {
+                padding: $line-height-default / $nav-slides-many-denominator;
+            }
+            a {
+                &:hover, &:active, &:focus {
+                    outline-width: $line-height-default / $nav-slides-many-denominator;
+                }
+            }
+            .slide-current a {
+                outline-width: $line-height-default / $nav-slides-many-denominator;
+            }
+        }
+    }
+    &.nav-slides-portrait {
+        @media (min-width: $break-point-xl) {
+            max-width: $nav-slides-portrait-width;
+            margin-right: -$nav-slides-portrait-width;
+            li {
+                padding: $line-height-default / $nav-slides-portrait-denominator;
+            }
+            a {
+                &:hover, &:active, &:focus {
+                    outline-width: $line-height-default / $nav-slides-portrait-denominator;
+                }
+            }
+            .slide-current a {
+                outline-width: $line-height-default / $nav-slides-portrait-denominator;
+            }
+        }
+    }
+}
+// If there are many, many slides (e.g over 6)
+// then on large screens reset all that so that
+// we don't put the thumbnails in the margin
+@media (min-width: $break-point-xl) {
+    .nav-slides.nav-slides-many-many {
+        padding: $line-height-default / 4 0;
+        margin: 0;
+        max-width: none;
+        float: none;
+        ol {
+            display: flex;
+        }
+        li {
+            padding: 0 $line-height-default / 4;
+            max-width: 15%;
+            svg, img[src$="svg"] {
+                min-width: 3em; // a real width is required to show SVGs; magic number :(
+            }
+        }
+        a {
+            outline-width: medium;
+            .slide-thumbnail-text {
+                width: auto;
+            }
+            &:hover, &:active, &:focus {
+                outline-width: medium;
+            }
+        }
+        .slide-current, .slide-current a {
+            outline-width: medium;
+        }
+        &.nav-slides-portrait {
+            max-width: none;
+            margin: 0;
+            li {
+                padding: 0 $line-height-default / 4;
+            }
+            a {
+                &:hover, &:active, &:focus {
+                    outline-width: medium;
+                }
+            }
+            .slide-current, .slide-current a {
+                outline-width: medium;
+            }
+        }
+    }
+}
+
+// Multiple-choice questions
+
+.mcq, .question {
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+    line-height: $line-height-default;
+    background-color: $color-accent-15pc;
+    background-color: rgba($color-accent, 0.15);
+    border-bottom-right-radius: $core-element-border-radius;
+    page-break-inside: avoid;
+    padding: ($line-height-default / 2);
+    margin: $line-height-default 0;
+    h2, h3, h4, h5, h6 {
+        font-family: $font-text-secondary;
+        font-style: normal;
+        text-transform: uppercase;
+        line-height: $line-height-default;
+        margin: 0;
+    }
+    p {
+        text-indent: 0;
+    }
+    .figure {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.mcq-questions, .mcq-options {
+    margin-bottom: 0;
+    [type="checkbox"] {
+        display: inline-block;
+        width: auto;
+        margin: 0 ($line-height-default / 2) 0 0;
+        cursor: pointer;
+    }
+    label {
+        display: block;
+        cursor: pointer;
+    }
+    li {
+        // Rarely, we use inline tables inside a list item
+        .table-wrapper {
+            display: inline;
+            vertical-align: top;
+        }
+        table {
+            display: inline-block;
+            width: calc(100% - 2em);
+            margin: 0;
+            vertical-align: middle;
+            tbody {
+                display: block;
+                width: 100%;
+            }
+            tr {
+                width: 100%;
+                display: block;
+            }
+            // where rows have only two cells, space them 50/50
+            td:nth-of-type(1):nth-last-of-type(2),
+            td:nth-of-type(2):nth-last-of-type(1) {
+                display: inline-block;
+                width: calc(50% - 1em);
+                vertical-align: top;
+            }
+        }
+    }
+}
+
+.mcq-feedback {
+    display: none;
+}
+
+.js-mcq {
+    .mcq-options {
+        list-style-type: none;
+        margin-left: 0;
+        li {
+            margin-bottom: $line-height-default / 2;
+            margin-left: -($line-height-default / 2);
+            padding: 0 ($line-height-default / 2);
+            border: $button-border-radius solid transparent;
+            border-radius: $button-border-radius;
+        }
+        .selected {
+            border-color: $color-accent;
+        }
+    }
+}
+
+.js-mcq {
+    .mcq-feedback {
+        display: block;
+        position: relative;
+        margin-top: $line-height-default;
+        list-style-type: none;
+        margin-left: 0;
+        background-color: $color-light;
+        border-radius: $button-border-radius;
+        &:before {
+            display: block;
+            padding: $line-height-default / 2 0 $line-height-default / 2 $line-height-default * 2;
+        }
+        &:after {
+            position: absolute;
+            top: $line-height-default / 2;
+            left: $line-height-default;
+        }
+        li {
+            display: none;
+            padding: 0 $line-height-default / 2 $line-height-default / 2 $line-height-default * 2;
+        }
+        .mcq-feedback-show {
+            display: block;
+        }
+    }
+    .mcq-incorrect {
+        .mcq-feedback {
+            &:before {
+                content: "Incorrect";
+                text-transform: uppercase;
+            }
+            &:after {
+                content: "\2717";
+            }
+        }
+    }
+    .mcq-partially-correct {
+        .mcq-feedback {
+            background-color: $color-light;
+            &:before {
+                content: "Good so far but you haven't selected all the correct answers.";
+            }
+        }
+    }
+    .mcq-correct {
+        .mcq-feedback {
+            background-color: white;
+            &:before {
+                content: "Correct!";
+                text-transform: uppercase;
+                // display: block;
+            }
+            &:after {
+                content: "\2713";
+            }
+        }
+    }
+}
+
+.question {
+    .check-answer-button {
+        display: none;
+    }
+}
+
+.js-mcq {
+    .question {
+        .check-answer-button {
+            display: inline-block;
+            font-family: $font-text-secondary;
+            font-size: 100%;
+            line-height: $line-height-default;
+            padding: $line-height-default/2 $line-height-default;
+            background-color: $color-accent;
+            color: white;
+            border: 0;
+            border-radius: $button-border-radius;
+            cursor: pointer;
+        }
+    }
+}
+
+// Special table-of-questions page
+.table-of-questions {
+    table {
+        font-size: smaller;
+    }
+    .mcq-options, .mcq-feedback {
+        list-style-type: decimal;
+    }
+    .question-content {
+        .mcq-feedback {
+            display: none;
+        }
+    }
+    .answer-content {
+        .mcq-feedback {
+            display: block;
+        }
+        & > *:not(.mcq-feedback) {
+            display: none;
+        }
+    }
+    .toq-excel-tip {
+        font-family: $font-text-secondary;
+        font-size: smaller;
+        display: inline-block;
+        margin-left: $line-height-default / 2;
+        cursor: pointer;
+    }
+}
+
+// Images
+
+img {
+    &.thumbnail {
+        @media (min-width: $break-point-s) {
+            max-width: 40%;
+            float: right;
+            clear: right;
+            padding: 0 0 $line-height-default ($line-height-default / 2);
+        }
+    }
+
+    &.inline-icon {
+        height: 1em;
+    }
+}
+
+.figure.thumbnail {
+    position: static;
+    @media (min-width: $break-point-xl) {
+        // position: absolute; // makes figure thumbnail too narrow
+    }
+    .figure-body {
+        font-size: $font-size-default * $font-size-smaller * $font-size-smaller;
+        line-height: $line-height-default;
+    }
+}
+
+.team-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+    text-align: center;
+    .team-gallery-member {
+        width: 10em;
+        margin-bottom: 1em;
+        img {
+            width: 100%;
+        }
+        .team-gallery-member-name {
+            font-weight: bold;
+            display: block;
+        }
+    }
+}
+
+.team-gallery-center-web {
+    justify-content: space-evenly;
+}
+
+// theme legends
+
+.theme-legend-heading {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.theme-legend {
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+        @include outside-right();
+}
+
+.theme-legend-list {
+    list-style-type: none;
+    margin: 0 0 $line-height-default 0;
+    @media (min-width: $break-point-s) {
+        margin-left: $line-height-default / 2;
+    }
+    @media (min-width: $break-point-m) {
+        column-count: 2;
+    }
+    @media (min-width: $break-point-xl) {
+        column-count: 1;
+    }
+}
+
+.theme-legend-filter-button {
+    margin-left: -($line-height-default / 2);
+    cursor: pointer;
+    &:after {
+        font-size: $font-size-default * $font-size-smaller;
+        color: $theme-legend-filter-button-color;
+        content: $theme-legend-filter-button;
+        &:hover {
+            color: $theme-legend-filter-button-color-hover;
+        }
+    }
+    &.theme-legend-filter-button-active {
+        &:after {
+            content: $theme-legend-filter-button-active;
+        }
+    }
+}
+
+.theme-legend-theme {
+    svg {
+        width: 1.5em;
+        height: 1.5em;
+        position: relative;
+        top: 0.4em;
+    }
+}
+
+// theme keys, shown inside section heading h2s
+
+.theme-key-theme {
+    svg {
+        width: 1em;
+        height: 1em;
+        position: relative;
+        top: 0.15em;
+    }
+}
+
+[role="tab"] {
+    .theme-key-theme {
+        display: inline-block;
+        padding-right: 0;
+    }
+}
+
+[data-accordion="closed"] {
+    .theme-key-label {
+        display: none;
+    }
+}
+
+[data-accordion="open"] {
+    line-height: 1;
+    a:first-of-type {
+        display: block;
+        line-height: 1.3;
+    }
+    .theme-key-theme {
+        font-size: $font-size-default / 2; // relative to parent h2 size
+        @media (max-width: $break-point-l) {
+            line-height: 1.3;
+        }
+        @media (min-width: $break-point-l) {
+            font-size: $font-size-default / 4;
+        }
+        font-weight: normal; // overrides inherited style from h2
+        text-transform: none; // overrides inherited style from h2
+        letter-spacing: 0; // overrides inherited style from h2
+        font-family: $font-text-secondary; // overrides inherited style from h2
+        color: $color-text-main;
+        margin-right: 1em;
+        svg {
+            margin-right: 0.5em;
+        }
+    }
+}
+
+// svg dot colors
+
+.theme-legend-theme-17,
+.theme-key-17 {
+    svg {
+        circle {
+            fill: $theme-17-color;
+            stroke: none;
+        }
+    }
+}
+.theme-legend-theme-18,
+.theme-key-18 {
+    svg {
+        circle {
+            fill: $theme-18-color;
+            stroke: none;
+        }
+    }
+}
+.theme-legend-theme-19,
+.theme-key-19 {
+    svg {
+        circle {
+            fill: $theme-19-color;
+            stroke: none;
+        }
+    }
+}
+.theme-legend-theme-20,
+.theme-key-20 {
+    svg {
+        circle {
+            fill: $theme-20-color;
+            stroke: none;
+        }
+    }
+}
+.theme-legend-theme-21,
+.theme-key-21 {
+    svg {
+        circle {
+            fill: $theme-21-color;
+            stroke: none;
+        }
+    }
+}
+.theme-legend-theme-22,
+.theme-key-22 {
+    svg {
+        circle {
+            fill: $theme-22-color;
+            stroke: none;
+        }
+    }
+}
+
+// theme keys for subheadlines
+.subheadline {
+    .theme-key-theme {
+        display: none;
+    }
+}
+
+// Capstone chapter feature colours
+
+@mixin capstone-color-overrides($color, $color-hex-chars) {
+    html & {
+        background-color: $color;
+    }
+
+    // background color
+    &.chapter h1 {
+        background-color: $color!important;
+        &:before {
+            background-image: url("../images/pinch-top-#{$color-hex-chars}.svg");
+        }
+        &:after {
+            background-image: url("../images/pinch-bottom-#{$color-hex-chars}.svg");
+        }
+    }
+
+    // h2, h3 color
+    h2, h3, .subheadline {
+        color: $color;
+    }
+    // Override accordion styles
+    [role="tab"] a {
+        color: $color;
+    }
+    // definition background
+    .definition {
+        background-color: $color;
+    }
+    .definition-description-hover {
+        border-color: $color;
+        .close {
+            background: $color;
+        }
+    }
+
+    .js-definitions & {
+        .definition {
+            background-color: white;
+            color: $color;
+            border: 0.2em solid $color;
+        }
+    }
+
+    .accordion-show-all-button {
+        border-color: $color;
+        color: $color;
+    }
+
+    .anchorjs-link {
+        border-color: $color;
+        color: $color;
+    }
+
+    // faux border on sidenote and footnote-detail
+    .sidenote, .footnote-detail {
+        &:before {
+            background-color: $color;
+        }
+    }
+    // h3:strong background
+    .einstein, .great-economist, .great-economists, .economist, .economists, .expandable-box {
+        h3 strong:first-of-type {
+            background-color: $color;
+            color: white;
+        }
+        .sidenote, .footnote-detail {
+            &:before {
+                background-color: white;
+            }
+        }
+    }
+    // background shade
+    .mcq, .question {
+        background-color: lighten($color, 30%);
+        background-color: rgba($color, 0.15);
+        .check-answer-button {
+            background-color: $color;
+        }
+    }
+
+    // mcq selected option
+    .mcq-options {
+        .selected {
+            border-color: $color;
+        }
+    }
+
+    // border
+    .exercise, .info, .box {
+        border-color: $color;
+    }
+    // font color in info boxes
+    .info {
+        color: $color;
+    }
+
+    // footnotes
+    sup[id^=fnref] {
+        background-color: $color;
+    }
+
+    .footnote-detail {
+        border-color: $color;
+        .reversefootnote {
+            background-color: $color;
+        }
+    }
+
+    // navigation
+    .masthead,
+    [href="#nav"],
+    #footer,
+    .nav-back-button {
+        background-color: $color;
+        color: white;
+        a {
+            color: white;
+        }
+    }
+
+    // when the nav is open (`html.js-nav-open`), the overlay across the page
+    .js-nav-open & [href="#nav"] {
+        background-color: transparent;
+    }
+
+    #footer {
+        border-top-color: $color;
+    }
+
+    [data-nav-close] {
+        &:after {
+            color: $color;
+        }
+    }
+
+    #nav {
+        .nav-list {
+            ol, ul {
+                li {
+                    &:hover, &:focus, &:active, &.active {
+                        background-color: $color;
+                    }
+                }
+            }
+        }
+        .search {
+            input {
+                border-color: mix(white, $color, 30%); // 30% tint
+            }
+            input[type="submit"] {
+                background-color: $color;
+            }
+        }
+    }
+
+    // controls
+    .controls {
+        .language-select:hover .language-select-list {
+            border-color: $color;
+        }
+        svg {
+            stroke: $color;
+        }
+        .annotator .annotator-toggle-sidebar:checked ~ label.annotator-toggle-sidebar svg,
+        .annotator .annotator-show-annotations:checked ~ label.annotator-show-annotations svg {
+            fill: $color;
+        }
+        .annotator [data-tooltip-description]:hover:before {
+            border-color: $color;
+        }
+        .annotator [data-tooltip-description]:hover:after {
+            background-color: $color;
+            border-color: $color;
+        }
+    }
+
+    // Bookmarks
+
+    .bookmarks-modal {
+        border: 1px solid $color;
+
+        button {
+            background-color: $color;
+        }
+
+        .bookmarks-list-header,
+        .last-locations-list-header {
+            border-bottom: $rule-thickness solid lighten($color, 30%);
+        }
+        .bookmarks-list-header {
+            border-right: $rule-thickness solid lighten($color, 30%);
+        }
+    }
+
+
+    .last-location-prompt {
+        border-color: $color;
+        color: $color;
+        a {
+            color: $color-links;
+        }
+    }
+
+    svg[class*="icon"].bookmark-icon .bookmark-icon-outline,
+    .bookmark-button svg.bookmark-icon .bookmark-icon-outline,
+    .dark-mode-control svg.dark-mode-icon .dark-mode-icon-outline,
+    [data-bookmarked] svg[class*="icon"].bookmark-icon .bookmark-icon-fill,
+    svg[class*="icon"].history-icon path {
+        fill: $color;
+    }
+
+    // figures
+    .figure .figure-source .button,
+    .figure-summary-meta .figure-source .button {
+        background-color: $color;
+    }
+
+    .figure-images .fullscreen-button {
+        color: $color;
+        border-color: $color;
+    }
+
+    // slidelines
+    $colour-slides: mix(white, $color, $slides-tint);
+
+    .slides {
+        border-color: $colour-slides;
+        .figure {
+            .title {
+                color: $color;
+            }
+        }
+    }
+
+
+    .nav-slides {
+        color: $nav-bar-label-color;
+        background-color: $colour-slides;
+        a {
+            color: $nav-bar-label-color;
+            background-color: $colour-slides;
+            &:hover, &:active, &:focus {
+                outline-color: darken($colour-slides, $slides-focus-pc);
+                background-color: darken($colour-slides, $slides-focus-pc);
+            }
+        }
+    }
+
+    .slide-current {
+        a {
+            outline-color: darken($colour-slides, $slides-current-pc);
+            background-color: darken($colour-slides, $slides-current-pc);
+        }
+    }
+
+    .extra-emphasis {
+        color: $color;
+    }
+
+    // Videos
+    .video-options {
+        .video-options-button {
+            background-color: $color;
+        }
+        .video-options-content {
+            border-color: $color;
+        }
+    }
+}
+
+// Load the overrides
+.theme-17 {
+    @include capstone-color-overrides($theme-17-color, $theme-17-color-hex-chars);
+}
+.theme-18 {
+    @include capstone-color-overrides($theme-18-color, $theme-18-color-hex-chars);
+}
+.theme-19 {
+    @include capstone-color-overrides($theme-19-color, $theme-19-color-hex-chars);
+}
+.theme-20 {
+    @include capstone-color-overrides($theme-20-color, $theme-20-color-hex-chars);
+}
+.theme-21 {
+    @include capstone-color-overrides($theme-21-color, $theme-21-color-hex-chars);
+    // background shade, don't lighten as much as other units
+    .mcq, .question {
+        background-color: lighten($theme-21-color, 25%);
+    }
+}
+.theme-22 {
+    @include capstone-color-overrides($theme-22-color, $theme-22-color-hex-chars);
+}
+
+// Tables
+
+table {
+    tr {
+        border-bottom: 1px solid darken($color-light, 10%);
+        &:first-child {
+            border-top: 1px solid darken($color-light, 10%);
+        }
+        td, th {
+            border: none;
+            // text-align: right;
+            padding: 0 0.5em 0 0;
+        }
+        td {
+            .MathJax_Display {
+                margin: 0;
+            }
+            .table-row-stub {
+                text-align: left;
+                font-weight: bold;
+            }
+        }
+        th {
+            &:first-child,
+            &[colspan] {
+                // text-align: center; // this was a bad default
+            }
+            &[rowspan] {
+                text-align: left;
+            }
+        }
+
+    }
+    ul, ol {
+        margin-left: 1em; // so markers don't extend into neighbouring cell
+    }
+    // Some special classes for layout needs
+
+    // even-columns can be applied to a table or to a figure include
+    &.even-columns,
+    .figure.even-columns & {
+        td:nth-of-type(1):nth-last-of-type(2) {
+            width: 50%;
+        }
+        td:nth-of-type(1):nth-last-of-type(3),
+        td:nth-of-type(2):nth-last-of-type(2),
+        td:nth-of-type(3):nth-last-of-type(1) {
+            width: 33%;
+        }
+        td:nth-of-type(1):nth-last-of-type(4),
+        td:nth-of-type(2):nth-last-of-type(3),
+        td:nth-of-type(3):nth-last-of-type(2),
+        td:nth-of-type(4):nth-last-of-type(4) {
+            width: 25%;
+        }
+        td:nth-of-type(1):nth-last-of-type(5),
+        td:nth-of-type(2):nth-last-of-type(4),
+        td:nth-of-type(3):nth-last-of-type(3),
+        td:nth-of-type(4):nth-last-of-type(2),
+        td:nth-of-type(5):nth-last-of-type(1), {
+            width: 20%;
+        }
+    }
+    // extend even-columns for variable number of columns
+    @for $i from 1 through 15 {
+        .figure.even-columns-#{$i} & td {
+            width: 100% / $i;
+        }
+    }
+
+    // Let users specify cell text alignment
+    &.align-right, .align-right {
+        text-align: right;
+        th {
+            text-align: center;
+        }
+    }
+    &.align-left, .align-left {
+        text-align: left;
+        th {
+            text-align: center;
+        }
+    }
+    &.align-center, .align-center {
+        text-align: center;
+    }
+    &.vertical-align-middle, .vertical-align-middle {
+        vertical-align: middle;
+    }
+    // Let users specify alignment of all cells with data
+    &.data-align-right, .data-align-right {
+        text-align: right;
+        th {
+            text-align: center;
+        }
+        td:first-child {
+            text-align: left;
+        }
+    }
+    // Let users shrink font, e.g. in big tables
+    .shrink-95pc & {
+        font-size: 95%;
+    }
+    // Let users shrink font, e.g. in big tables
+    .shrink-90pc & {
+        font-size: 90%;
+    }
+    // Let users shrink font, e.g. in big tables
+    .shrink-85pc & {
+        font-size: 85%;
+    }
+    // Let users shrink font, e.g. in big tables
+    .shrink-80pc & {
+        font-size: 80%;
+    }
+    // Let users shrink font, e.g. in big tables
+    .shrink-75pc & {
+        font-size: 75%;
+    }
+    // Let users shrink font, e.g. in big tables
+    .shrink-70pc & {
+        font-size: 70%;
+    }
+
+    // Let users add vertical rules between columns
+    &.table-vertical-rules {
+        td, th {
+            border-right: 1px solid darken($color-light, 10%);
+            &:last-of-type {
+                border-right: 0;
+                padding-left: 0.5em;
+            }
+        }
+    }
+    // Tables as flowcharts
+    &.flowchart {
+        border-collapse: separate;
+        border-spacing: $line-height-default / 4;
+        font-family: $font-text-secondary;
+        td {
+            border: 1px solid transparent;
+            padding: $line-height-default / 4;
+            text-align: center;
+        }
+        .flowchart-square {
+            border-color: $color-mid;
+        }
+        .flowchart-round {
+            border-color: $color-mid;
+            border-radius: $button-border-radius;
+        }
+    }
+}
+
+// Let users force table elements to look like thead rows
+.thead {
+    text-align: center;
+    font-weight: bold;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+// footnotes
+
+sup[id^=fnref] {
+    @include number-marker();
+    margin-left: 0.25em;
+    a {
+        color: white;
+        cursor: pointer;
+    }
+}
+
+.footnote-detail {
+    // pull footnote-detail out of the doc flow so they hover above text
+    z-index: 1;
+    position: absolute;
+    // look and feel
+    @include dialog-styles();
+    margin-top: $line-height-default;
+    max-width: $max-width-default;
+    margin-left: auto;
+    margin-right: auto;
+    left: $max-width-default * 0.25 / 3;
+    right: $max-width-default * 0.25 / 3;
+    border-bottom-right-radius: $core-element-border-radius / 2;
+    p {
+        margin-bottom: 0;
+    }
+    // When footnotes are in sidenotes, let them be wider
+    .sidenote.contains-footnote & {
+        left: 0;
+        right: 0;
+    }
+}
+
+.footnotes {
+    color: $color-text-secondary;
+    clear: both;
+}
+
+
+$footnote-close: $nav-bar-close;
+
+.footnote-detail {
+    .reversefootnote {
+        position: absolute;
+        right: -($line-height-default / 2);
+        top: -($line-height-default / 2);
+        line-height: 1;
+        @include number-marker();
+        padding: 0.15em 0.1em 0em 0.1em; // override number-marker padding
+        color: white;
+        border: 0;
+        font-size: 1em;
+        &:before {
+            content: $footnote-close;
+            display: inline-block;
+            width: 1em;
+            position: relative;
+            top: -0.1em;
+        }
+    }
+}
+
+.footnotes a.reversefootnote img {
+    // style the arrows in the footnote references
+    display: inline-block;
+    height: 0.8em;
+    margin: 0;
+    background-color: inherit;
+}
+
+// Glossary
+
+.glossary {
+    dt {
+        font-family: $font-text-secondary;
+        font-weight: bold;
+        font-size: inherit;
+        line-height: initial;
+        margin-right: 0.5em;
+        &:after {
+            content: normal;
+        }
+    }
+    .glossary-example {
+        // add space before example
+        &:before {
+            content: "";
+            display: block;
+            margin-top: 0.5em;
+        }
+    }
+}
+
+.sidenote {
+    font-size: $font-size-default * $font-size-smaller * $font-size-smaller;
+    // adjust to match others
+    @include outside-right();
+    &.visuallyhidden {
+        // extra overrides for sidenote styles
+        border-top: 0;
+        padding: 0;
+        margin: 0;
+        background-color: transparent;
+    }
+}
+
+// Boxes that should be full-width on screen
+// Partials already allow for `web-wide` sidenotes
+.web-full-width {
+    float: none;
+    max-width: 100%;
+}
+
+// Boxes without space between paragraphs and lists
+.web-condensed {
+    p {
+        margin-bottom: 0;
+    }
+}
+
+
+// blockquote have $line-height-default padding on the right
+// which we want to add to the margin-right
+// but sidenotes have font-size $font-size-default * $font-size-smaller
+// so we get this beast:
+blockquote {
+    .sidenote {
+        @media (min-width: $break-point-xl) {
+            margin-right: -$outside-margin - ($line-height-default / ($font-size-default * $font-size-smaller));
+        }
+    }
+}
+
+// Try and avoid overlapping boxes: info, definition, and sidenote
+@each $class in info, definition, sidenote {
+    .#{$class} + .#{$class},
+    .#{$class} + * + .#{$class},
+    .#{$class} + * + * + .#{$class},
+    .info + .#{$class},
+    .info + * + .#{$class},
+    .info + * + * + .#{$class},
+    .definition + .#{$class},
+    .definition + * + .#{$class},
+    .definition + * + * + .#{$class},
+    .sidenote + .#{$class},
+    .sidenote + * + .#{$class},
+    .sidenote + * + * + .#{$class} {
+        @include outside-left();
+        // Unless explicitly set to be on the right or left
+        &.web-sidenote-right {
+            @include outside-right();
+        }
+    }
+}
+
+@each $class in info, definition, sidenote {
+    .#{$class} + .#{$class} + .#{$class},
+    .#{$class} + * + .#{$class} + * + .#{$class},
+    .info + .#{$class} + .#{$class},
+    .info + * + .#{$class} + * + .#{$class},
+    .info + * + * + .#{$class} + * + * + .#{$class},
+    .definition + .#{$class} + .#{$class},
+    .definition + * + .#{$class} + * + .#{$class},
+    .definition + * + * + .#{$class} + * + * + .#{$class},
+    .sidenote + .#{$class} + .#{$class},
+    .sidenote + * + .#{$class} + * + .#{$class},
+    .sidenote + * + * + .#{$class} + * + * + .#{$class} {
+        @include outside-right();
+        // Unless explicitly set to be on the right or left
+        &.web-sidenote-left {
+            @include outside-left();
+        }
+    }
+}
+
+// Accordions
+
+.accordion-show-all-button-wrapper {
+    text-align: right;
+}
+a.accordion-show-all-button {
+    border-radius: $button-border-radius;
+    border: 1px solid $color-accent;
+    color: $color-accent;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font-text-secondary;
+    font-size: $font-size-default / 3;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    padding: 0.2em 0.3em;
+    text-transform: uppercase;
+    // Shift closer to section header
+    // transform: translateY($line-height-default);
+    & + * {
+        clear: both;
+    }
+}
+// Don't show the button if the page accordion setting is 'none'
+[data-accordion-page='none'] .accordion-show-all-button-wrapper {
+    display: none;
+}
+
+[role="tab"] {
+    position: relative;
+    padding-right: 1em;
+    &:hover {
+        cursor: pointer;
+    }
+    a {
+        color: $color-accent;
+        margin-right: 0.2em;
+        &:first-of-type {
+            margin-right: 0.4em;
+        }
+    }
+    &:after {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+
+[data-accordion="closed"] {
+    @media (min-width: $break-point-l) {
+        font-size: $font-size-default;
+    }
+    @media (min-width: $break-point-s) {
+        font-size: $font-size-default * $font-size-smaller;
+    }
+    &:after {
+        content: $accordion-show-button;
+    }
+}
+
+[data-accordion="open"] {
+    margin-top: 1em;
+    &:after {
+        content: $accordion-hide-button;
+    }
+}
+
+[aria-expanded="false"] {
+    display: none;
+}
+
+// Dialogue
+// Inherits some styles from underlying template
+
+dl.dialogue {
+    dt {
+        // If the browser supports font-feature-settings,
+        // make this caps-to-small-caps and small-caps.
+        // Otherwise use font-variant: small-caps with
+        // text-transform: lowercase. Note that these will
+        // not work reliably in epub. There, we must use
+        // text-transform: uppercase and a 0.8em font-size.
+        text-transform: lowercase;
+        font-variant: small-caps;
+        letter-spacing: 0.025em;
+        font-feature-settings: "c2sc", "smcp";
+    }
+}
+
+// Video
+.video {
+    margin-bottom: $line-height-default;
+}
+// Videos in sidenotes
+.sidenote .video,
+.sidenote.video {
+    .video-description {
+        padding: 0;
+    }
+}
+.video-wrapper {
+    clear: both;
+    > a {
+        position: relative;
+        display: block;
+        &:after {
+            display: block;
+            content: "\25B6";
+            font-size: $font-size-default * $font-size-bigger * $font-size-smaller;
+            color: $color-background;
+            background-color: $color-text-secondary;
+            opacity: 0.7;
+            padding: 0.8em 1em 0.5em 1.2em;
+            border-radius: 0.35em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+        }
+        &:hover {
+            &:after {
+                background-color: $color-accent;
+            }
+        }
+    }
+    // Give the iframe an intrinsic ratio on all screens
+    // Credit to https://alistapart.com/article/creating-intrinsic-ratios-for-video
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.video-description {
+    margin: $line-height-default 0;
+    padding: 0 $line-height-default;
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+}
+
+// Video transcripts
+.name-and-timestamp {
+    color: $color-dark-grey;
+    font-family: $font-text-secondary;
+    font-size: $font-size-default * $font-size-smaller * $font-serif-sans-ratio;
+    text-transform: uppercase;
+
+    strong {
+        font-weight: normal;
+    }
+
+    em {
+        font-style: normal;
+        float: right;
+    }
+}
+
+
+// Nav and search
+
+// Hide back button on web,
+// leave visible in app.scss
+.nav-back-button {
+    display: none;
+    // Hide the back button when the menu is open
+    .js-nav-open & {
+        display: none;
+    }
+}
+
+#nav {
+    [data-nav-close] {
+        font-size: 2em;
+    }
+    max-width: calc(100% - 1em);
+    .search {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        input {
+            box-sizing: border-box; // means width 100% doesn't extend outside page
+            // Override template style
+            color: $color-text-secondary;
+            display: inline-block;
+            margin: 1em 0.375em 1em 0.75em;
+            width: auto;
+        }
+        input.search-box {
+            flex-grow: 2;
+            flex-shrink: 2;
+        }
+        input[type="submit"] {
+            background-color: $color-buttons;
+            color: white;
+            cursor: pointer;
+            margin: 1em -0.25em 1em 0.375em;
+        }
+    }
+    a {
+        cursor: pointer;
+    }
+    .js-nav & {
+        max-width: 80%; // let narrow-screen users see that this is a flyout menu not a new page
+    }
+}
+
+#content {
+    .search {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        input {
+            box-sizing: border-box; // means width 100% doesn't extend outside page
+            // Override template style
+            color: $color-text-secondary;
+            display: inline-block;
+            margin: 1em 0.375em 1em 0.75em;
+            width: auto;
+        }
+        input.search-box {
+            flex-grow: 2;
+            flex-shrink: 2;
+        }
+        input[type="submit"] {
+            background-color: $color-buttons;
+            color: white;
+            cursor: pointer;
+            margin: 1em -0.25em 1em 0.375em;
+        }
+    }
+}
+
+// Masthead template overrides
+
+.masthead {
+    ul {
+        padding: 0.6em 0 0.5em 0; // to align with 'Contents' #nav button
+        li {
+            display: none;
+            &:after {
+                content: initial;
+            }
+            &.masthead-book-title,
+            &.masthead-series-name {
+                display: inline-block;
+                margin-right: 0;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+// Footer
+#footer {
+    margin: 0;
+    padding: 1em 0.75em 0em 0.75em; // padding bottom provided by footer divs individually for better stacking on narrow screens
+    width: auto; // overrides template 100% to fix horiz scroll on some browsers (e.g. Chrome on Ubuntu)
+    div, p, ol, ul {
+        line-height: $line-height-default;
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: none;
+        text-align: left;
+        width: 100%;
+        // div {
+        //     display: table-cell;
+        // }
+        .footer-logos {
+            margin: 0 1em 1em 0;
+            a {
+                img {
+                    max-width: 6em;
+                }
+            }
+        }
+        .footer-text {
+            color: $color-background;
+            font-size: 0.8em;
+            max-width: $max-width-default / 2;
+            margin: 0 1em 2em 0;
+            a {
+                text-decoration: underline;
+            }
+            @media only screen and (min-width: $break-point-l ) {
+                max-width: $max-width-default;
+            }
+        }
+        .footer-licence {
+            font-size: 0.6em;
+            max-width: 9em;
+            margin: 0 0 1em 0;
+            vertical-align: middle;
+        }
+    }
+}
+
+// Anchor links
+a.anchorjs-link {
+    border-radius: $button-border-radius;
+    border: 1px solid $color-accent;
+    color: $color-accent;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font-text-secondary;
+    font-size: $font-size-default / 3;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    margin: 0 $line-height-default;
+    padding: 0.2em 0.3em;
+    text-transform: uppercase;
+    transform: translateY(-0.3em); // shift up slightly to align border with text
+    // Hide anchor links on accordion headings
+    [data-accordion] & {
+        display: none;
+    }
+}
+
+// Landing page
+
+.landing-page {
+    #wrapper {
+        background-color: $color-accent;
+    }
+    .masthead {
+        & > ul {
+            display: none;
+        }
+    }
+    [href="#nav"] {
+        display: none;
+    }
+    #content {
+        max-width: 30em;
+        text-align: center;
+    }
+    .chapter-opener-image {
+        height: 15em;
+        margin: 0;
+    }
+    h1 {
+        position: static;
+        line-height: 1.1; // slightly wider than default to accommodate beta button
+        margin: 1em auto 0.5em auto;
+        border-radius: 0;
+        // turn off pinches
+        &:before {
+            content: normal;
+        }
+        &:after {
+            background: none; // no pinch
+            position: relative;
+            top: 0.33em;
+            border-top: 0.066em solid white;
+            height: auto;
+        }
+        // line above heading, different position from regular h1s
+        strong:first-of-type {
+            margin-bottom: 0.75em;
+            &:after {
+                top: 1.75em;
+                left: 0;
+                right: 0;
+            }
+        }
+        // Landing page with especially long author name
+        &.long-author-name {
+            strong:first-of-type {
+                font-size: 0.4em; // overrides original for longer author phrase
+                &:after {
+                    position: static; // overrides absolute to allow for multi-line author
+                    margin-top: 0.5em; // adjust spacing because of position static
+                    font-size: 1.5em; // adjusts rule thickness because of smaller parent font size
+                }
+            }
+        }
+    }
+    .button {
+        text-align: center;
+        display: inline-block;
+        a {
+            color: $color-accent;
+            background-color: white;
+            &:hover {
+                background-color: #444444;
+            }
+        }
+    }
+    .dark-mode-control svg.dark-mode-icon .dark-mode-icon-outline {
+        fill: white;
+    }
+    .dark-mode-control svg.dark-mode-icon .dark-mode-icon-fill {
+        fill: $color-accent;
+    }
+}
+
+// Additional styles for thumbnail-style homepage (CORE Insights)
+
+.landing-page.thumbnail-homepage {
+    #content {
+        margin-bottom: 0;
+    }
+
+    h1 {
+        color: white;
+        margin: 1em auto;
+
+        strong:first-of-type {
+            margin-bottom: 0.5em;
+        }
+
+        strong::after {
+            top: 0;
+        }
+    }
+
+    .homepage-container {
+        background-color: white;
+
+        width: 100vw;
+        position: relative;
+        left: calc(-50vw + 50%);
+
+        display: flex;
+        align-items: stretch;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+
+        text-align: left;
+        padding: 4rem 0;
+
+        .homepage-thumbnail {
+            min-width: 20rem;
+            max-width: 25%;
+            border-radius: 20px;
+            box-shadow: 2px 2px 24px 12px rgba(0, 0, 0, 0.1);
+            margin: 1.5rem 2.5rem;
+            padding-bottom: 3rem;
+            position: relative;
+        }
+
+        .homepage-thumbnail-image {
+            height: 15rem;
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                border-top-left-radius: 20px;
+                border-top-right-radius: 20px;
+            }
+        }
+
+        p, a.read-now {
+            font-family: $font-text-secondary;
+            font-size: 0.9em;
+            margin: 1.5rem;
+        }
+
+        .title {
+            color: $color-accent;
+            font-size: 1.25em;
+            font-weight: 600;
+        }
+
+        a.read-now {
+            color: $color-accent;
+            font-weight: 600;
+            text-decoration: underline;
+            bottom: 0;
+            position: absolute;
+        }
+    }
+}
+
+// Leibniz supplements
+
+.leibniz {
+    .chapter-opener-image-none {
+        height: 5rem;
+    }
+    &.chapter h1 {
+        // In addition to styles set at general h1 above
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+    }
+    .intro {
+        font-family: $font-text-secondary;
+    }
+}
+
+// Wordpress integration
+
+// Off for now
+.wordpress-link {
+    display: none;
+}
+
+// Google CSE styles
+
+// 'Searching...' or similar, while waiting for search results
+.search-placeholder {
+    margin-left: 0.5em;
+    margin-top: 2em;
+}
+// Hide the search submit button in the nav
+#nav .gsc-search-button {
+    display: none;
+}
+
+// GCSE script numbers its divs in order
+// e.g. searchbox in nav, searchbox on search page, and search results
+#___gcse_0,
+#___gcse_1,
+#___gcse_2 {
+    table {
+        margin: 0;
+        tr {
+            border: 0; // overrides inherited style for tables
+            line-height: 1; // keeps input text in the box
+            .gsc-search-button {
+                margin-top: 1.3em; // aligns button with input; magic number :(
+            }
+        }
+    }
+    .gsc-resultsbox-visible {
+        display: none; // we hide this only till our google-cse script has run
+    }
+    .gsc-input-box {
+        font-family: $font-text-secondary!important;
+        margin-left: 1em; // aligns box with list in nav, and text in results
+    }
+    .gsc-table-result, .gsc-thumbnail-inside, .gsc-url-top {
+        padding: 0;
+    }
+    .gsc-url-top {
+        display: none;
+    }
+    .gsc-results, .gs-result {
+        .gs-title {
+            height: inherit;
+            margin-bottom: 0.25em;
+            font-family: $font-text-main!important;
+            font-size: $font-size-default;
+            line-height: $line-height-default * $font-size-smaller;
+            text-decoration: none;
+            text-decoration-color: transparent;
+            & * {
+                text-decoration: none;
+                text-decoration-color: transparent;
+            }
+            a, b {
+                color: $color-links;
+            }
+            b {
+                font-size: inherit;
+            }
+        }
+        .gs-snippet {
+            font-family: $font-text-main!important;
+            font-size: $font-size-default;
+            line-height: $line-height-default;
+        }
+        .gsc-cursor-box {
+            display: none;
+        }
+    }
+    .gsc-above-wrapper-area,
+    .gcsc-branding {
+        display: none;
+    }
+}
+
+// Docs
+
+._docs {
+    h1 {
+        // Override unit-head styles
+        font-family: $font-text-secondary;
+        text-transform: none;
+        letter-spacing: 0;
+        position: static;
+        margin: 2em 0;
+        color: $color-accent;
+        background-color: transparent;
+        &:before, &:after {
+            background: none;
+        }
+    }
+}
+
+// Toggle visibility of boxes
+.toggle {
+    color: inherit;
+    cursor: pointer;
+    float: right;
+    &:after {
+        content: " –";
+        font-weight: 300;
+    }
+    &.closed:after {
+        content: " +";
+    }
+    &.open:after {
+        content: " \2013";
+    }
+}
+
+// Beta information
+
+@mixin beta-information() {
+    display: none;
+    position: absolute;
+    font-weight: normal;
+    letter-spacing: 0;
+    text-transform: none;
+    background-color: $color-highlight;
+    z-index: 200;
+    padding: 0.5em;
+    color: $color-text-main;
+    border-radius: $button-border-radius;
+    box-shadow: 0 0 10px $color-accent;
+    margin-top: -0.25em; // overlap with button so that hover from button to info is continuous
+    left: 1em;
+    right: 1em;
+    // Narrower for large screens:
+    @media (min-width: $break-point-l) {
+        left: $max-width-default * 0.25 / 3;
+        right: $max-width-default * 0.25 / 3;
+    }
+    a {
+        color: $color-links;
+    }
+    p:last-child {
+        margin-bottom: 0;
+    }
+    // Show info on hover or button hover
+    &:hover,
+    .beta-button .button:hover + & {
+        display: block;
+    }
+}
+
+.beta-information {
+    @include beta-information();
+}
+.masthead {
+    // Beta button
+    .beta-button .button {
+        background-color: $color-highlight;
+        color: $color-accent;
+        margin: 0 0.25em;
+        &:hover {
+            background-color: $color-text-main;
+        }
+    }
+}
+.landing-page {
+    h1 {
+        // Beta info and button
+        .beta-information {
+            @include beta-information();
+            font-size: 0.5em;
+        }
+        .beta-button .button {
+            background-color: $color-highlight;
+            color: $color-accent;
+            text-align: center;
+            font-size: 0.6em;
+            bottom: 0.15em;
+            position: relative;
+            margin-left: 0.25em;
+            &:hover {
+                background-color: $color-text-main;
+            }
+        }
+    }
+}
+
+// Projects pages (designed originally for Doing Economics)
+
+// number questions within h2 sections
+header {
+    counter-reset: section;
+}
+.text-question {
+    counter-reset: question;
+    list-style-type: none; // remove list style because we're creating our own counters
+    margin-left: 1.5em; // no list indentation
+    padding: 0; // necessary when text-question is used for a blockquote to group paras
+    // counter
+    &:before {
+        color: $color-accent;
+        counter-increment: section;
+        content: counter(section);
+        float: left;
+        margin-right: 1em;
+        font-weight: bold;
+        font-family: $font-text-secondary;
+        margin-top: -0.1em; // accounts for font's low baseline
+        margin-left: -1.5em;
+    }
+    // When h3 with no margin-bottom precedes a text-question,
+    // add margin to force the counter number downwards
+    // to align with the text.
+    h3 + & {
+        margin-top: $line-height-default;
+    }
+    li ol, li ul {
+        margin-top: 0;
+        margin-bottom: $line-height-default;
+    }
+}
+.text-sub-question {
+    margin-left: 1.5em;
+    padding: 0;
+    list-style-type: none; // remove list style because we're creating our own counters
+    // Reduce space between sub-questions
+    & + & {
+        margin-top: -1em;
+    }
+    // counter
+    &:before {
+        counter-increment: question;
+        content: "(" counter(question, lower-alpha) ") ";
+        float: left;
+        margin-right: 0.5em;
+        margin-top: -0.1em; // accounts for font's low baseline
+        font-style: italic;
+    }
+    ul, ol {
+        margin-left: $line-height-default * 2;
+    }
+}
+// Solutions pages get extra treatment
+body.solutions {
+    // This is a fragile hack to use the .text-question class
+    // for the first para in solutions. It indents everything,
+    // except h2s and h3s, after a solution's first para (if it's
+    // tagged with text-question) until the next text-question.
+    .text-question {
+        & ~ :not(.text-question):not(h2):not(h3) {
+            margin-left: 1.5em;
+        }
+    }
+    .text-sub-question {
+        & ~ ul:not(.text-question):not(.text-sub-question),
+        & ~ ol:not(.text-question):not(.text-sub-question) {
+            margin-left: 4.5em !important; // important to override more specific :not above
+        }
+    }
+}
+
+// Set alignment for RTL languages
+
+html[dir="rtl"] {
+
+    // Basic typography
+    // ----------------
+    h2, h3, h4, h5, h6,
+    p, ul, ol, dl, li {
+        text-align: right;
+    }
+    ol {
+        list-style-type: arabic-indic;
+        margin: 0 1em 1.5em 0;
+    }
+    ul {
+        margin: 0 1em 1.5em 0;
+    }
+    img {
+        &.thumbnail {
+            float: left;
+            clear: left;
+        }
+    }
+
+    // Masthead
+    .masthead {
+        ul {
+            margin-bottom: 0;
+            text-align: center; // overrides RTL override
+        }
+    }
+
+    // Navigation
+    #nav {
+        h2 {
+            margin-top: 2em; // Avoids overlap with 'close' button
+        }
+        .search {
+            margin: 0 0 0 -17px;
+        }
+        [data-nav-close],
+        [data-toggle-nav] {
+            right: unset;
+            left: 0.5em;
+        }
+        .controls > div {
+            margin-right: 0;
+            margin-left: 1em;
+            &.dark-mode-control svg.dark-mode-icon {
+                margin-left: 0;
+            }
+        }
+        .language-select {
+            &:hover, &[visible] {
+                .language-select-list {
+                    left: unset;
+                    right: 0.5em;
+                    position: absolute;
+                }
+            }
+        }
+    }
+    .last-locations-list {
+        .last-locations-list-header {
+            right: 0;
+        }
+    }
+    // Obscure this because RTL makes this label visible,
+    // but we need it in the DOM for the click to hide the menu
+    &.js-nav-open [href="#nav"] {
+        color: transparent;
+    }
+    .accordion-show-all-button-wrapper {
+        text-align: left;
+    }
+    .theme-legend-filter-button {
+        margin-right: -($line-height-default / 2);
+        margin-left: 0;
+    }
+
+    // Boxes
+    // -----
+    .box,
+    .info,
+    .exercise,
+    .mcq, .question,
+    .definition {
+        // Move rounded corner to opposite side
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 2em;
+        padding-right: 1.5em;
+    }
+
+    // Figures
+    // -------
+    .figure {
+        .figure-body {
+            .title {
+                text-align: right;
+            }
+            .description {
+                text-align: right;
+            }
+            .caption {
+                // Override explicit text alignment
+                text-align: right;
+            }
+            // Remove padding from first and last .figure-flex-container
+            @for $i from 1 through 4 {
+                .figure-images.contains-#{$i} .figure-flex-container {
+                    // Reset padding on figures
+                    padding-left: $line-height-default/4;
+                    padding-right: $line-height-default/4;
+
+                    @media (min-width: $break-point-m) {
+                        flex-basis: 100%;
+                        &:first-child {
+                            padding-right: 0;
+                        }
+                        &:nth-child(#{$i}) {
+                            padding-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Slides
+    // -------
+    .slides {
+        .figure-summary-meta {
+            .caption {
+                // Override explicit text alignment
+                text-align: right;
+            }
+            .figure-source {
+                p {
+                    &.source {
+                        // Override explicit text alignment
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+
+    // Theme legends
+    // -------------
+    @media (min-width: $break-point-xl) {
+        .theme-legend {
+            @include outside-left();
+        }
+    }
+
+    // H2 accordion fixes
+    // ------------------
+    // Move toggles to left-hand side
+    [role="tab"] {
+        padding-right: 0;
+        padding-left: 1em;
+        &::after {
+            left: 0;
+            right: auto;
+        }
+        a:first-of-type {
+            margin-right: 0;
+            margin-left: 0.4em;
+        }
+    }
+
+    // Questions
+    // 'Correct' and 'Incorrect': reverse positioning for RTL
+    &.js-mcq .mcq-feedback::before {
+        padding: ($line-height-default / 2) ($line-height-default * 2) ($line-height-default / 2) 0;
+    }
+    // Cross and tick: reverse positioning for RTL
+    &.js-mcq .mcq-feedback::after {
+        right: 0.75em;
+    }
+
+    // Glossary
+    .glossary {
+        dt {
+            margin-right: 0;
+            margin-left: 0.5em;
+            float: right;
+        }
+    }
+
+} // end RTL overrides
+
+// ---------------------------
+// Use custom font for Persian
+// ---------------------------
+$font-farsi: "Adobe Arabic", "adobe-arabic", $font-text-main;
+html[lang="fa"] {
+    // Override $font-text-main in _web-base-typography
+    body, h5, h6 {
+        font-family: $font-farsi;
+    }
+    // Override $font-text-main in custom CSS above
+    h3, h4,
+    .contents-page #content .toc-list li {
+        font-family: $font-farsi;
+    }
+    // Equations in Farsi should render LTR
+    .MathJax_PHTML_Display, .MathJax_PHTML {
+        direction: ltr;
+    }
+}
+// Typekit requires we apply the above rules with their
+// imported stylesheet, which are added in _includes/head-elements
+// ---------------------------
+
+// ---------------------------
+// Fixes for accommodating the Italian edition
+// ---------------------------
+
+.no-show {
+    display: none;
+}

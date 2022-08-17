@@ -1,0 +1,5 @@
+{% assign redirect-path = site.baseurl | split: "/" | slice: 1 %}
+
+<div class="notification login-prompt sidebar-login-prompt visuallyhidden">
+    If you are an instructor, <a target="_self" href="{{ site.canonical-url }}/login/?redirect_to=/{{ redirect-path }}/instructors{{ page.url }}">log in</a> or <a target="_self" href="{{ site.canonical-url }}/register-as-a-teacher/?redirect_to=/{{ redirect-path }}/instructors{{ page.url }}">register</a> to gain access to all the content in <em>{{ series-name }}</em> for free.
+</div>

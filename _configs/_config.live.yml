@@ -1,0 +1,151 @@
+# Live website build config for core-econ.org
+
+build: live
+
+# URLs
+canonical-url: "https://www.core-econ.org"
+baseurl: "/experiencing-economics/instructors"
+
+# Exclude list
+exclude:
+  - README*
+  - run-linux*
+  - run-mac*
+  - run-windows*
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+  - node_modules
+  - gulpfile.js
+  - eslint.json
+  - /*/images/source
+# -----------------------------------
+# Colour profiles for conversions
+# -----------------------------------
+  - /assets/profiles
+# -----------------------------------
+# Scripts we only want the minified versions of
+# -----------------------------------
+  - /assets/js/nav.js
+  - /assets/js/get-query-variable.js
+  - /assets/js/mark-search-terms.js
+  - /assets/js/slides.js
+  - /assets/js/lazyload.js
+  - /assets/js/videos.js
+  - /assets/js/accordions.js
+  - /assets/js/tables.js
+  - /assets/js/new-tabs.js
+  - /assets/js/definitions.js
+  - /assets/js/footnotes.js
+  - /assets/js/mcqs.js
+  # We don't need these because they are
+  # include_relative'd in bundle.js and bundle-search.js
+  - /assets/js/accordions.min.js
+  - /assets/js/annotation.js
+  - /assets/js/annotation.min.js
+  - /assets/js/definitions.min.js
+  - /assets/js/elasticlunr.min.js
+  - /assets/js/footnotes.min.js
+  - /assets/js/get-query-variable.min.js
+  - /assets/js/google-cse.js
+  - /assets/js/lazyload.min.js
+  - /assets/js/locales.js
+  - /assets/js/mark-search-terms.min.js
+  - /assets/js/mark.min.js
+  - /assets/js/mcqs.min.js
+  - /assets/js/metadata.js
+  - /assets/js/nav.min.js
+  - /assets/js/new-tabs.min.js
+  - /assets/js/polyfills.min.js
+  - /assets/js/search-data.js
+  - /assets/js/search.min.js
+  - /assets/js/slides.min.js
+  - /assets/js/tables.min.js
+  - /assets/js/toggle-expandable-box.min.js
+  - /assets/js/videos.min.js
+# -----------------------------------
+# Scripts we don't need for web output
+# -----------------------------------
+  - /assets/js/bump.js
+  - /assets/js/footnotes_pdf.js
+  - /assets/js/footnotes_pdf.min.js
+  - /assets/js/heading-titles.js
+  - /assets/js/heading-titles.min.js
+  - /assets/js/images-only.js
+  - /assets/js/page-reference.js
+  - /assets/js/render-mathjax.js
+# -----------------------------------
+# Book files we don't need for web
+# -----------------------------------
+  - /*/images/print-pdf
+  - /*/images/screen-pdf
+  - /*/images/epub
+  - /*/images/app
+  - /*/fonts
+  - /*/styles/epub*
+  - /*/styles/print-pdf*
+  - /*/styles/screen-pdf*
+  - /*/styles/app*
+  - /*/styles/hyphenation*
+  - /*/text/file-list
+  - /*/package.opf
+# -----------------------------------
+# Book files we don't need for live
+# -----------------------------------
+  - /*/text/table-of-questions*
+# -----------------------------------
+# Exclude web images only if you keep_files them below
+# -----------------------------------
+# /*/images/web,
+# -----------------------------------
+# Exclude translations not ready for prime time
+# -----------------------------------
+  - /*/fa
+  # - /*/it
+
+# Keep list. Adjust for faster output,
+# if you know what you're doing.
+keep_files:
+# -----------------------------------
+# Book files
+# -----------------------------------
+  # - book/images/print-pdf
+  # - book/images/screen-pdf
+  # - book/images/web
+  # - book/images/epub
+  # - book/fonts
+  # - book/styles
+  # - book/text
+  # - book/text/01.html
+  # - book/text/02.html
+  # - book/text/03.html
+  # - book/text/04.html
+  # - book/text/05.html
+  # - book/text/06.html
+  # - book/text/07.html
+  # - book/text/08.html
+  # - book/text/09.html
+  # - book/text/10.html
+  # - book/text/11.html
+  # - book/text/12.html
+  # - book/text/13.html
+  # - book/text/14.html
+  # - book/text/15.html
+  # - book/text/16.html
+  # - book/text/17.html
+  # - book/text/18.html
+  # - book/text/19.html
+  # - book/text/20.html
+  # - book/text/21.html
+  # - book/text/22.html
+  # - book/text/50-01-looking-forward.html
+  # - book/text/50-02-glossary.html
+  # - book/text/50-03-bibliography.html
+  # - book/text/50-04-copyright-acknowledgements.html
+  # - book/text/50-05-index.html
+
+# Turn off docs
+collections:
+  docs:
+    output: false

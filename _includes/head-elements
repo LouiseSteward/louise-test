@@ -1,0 +1,72 @@
+{% comment %}
+After this comment block, include any links and scripts,
+such as Google Analytics tracking scripts,
+that you want in the <head> of your HTML.
+Use Liquid logic tags to include only in certain outputs, e.g.
+`if site.output == "web"` for Google Analytics scripts.
+{% endcomment %}
+
+{% if site.mathjax-enabled == true %}
+{% include mathjax-config %}
+{% endif %}
+
+{% comment %}Include code for correct answer options if this is a question.{% endcomment %}
+{% if page.path contains "question" and page.correct %}
+<meta data-question="{{ page.path | remove: ".md" | split: "/" | last }}" data-question-code="{% include question-secret-code.html %}" />
+{% endif %}
+
+{% if site.output == "web" %}
+<script src="https://www.youtube.com/iframe_api"></script>
+
+{% comment %}Using https://github.com/typekit/webfontloader{% endcomment %}
+<script>
+WebFontConfig = {
+     google: {
+         families: ['Amiri:400,400i,700', 'Source Sans Pro:400,600,700,700:latin-ext', 'Asap:400,400i,600,600i']
+     }
+};
+
+(function(d) {
+    var wf = d.createElement('script'), s = d.scripts[0];
+    wf.src = 'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js';
+    wf.async = true;
+    s.parentNode.insertBefore(wf, s);
+})(document)
+</script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71347024-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-106812057-1');
+</script>
+
+  {% comment %}Load Typekit for Adobe Arabic if Farsi.
+  Currently using EBW's info@ Typekit account.{% endcomment %}
+  {% if site.build-language == nil or site.build-language == "fa" %}
+    {% if language == "fa" %}
+      <!--<link rel="stylesheet" href="https://use.typekit.net/gxg4tcv.css">-->
+    {% endif %}
+  {% endif %}
+
+{% endif %}
+
+{% comment %}Load references as JS object for citations script
+which is included in bundle.js{% endcomment %}
+{% if is-translation %}
+    {% if site.data[language].references %}
+        <script>
+            var ebCitationReferences = {{ site.data[language].references | jsonify }};
+        </script>
+    {% endif %}
+{% else %}
+    {% if site.data.references %}
+        <script>
+            var ebCitationReferences = {{ site.data.references | jsonify }};
+        </script>
+    {% endif %}
+{% endif %}

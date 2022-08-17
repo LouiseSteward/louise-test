@@ -1,0 +1,163 @@
+# Set site.output == "epub"
+output: "epub"
+# Set site.image-set == "images/epub"
+image-set: "images/epub"
+# Turn off documentation and activate epub collection
+collections:
+  docs:
+    output: false
+  epub:
+    output: true
+exclude:
+  # the usual excludes from _config.yml
+  - run-linux.sh
+  - run-mac.command
+  - run-windows.bat
+  - Gemfile
+  - Gemfile.lock
+  - README*
+  - LICENSE*
+  - CHANGELOG*
+  - package.json
+  - package-lock.json
+  - node_modules
+  - gulpfile.js
+  - eslint.json
+  - /*/images/source
+  # exclude files we don't need for epub
+  - search.md
+  - index.md
+  - /assets/js/images-only.js
+  - /assets/js/.gitignore
+  - /*/styles/print-pdf.scss
+  - /*/styles/screen-pdf.scss
+  - /*/styles/web.scss
+  - /*/styles/app.scss
+  - /*/index.md
+  - /*/images/source
+  - /*/images/print-pdf
+  - /*/images/screen-pdf
+  - /*/images/web
+  - /*/images/app
+  - /*/styles/hyph*
+  # Script partials in bundle.js should not build themselves
+  - _epub/js/polyfills.js
+  - _epub/js/locales.js
+  - _epub/js/slides.js
+  - _epub/js/videos.js
+  - _epub/js/tables.js
+  - _epub/js/mcqs.js
+  - _epub/js/figure-advancer.js
+  - _epub/js/definitions.js
+  # if you exclude and keep images, Jekyll doesn't know about them,
+  # so they are not in the manifest. So don't exclude-and-keep images.
+  # - /*/images/epub
+  # -----------------------------------
+  # Book files
+  # -----------------------------------
+  # - search*
+  # - book/images/web
+  # - book/fonts
+  # - book/styles
+  # - book/text/0-0-cover*
+  # - book/text/0-1-0-halftitlepage*
+  # - book/text/0-1-titlepage*
+  # - book/text/0-2-copyright*
+  # - book/text/0-3-contents*
+  # - book/text/0-4-preface*
+  # - book/text/0-5-note-to-instructors*
+  # - book/text/0-6-contributors*
+  # - book/text/01*
+  # - book/text/02*
+  # - book/text/03*
+  # - book/text/04*
+  # - book/text/05*
+  # - book/text/06*
+  # - book/text/07*
+  # - book/text/08*
+  # - book/text/09*
+  # - book/text/10*
+  # - book/text/11*
+  # - book/text/12*
+  # - book/text/13*
+  # - book/text/14*
+  # - book/text/15*
+  # - book/text/16*
+  # - book/text/17*
+  # - book/text/18*
+  # - book/text/19*
+  # - book/text/20*
+  # - book/text/21*
+  # - book/text/22*
+  # - book/text/50-01-looking-forward*
+  # - book/text/50-02-glossary*
+  # - book/text/50-03-bibliography*
+  # - book/text/50-04-copyright-acknowledgements*
+  # - book/text/50-05-index*
+  # - book/text/leibniz-02*
+  # - book/text/leibniz-03*
+  # - book/text/leibniz-04*
+  # - book/text/leibniz-05*
+  # - book/text/leibniz-06*
+  # - book/text/leibniz-07*
+  # - book/text/leibniz-08*
+  # - book/text/leibniz-11*
+  # - book/text/leibniz-12*
+  # - book/text/leibniz-22*
+  # - book/text/search*
+  # - book/text/glossary*
+  # - book/text/question*
+  # - book/text/quiz*
+  # ---------------------------------
+  # English book
+  # ---------------------------------
+  # - /book/text/
+  # ---------------------------------
+  # French book
+  # ---------------------------------
+  - /*/fr
+  # ---------------------------------
+  # Farsi book
+  # ---------------------------------
+  - /*/fa
+  # - /*/fa/text/01*,
+  # - /*/fa/text/02*,
+  # - /*/fa/text/03*,
+  # - /*/fa/text/04*,
+  # - /*/fa/text/05*,
+  # ---------------------------------
+  # Italian book
+  # ---------------------------------
+  - /*/it
+  # ---------------------------------
+  # Spanish book
+  # ---------------------------------
+  - /*/es
+# We deliberately empty the keep_files list here,
+# so that files we don't want don't end up in the epub
+# but not in the manifest.
+keep_files:
+  # For when you manually copy images from the media repo
+  # to _site/book/images/epub, keep these to prevent Jekyll
+  # from removing them when you build.
+  - book/images/epub
+# Map file extensions to media types for the opf
+media-types:
+  html: "application/xhtml+xml"
+  xhtml: "application/xhtml+xml"
+  css: "text/css"
+  jpg: "image/jpeg"
+  jpeg: "image/jpeg"
+  gif: "image/gif"
+  png: "image/png"
+  svg: "image/svg+xml"
+  ttf: "application/font-sfnt"
+  otf: "application/font-sfnt"
+  woff: "application/font-woff"
+  woff2: "font/woff2"
+  mp3: "audio/mpeg"
+  mp4: "audio/mp4"
+  ncx: "application/x-dtbncx+xml"
+  txt: "text/plain"
+  js: "application/x-javascript"
+  unknown: "application/octet-stream"

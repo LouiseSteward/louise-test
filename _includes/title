@@ -1,0 +1,41 @@
+{% comment %} Assumes includes.metadata has loaded already,
+e.g. this include is used in head.html. {% endcomment %}
+
+{% if site.output == 'web' or site.output == 'app' %}
+
+{% comment %} Default {% endcomment %}
+{% capture html-title %}{{ series-name }}{% endcapture %}
+
+{% comment %} If we're in a book, there is a title. If it's not the same
+as the series name, use both. {% endcomment %}
+{% if title and title != series-name %}
+    {% capture html-title %}{{ title }} – {{ series-name }}{% endcapture %}
+{% endif %}
+
+{% comment %} If there is a page title (there usually is) and it's
+not the same as the series name, use both. Note that this will
+usually override the previous html-title. {% endcomment %}
+{% if page.title and page.title != series-name %}
+    {% capture html-title %}{{ page.title }} – {{ series-name }}{% endcapture %}
+{% endif %}
+
+{% comment %} The most common html-title inside books, overriding
+previous ones except where the page title is the same as
+the book title, in which case we want the series name. {% endcomment %}
+{% if page.title and title and page.title != title %}
+    {% capture html-title %}{{ page.title }} – {{ title }}{% endcapture %}
+{% endif %}
+
+<title>{{ html-title }}</title>
+
+{% else %}
+
+<title>
+{% if title %}
+    {{ title }}{% if page.title %}: {{ page.title }}{% endif %}
+{% else %}
+    {{ series-name }}{% if page.title %}: {{ page.title }}{% endif %}
+{% endif %}
+</title>
+
+{% endif %}

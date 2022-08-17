@@ -1,0 +1,50 @@
+$web-language-select: true !default;
+@if $web-language-select {
+
+    // Language selector
+
+    .language-select {
+        color: $language-select-text-color;
+        cursor: pointer;
+        text-align: right;
+
+        .language-select-list {
+            @include dialog-styles();
+            list-style-type: none;
+            li {
+                display: block; // overrides masthead ul styles
+                a {
+                    color: $language-select-links-color;
+                }
+                // override inherited styles from masthead ul li:after
+                &:after {
+                    content: normal;
+                }
+            }
+        }
+        // Hide the list till hover on parent
+        .language-select-list {
+            display: none;
+        }
+        &:hover, &[visible] {
+            .language-select-list {
+                display: block;
+                left: 0.5rem;
+                position: fixed;
+                z-index: 1;
+            }
+        }
+    }
+
+    // Globe icon (_includes/globe-icon)
+    .language-select svg,
+    svg.language-select-icon {
+        // Avoid Firefox bug where tapping selects SVG as text
+        // https://bugzilla.mozilla.org/show_bug.cgi?id=1286882
+        -moz-user-select: none;
+        fill: $language-select-icon-background-color;
+        stroke: $language-select-icon-line-color;
+        stroke-width: $language-select-icon-thickness;
+    }
+
+}

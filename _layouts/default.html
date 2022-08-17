@@ -1,0 +1,29 @@
+---
+layout: compress
+---
+
+{% if site.output == 'epub' or site.output == 'print-pdf' or site.output == 'screen-pdf' %}
+
+{% include head.html %}
+{% include start-content.html %}
+{{ content }}
+{% include close-content.html %}
+{% include close-body.html %}
+
+{% else %}
+
+{% include head.html %}
+{% include masthead.html %}
+{% include start-main.html %}
+{% include nav-button.html %}
+{% if site.data.settings.web.login-prompts == true %}
+    {% include login-prompts.html %}
+{% endif %}
+{% include start-content.html %}
+{{ content }}
+{% include close-content.html %}
+{% include nav.html %}
+{% include footer.html %}
+{% include close-body.html %}
+
+{% endif %}

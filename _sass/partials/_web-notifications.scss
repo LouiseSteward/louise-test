@@ -1,0 +1,18 @@
+$web-notifications: true !default;
+@if $web-notifications {
+
+    .notification {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: $color-notifications;
+        padding: 1em;
+        font-family: $font-text-secondary;
+        font-size: 0.8em;
+        line-height: $line-height-default * 0.8;
+        text-align: center;
+        z-index: 100;
+    }
+
+}

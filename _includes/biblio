@@ -1,0 +1,23 @@
+{% capture biblio-html %}
+
+{% comment %}
+This include is for showing citations stored
+in _data/references.yml, or language subfolders there
+such as _data/it/references.yml.
+{% endcomment %}
+
+{% include metadata %}
+
+{% if is-translation %}
+    {% assign biblio-reference = site.data[language].references | where: "ref", include.ref | first %}
+{% else %}
+    {% assign biblio-reference = site.data.references | where: "ref", include.ref | first %}
+{% endif %}
+
+{% if biblio-reference and biblio-reference.text != "" %}
+{{ biblio-reference.text | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}
+{% elsif site.data.settings.references.on-missing-biblio-id == "error" %}
+*The reference `{{ include.ref }}` is not in `references.yml`.*{:.highlighter.error}
+{% endif %}
+
+{% endcapture %}{{ biblio-html | strip_newlines }}

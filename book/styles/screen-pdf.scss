@@ -1,0 +1,112 @@
+---
+# Screen PDF styles
+---
+
+// What is this?
+// -------------
+// This is typography for the Electric Book template (see http://ebw.co/template).
+// It is built with Sass. (See http://sass-lang.com, and http://jekyllrb.com/docs/assets for how Jekyll implements Sass.)
+// It sets defaults that can be overridden in each book's own stylesheets, where the variables here are duplicated.
+//
+// How to use it
+// -------------
+// Edit the default variables below.
+// Comment/uncomment or add font imports below.
+// Add your own custom CSS at the bottom.
+
+// First, let's set character encoding. Don't change this.
+@charset "utf-8";
+
+// -----------------------------
+// Understanding our page layout
+// -----------------------------
+
+// Here is a diagram of the column-based grid for our page layout. This shows a left-hand page.
+// The right hand page is its mirror image.
+
+// _____________________________________________________________________________________
+// |         |               |     |               |     |                |            |
+// |         |               |     |               |     |                |            |
+// |         |               |     |               |     |                |            |
+// |    1    |       2       |  3  |       4       |  5  |        6       |      7     |
+// |         |               |     |               |     |                |            |
+// |         |               |     |                                      |            |
+// | sidebar |    sidebar    | gap |           main text area             |   margin   |
+// | margin  |               |     |                                      |   inside   |
+// | outside |               |     |               |     |                |            |
+// |         |               |     |               |     |                |            |
+// _____________________________________________________________________________________
+//
+//           <---------------------------- content width ----------------->
+
+
+// Our page has a main text area (4-6) and a sidebar (2). They are based on a three-column grid,
+// where the sidebar occupies the first column, and the main text area occupies the other two, plus
+// the notional column gap between them (5).
+
+// We use variables to define the width of these areas. Some are set explicitly:
+// - $page-width: the total width of the printed page.
+// - $sidebar-margin-outside (1): the space between the edge of the page and the content in the sidebar.
+// - $margin-inside (7): the space between the main text area and the spine of the book.
+
+// We also set the ratio between the width of each column and the column-gap as a $column-gap-ratio value.
+// By default, this ratio is 10:1, where the column is ten times the width of the gap.
+// We set $column-gap-ratio as a single number: the first value in the ratio, e.g. '10'.
+// A higher ratio (e.g. 11:1) will narrow the gap, and widen the columns.
+// A lower ratio (e.g. 9:1) will widen the gap, and narrow the columns.
+
+// Our stylesheet then automatically calculates column and gap widths based on that ratio,
+// and stores them in these three variables we can use in our styling:
+// - $sidebar-text-width (2): the width of the sidebar
+// - $sidebar-margin-inside (3): the gap between the sidebar text and the main text area.
+// - $main-text-width (4-6): the width of the main text area.
+
+// The automatic calculation first subtracts the margins from the page width, to get the content-width.
+// It then divides the content width into column-grid units, using your $column-gap-ratio value.
+// If your $column-gap-ratio is 10 (the default), there are 32 column-grid units:
+// (10 × 3 columns) + 2 column gaps = 32 column-grid units.
+// If your $column-gap-ratio were 9 (i.e. narrower columns, wider gap), there would be 29 column-grid units:
+// (9 × 3 columns) + 2 column gaps = 29 column-grid units.
+// To get the width of a column-grid unit ($grid-unit-width) the stylesheet first divides the content width
+// by the total number of column-grid units. For example:
+// if the content-width is 160mm and there are 32 column-grid units, each column-grid unit is 5mm wide.
+// Each gap (3 and 5 in the diagram above) is one column-grid unit, which is 5mm in this example.
+// Then, to get the final $sidebar-text-width, the stylesheet multiplies the $column-gap-ratio
+// by the $grid-unit-width. E.g. 10 × 5mm = 50mm.
+// And to get the final $main-text-width, the stylesheet multiplies the $column-gap-ratio
+// by twice that, plus a gap width: (10 × 5mm × 2) + 5mm = 105mm.
+
+// -------------
+// Set variables
+// -------------
+
+// Edition suffix: identifies this edition in page-fitting classes (in _print-fitting.scss).
+// For instance, a .tighten class in HTML might apply to your bookshop edition, but not the schools edition.
+// A suffix '-schools-edn' would mean only tags with that suffix would apply to that edition, e.g. {:.tighten-schools-edn}
+// If you're only planning one edition and use default tags ({:.tighten} not {:.tighten-schools-edn}), leave as null.
+$edition-suffix: null;
+
+// Hyphenation
+$hyphenation-dictionary: "hyphenation.dic"; // Path to dictionary file, relative to `/book/styles`. E.g. "../../assets/hyph.dic". Overrides PrinceXML built-in hyphenation.
+
+
+// ------------
+// Import fonts
+// ------------
+
+// Add @font-face rules for fonts you specify here.
+// Add the actual font files to `../fonts`
+// For snippets, try https://github.com/arthurattwell/font-faces
+
+
+// -------------
+// Master theme
+// -------------
+
+// We do this check here because this file is parsed by Liquid
+{% if site.data.settings.slideline-review == true %}
+$slideline-review: true;
+{% endif %}
+
+// Import master styles
+@import 'screen-pdf';

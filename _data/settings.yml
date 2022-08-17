@@ -1,0 +1,162 @@
+# Electric Book settings
+
+# Electric Book Manager settings
+# ----------------------------------------------------------
+electric-book-manager: enable
+electric-book-manager-key: ""
+# ----------------------------------------------------------
+
+# Variant settings
+# Set a variant of the work to output.
+# A variant lets you override metadata and stylesheets and can be used,
+# where `include metadata` has been used, in if statements like
+# {% if variant == "somename" %}Variant text!{% endif %}
+# Variant names must be one word, lowercase. Hyphens are allowed.
+# Add variant book metadata to meta.yml, and output settings here.
+# ----------------------------------------------------------
+# Select the active variant:
+# active-variant: myvariant
+# ----------------------------------------------------------
+# Store settings for each variant.
+# These have no effect unless an active-variant is set above.
+variants:
+  - variant: myvariant
+    print-pdf-stylesheet: "print-pdf-variant.css"
+    screen-pdf-stylesheet: ""
+    web-stylesheet: "web-variant.css"
+    epub-stylesheet: ""
+    app-stylesheet: ""
+  - variant: yourvariant
+# ----------------------------------------------------------
+
+# ----------------------------------------------------------
+# Epub settings
+# ----------------------------------------------------------
+# If you're embedding fonts, uncomment and list the font-file names here
+# and put the font files in _epub/fonts, not book/fonts
+
+# epub-fonts:
+  # - Crimson-Roman.otf
+  # - Crimson-Italic.otf
+epub-scripts: true
+# ----------------------------------------------------------
+
+# ----------------------------------------------------------
+# Web settings
+# ----------------------------------------------------------
+# Search
+# search-type can be elasticlunr or google-cse (for Google CSE).
+# For google-cse, at cse.google.com:
+#   1. create an ID and use it for google-cse-id below,
+#   2. set Search features > Advanced > Query Parameter Name to `query`
+#   3. set Look and feel > Results only.
+search-type: "elasticlunr"
+google-cse-id: ""
+# What kind of header do you want in the masthead
+# for each of your web and app builds? Options:
+# site-name, book-title, page-title, breadcrumbs
+# If not set, book-title is default.
+# Note that breadcrumbs slows your Jekyll build significantly.
+masthead:
+  - web: site-name
+  - app: site-name
+web:
+  # Enable annotation
+  annotator:
+    development: false
+    live: false
+  # MathJax is activated in _config.yml. Further settings here.
+  # At `source` choose local (`local`) MathJax.js or the CDN (`cdn`).
+  mathjax:
+    source: cdn
+  # --------------
+  # SVG management
+  # --------------
+  # By default on the web, we'll inject SVG as img tags into the page
+  # so that you can control fonts and other SVG features with CSS.
+  # This works for figure and image includes, and any image with
+  # a 'inject-svg' class.
+  # If you use injected SVGs, make sure their styles are inline,
+  # or SVGs may end up 'sharing' styles for duplicated classes.
+  # Advanced: see font-switching options in assets/js/svg-management.js
+  # Set 'inject' to false to disable SVG injection.
+  svg:
+    inject: true
+  # -----------------
+  # Bookmarks
+  # -----------------
+  bookmarks: 
+    enabled: true
+    synchronise: false
+  # -----------------
+  # Wordpress user profile and login/register buttons for anonymous users
+  # -----------------
+  wordpress-user-profile: false
+  # -----------------
+  # Prompt instructors to login via popups
+  # -----------------
+  login-prompts: true
+
+# ----------------------------------------------------------
+# CORE settings
+# ----------------------------------------------------------
+slideline-review: false
+questions:
+  # When question files are missing, we can break the build
+  # or output an error message in the HTML. Default is `break`,
+  # because `error` slows down site builds.
+  on-missing-questions: break
+references:
+  # When biblio references are missing, we can skip the reference,
+  # or output an error message in the HTML. Default is `skip`,
+  # because `error` slows down site builds.
+  on-missing-biblio-id: error
+
+# ----------------------------------------------------------
+# App settings
+# ----------------------------------------------------------
+# If your book is huge and you need to store images in an expansion file,
+# add and uncoment these settings
+# google-play-expansion-file-enabled: true
+# google-play-public-api-key: ""
+
+app:
+  # --------------
+  # SVG management
+  # --------------
+  # SVG injection doesn't work in apps as it does on the web currently,
+  # because it requires a webserver to be able to do the injecting.
+  # So this setting does not currently have any effect.
+  svg:
+    inject: true
+  # -----------------
+  # Bookmarks
+  # -----------------
+  bookmarks: true
+
+# ----------------------------------------------------------
+# Media settings
+# ----------------------------------------------------------
+# If a large number of images makes your project too big,
+# you can store your images in a separate location.
+# See the docs for more information.
+# remote-media:
+#   development: "https://core-experiments.netlify.app"
+#   # development: "http://localhost:5000"
+# local-media:
+#   development: "../../core-experiments-media"
+#  # development: "http://localhost:5000"
+
+# ----------------------------------------------------------
+# Beta edition settings
+# ----------------------------------------------------------
+# To enable for the entire site, set beta-enabled: true
+# To enable for specific languages, add the language code
+# to a list in beta-enabled, e.g.
+# beta-enabled:
+#   - fa
+#   - fr
+# Set the beta wording in locales.yml
+beta-enabled:
+  - fa
+  # - it

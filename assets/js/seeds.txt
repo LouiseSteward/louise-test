@@ -1,0 +1,77 @@
+---
+# When Jekyll builds this file, it generates a list of URLs
+# in the production build of this project for search indexing.
+# Note: line breaks in this file matter to final output.
+# Note: in latest EBT, this layout is called 'trim'.
+layout: opf
+---
+{% capture crawler-seed-urls %}
+
+{% comment %} Get the files lists from meta
+and build them into URLs. {% endcomment %}
+
+    {% comment %} Create an empty array. {% endcomment %}
+    {% assign files-in-meta = "" | split: "" %}
+
+    {% comment %} Loop through each book. {% endcomment %}
+    {% for work in site.data.meta.works %}
+        {% for file in work.products[site.output].files %}
+
+            {% comment %} Files in files lists can be hashes (e.g. `01: "text"`),
+            so get the filename whether or not this is the case. {% endcomment %}
+            {% if file[0] %}
+                {% capture filename %}{{ file[0] }}{% endcapture %}
+            {% else %}
+                {% capture filename %}{{ file }}{% endcapture %}
+            {% endif %}
+
+            {% capture file-path %}{{ work.directory }}/text/{{ filename }}{% endcapture %}
+            {% assign files-in-meta = files-in-meta | push: file-path %}
+        {% endfor %}
+
+        {% comment %} Loop through each translation of this book,
+        and do the same there. {% endcomment %}
+        {% for translation in work.translations %}
+            {% for file in translation.products[site.output].files %}
+                {% if file[0] %}
+                    {% capture filename %}{{ file[0] }}{% endcapture %}
+                {% else %}
+                    {% capture filename %}{{ file }}{% endcapture %}
+                {% endif %}
+                {% capture file-path %}{{ work.directory }}/{{ translation.language }}/text/{{ filename }}{% endcapture %}
+                {% assign files-in-meta = files-in-meta | push: file-path %}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+
+{% comment %} Loop through all the pages in the site.
+For each one, if it's included in the files lists,
+add it to a seeds array. This way, we only get a list
+of files that are both included in meta and actually generated
+in this particular site build (e.g. the live build). {% endcomment %}
+
+    {% comment %} Create an empty array. {% endcomment %}
+    {% assign seeds = "" | split: "" %}
+
+    {% comment %} Loop through the pages. {% endcomment %}
+    {% for page in site.pages %}
+
+        {% comment %} Strip the file extension
+        for comparison with files-in-meta. {% endcomment %}
+        {% capture page-path-for-seeds %}{{ page.path | replace: ".md", "" }}{% endcapture %}
+
+        {% comment %} Check if each page is among the files lists. {% endcomment %}
+        {% for file in files-in-meta %}
+            {% if page-path-for-seeds == file %}
+                {% assign seeds = seeds | push: page-path-for-seeds %}
+            {% endif %}
+        {% endfor %}
+
+    {% endfor %}
+
+{% comment %} Output all the seeds, with no leading space.
+Note line breaks, necessary to have each URL on its own line. {% endcomment %}
+{% for path in seeds %}
+{{ site.canonical-url }}{{ site.baseurl }}/{{ path }}.html{% endfor %}
+
+{% endcapture %}{{ crawler-seed-urls }}

@@ -1,0 +1,234 @@
+# Set site.output == "app"
+output: "app"
+# Set site.image-set == "images/app"
+image-set: "images/app"
+# Turn off documentation
+collections:
+  docs:
+    output: false
+  app:
+    output: true
+# Remove baseurl
+baseurl: ""
+exclude:
+  # Build tools
+  - CHANGELOG*
+  - CNAME
+  - eslint.json
+  - Gemfile
+  - Gemfile.lock
+  - gulpfile.js
+  - LICENSE*
+  - node_modules
+  - package-lock.json
+  - package.json
+  - README*
+  - run-linux*
+  - run-mac*
+  - run-windows*
+  # Scripts we only want the minified versions of
+  - /assets/js/accordions.js
+  - /assets/js/definitions.js
+  - /assets/js/footnotes.js
+  - /assets/js/get-query-variable.js
+  - /assets/js/lazyload.js
+  - /assets/js/mark-search-terms.js
+  - /assets/js/mcqs.js
+  - /assets/js/nav.js
+  - /assets/js/new-tabs.js
+  - /assets/js/slides.js
+  - /assets/js/tables.js
+  - /assets/js/videos.js
+  # Things we don't need for an app
+  - /*/images/epub
+  - /*/images/print-pdf
+  - /*/images/screen-pdf
+  - /*/images/web
+  - /*/package.opf
+  - /*/styles/epub*
+  - /*/styles/print-pdf*
+  - /*/styles/screen-pdf*
+  - /*/styles/web*
+  - /assets/js/bump.js
+  - /assets/js/footnotes_pdf.js
+  - /assets/js/footnotes_pdf.min.js
+  - /assets/js/heading-titles.js
+  - /assets/js/heading-titles.min.js
+  - /assets/js/images-only.js
+  - /assets/js/page-reference.js
+  - /assets/js/render-mathjax.js
+  - /assets/profiles
+  # We don't need these because they are include_relative'd
+  - /assets/js/accordions.min.js
+  - /assets/js/definitions.min.js
+  - /assets/js/elasticlunr.min.js
+  - /assets/js/footnotes.min.js
+  - /assets/js/get-query-variable.min.js
+  - /assets/js/google-cse.js
+  - /assets/js/lazyload.min.js
+  - /assets/js/locales.js
+  - /assets/js/mark-search-terms.min.js
+  - /assets/js/mark.min.js
+  - /assets/js/mcqs.min.js
+  - /assets/js/metadata.js
+  - /assets/js/nav.min.js
+  - /assets/js/new-tabs.min.js
+  - /assets/js/polyfills.min.js
+  - /assets/js/search-data.js
+  - /assets/js/search.min.js
+  - /assets/js/slides.min.js
+  - /assets/js/tables.min.js
+  - /assets/js/toggle-expandable-box.min.js
+  - /assets/js/videos.min.js
+  - /*/text/question*
+  - /*/fr/text/question*
+  - /*/fa/text/question*
+  - /*/text/quiz*
+  - /*/fr/text/quiz*
+  - /*/fa/text/quiz*
+  # Speed up regeneration if you know what you're doing
+  # - book/images/app
+  # - book/styles
+  # - book/text
+  # Not in this build
+  - /*/fr
+  - /*/fa
+  - /*/it
+  # If you're only regenerating assets, exclude the book
+  # and keep it below
+  # - book
+  # -----------------------------------
+  # Book files
+  # -----------------------------------
+  # - search*
+  # - /*/images/web
+  # - /*/fonts
+  # - /*/styles
+  # - /*/text/0-0-cover*
+  # - /*/text/0-1-0-halftitlepage*
+  # - /*/text/0-1-titlepage*
+  # - /*/text/0-2-copyright*
+  # - /*/text/0-3-contents*
+  # - /*/text/0-4-preface*
+  # - /*/text/0-5-note-to-instructors*
+  # - /*/text/0-6-contributors*
+  # - /*/text/01*
+  # - /*/text/02*
+  # - /*/text/03*
+  # - /*/text/04*
+  # - /*/text/05*
+  # - /*/text/06*
+  # - /*/text/07*
+  # - /*/text/08*
+  # - /*/text/09*
+  # - /*/text/10*
+  # - /*/text/11*
+  # - /*/text/12*
+  # - /*/text/13*
+  # - /*/text/14*
+  # - /*/text/15*
+  # - /*/text/16*
+  # - /*/text/17*
+  # - /*/text/18*
+  # - /*/text/19*
+  # - /*/text/20*
+  # - /*/text/21*
+  # - /*/text/22*
+  # - /*/text/50-01-looking-forward*
+  # - /*/text/50-02-glossary*
+  # - /*/text/50-03-bibliography*
+  # - /*/text/50-04-copyright-acknowledgements*
+  # - /*/text/50-05-index*
+  # - /*/text/leibniz-02*
+  # - /*/text/leibniz-03*
+  # - /*/text/leibniz-04*
+  # - /*/text/leibniz-05*
+  # - /*/text/leibniz-06*
+  # - /*/text/leibniz-07*
+  # - /*/text/leibniz-08*
+  # - /*/text/leibniz-11*
+  # - /*/text/leibniz-12*
+  # - /*/text/leibniz-22*
+  # - /*/text/search*
+  # - /*/text/glossary*
+  # - /*/text/question*
+  # - /*/text/quiz*
+  # - ---------------------------------
+  # - English book
+  # - ---------------------------------
+  # - /book/text/
+  # - ---------------------------------
+  # - French book
+  # - ---------------------------------
+  # - /*/fr
+  # - ---------------------------------
+  # - Farsi book
+  # - ---------------------------------
+  # - /*/fa
+  # - /*/fa/text/01*
+  # - /*/fa/text/02*
+  # - /*/fa/text/03*
+  # - /*/fa/text/04*
+  # - /*/fa/text/05*
+# ---------------------------------
+# Italian book
+# ---------------------------------
+  # - /*/it
+  # - /*/it/text/01*
+  # - /*/it/text/02*
+  # - /*/it/text/03*
+  # - /*/it/text/04*
+  # - /*/it/text/05*
+
+# Speed up regeneration if you know what you're doing
+keep_files:
+  # - book/images/app
+  # - book/styles
+  # - book/text
+  # - book
+  # -----------------------------------
+  # Book files
+  # -----------------------------------
+  # - book/images/print-pdf
+  # - book/images/screen-pdf
+  # - book/images/web
+  # - book/images/epub
+  # - book/images/app
+  # - book/fonts
+  # - book/styles
+  # - book/text
+  # - book/text/0-0-cover.html
+  # - book/text/0-1-0-halftitlepage.html
+  # - book/text/0-1-titlepage.html
+  # - book/text/0-2-copyright.html
+  # - book/text/0-3-contents.html
+  # - book/text/0-4-preface.html
+  # - book/text/0-5-note-to-instructors.html
+  # - book/text/0-6-contributors.html
+  # - book/text/01.html
+  # - book/text/02.html
+  # - book/text/03.html
+  # - book/text/04.html
+  # - book/text/05.html
+  # - book/text/06.html
+  # - book/text/07.html
+  # - book/text/08.html
+  # - book/text/09.html
+  # - book/text/10.html
+  # - book/text/11.html
+  # - book/text/12.html
+  # - book/text/13.html
+  # - book/text/14.html
+  # - book/text/15.html
+  # - book/text/16.html
+  # - book/text/17.html
+  # - book/text/18.html
+  # - book/text/19.html
+  # - book/text/20.html
+  # - book/text/21.html
+  # - book/text/22.html
+  # - book/text/50-01-looking-forward.html
+  # - book/text/50-02-glossary.html
+  # - book/text/50-03-bibliography.html
+  # - book/text/50-04-copyright-acknowledgements.html
+  # - book/text/50-05-index.html
