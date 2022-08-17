@@ -29,6 +29,8 @@ jobs:
                 ruby-version: 2.7
             - name: Install Bundler
               run: gem install bundler
+            - name: Bundle install
+              run: bundle install
             - name: Run test script
               run: |
                 chmod +x ./test.sh
