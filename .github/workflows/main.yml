@@ -22,9 +22,9 @@ jobs:
               run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
             - name: Run test script
               run: |
-                chmod +x ../../test.sh
-                ../../test.sh
+                chmod +x ./test.sh
+                ./test.sh
             - name: Run deploy script
               run: |
-                chmod +x ../../deploy.sh
-                ../../deploy.sh
+                chmod +x ./deploy.sh
+                ./deploy.sh
