@@ -3,10 +3,10 @@ on:
     push:
         tags: "deploy-test*"
 env:
-    DEPLOY_METHOD_PREVIEWS: {{ secrets.DEPLOY_METHOD_PREVIEWS }}
-    DESTINATIONPATH_PREVIEWS: {{ secrets.DESTINATIONPATH_PREVIEWS }}
-    SSH_PREVIEWS: {{ secrets.SSH_PREVIEWS }}
-    SSH_PREVIEWS_PORT: {{ secrets.SSH_PREVIEWS_PORT }}
+    DEPLOY_METHOD_PREVIEWS: ${{ secrets.DEPLOY_METHOD_PREVIEWS }}
+    DESTINATIONPATH_PREVIEWS: ${{ secrets.DESTINATIONPATH_PREVIEWS }}
+    SSH_PREVIEWS: ${{ secrets.SSH_PREVIEWS }}
+    SSH_PREVIEWS_PORT: ${{ secrets.SSH_PREVIEWS_PORT }}
 jobs:
     deploy-student-site:
         name: Deploy student site
