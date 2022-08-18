@@ -132,7 +132,7 @@ else
     echo "Deploying $commit by $committer to staging server..."
     if [[ $tag* =~ ^preview.*$ ]]
     then
-        if [[ $DEPLOY_METHOD_PREVIEWS == 'SSH' ]]
+        if [[ "$DEPLOY_METHOD_PREVIEWS" == 'SSH' ]]
         then
 
             if [[ -n $SSH_PREVIEWS_PORT ]]
