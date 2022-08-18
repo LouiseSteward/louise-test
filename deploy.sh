@@ -140,7 +140,7 @@ else
 
             # Exit if rsync fails
             set -e
-            rsync -a -v -e "ssh -p $ssh_port" --stats --progress "$HOME/cache/_site/" "$SSH_PREVIEWS":"$DESTINATIONPATH_PREVIEWS/$tag"
+            rsync -a -v -e "ssh -p $ssh_port -a" --stats --progress "$HOME/cache/_site/" "$SSH_PREVIEWS":"$DESTINATIONPATH_PREVIEWS/$tag"
             set +e
         else
             # If your server can't handle a queue of FTP commands,
