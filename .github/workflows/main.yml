@@ -2,6 +2,11 @@ name: Deployment workflow
 on:
     push:
         tags: "preview-deploy-test*"
+env:
+    DEPLOY_METHOD_PREVIEWS: ${{ secrets.DEPLOY_METHOD_PREVIEWS }}
+    DESTINATIONPATH_PREVIEWS: ${{ secrets.DESTINATIONPATH_PREVIEWS }}
+    SSH_PREVIEWS: ${{ secrets.SSH_PREVIEWS }}
+    SSH_PREVIEWS_PORT: ${{ secrets.SSH_PREVIEWS_PORT }}
 jobs:
     deploy-student-site:
         name: Deploy student site
@@ -15,7 +20,9 @@ jobs:
                 known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
             
             - name: Adding Known Hosts
-              run: ssh-keyscan -p 2222 -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+              run: |
+                ssh-keyscan -p ${{ secrets.SSH_PREVIEWS_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+                chmod 600 ~/.ssh/known_hosts
             
             - uses: actions/checkout@v3
               with:
@@ -38,11 +45,6 @@ jobs:
                 ./test.sh
             
             - name: Run deploy script
-              env:
-                  DEPLOY_METHOD_PREVIEWS: ${{ secrets.DEPLOY_METHOD_PREVIEWS }}
-                  DESTINATIONPATH_PREVIEWS: ${{ secrets.DESTINATIONPATH_PREVIEWS }}
-                  SSH_PREVIEWS: ${{ secrets.SSH_PREVIEWS }}
-                  SSH_PREVIEWS_PORT: ${{ secrets.SSH_PREVIEWS_PORT }}
               run: |
                 chmod +x ./deploy.sh
                 ./deploy.sh

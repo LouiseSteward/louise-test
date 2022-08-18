@@ -63,8 +63,6 @@
 
 echo "Starting deployment..."
 
-set
-
 # Unshallow to get tags
 if [ -f ${HOME}/clone/.git/shallow ];
 then
