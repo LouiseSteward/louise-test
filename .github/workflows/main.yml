@@ -34,8 +34,8 @@ jobs:
             
             - name: Run test script
               run: |
-                chmod +x test.sh
-                test.sh
+                chmod +x ./test.sh
+                ./test.sh
             
             - name: Run deploy script
               env:
@@ -44,5 +44,5 @@ jobs:
                   SSH_PREVIEWS: ${{ secrets.SSH_PREVIEWS }}
                   SSH_PREVIEWS_PORT: ${{ secrets.SSH_PREVIEWS_PORT }}
               run: |
-                chmod +x deploy.sh
-                deploy.sh
+                chmod +x ./deploy.sh
+                ./deploy.sh

@@ -1,0 +1,13 @@
+---
+layout: trim
+---
+{% include metadata %}
+{% assign available-languages = all-languages | push: language %}
+<IfModule mod_rewrite.c>
+    Options +FollowSymLinks
+    RewriteEngine On
+    RewriteRule ^(.*)index\.html$ {{ site.baseurl }}/? [R=301,L]
+
+    RewriteCond %{QUERY_STRING} ^lang=({{ available-languages | join: "|" }}) [NC]
+    RewriteRule (.*) {{ site.baseurl }}/%1 [R=301,L,QSD]
+</IfModule>

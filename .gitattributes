@@ -1,0 +1,4 @@
+# Enforce line endings on these files
+run-windows.bat eol=crlf
+run-linux.sh eol=lf
+run-mac.command eol=lf
