@@ -1,12 +1,12 @@
 name: Deployment workflow
 on:
     push:
-        tags: "deploy-test*"
+        tags: "preview-deploy-test*"
 jobs:
     deploy-student-site:
         name: Deploy student site
         runs-on: ubuntu-latest
-        if: contains(github.ref, 'tags/deploy-test')
+        if: contains(github.ref, 'tags/preview-deploy-test')
         steps:
             - name: Install SSH Key
               uses: shimataro/ssh-key-action@v2
@@ -34,8 +34,8 @@ jobs:
             
             - name: Run test script
               run: |
-                chmod +x ./test.sh
-                ./test.sh
+                chmod +x test.sh
+                test.sh
             
             - name: Run deploy script
               env:
@@ -44,6 +44,5 @@ jobs:
                   SSH_PREVIEWS: ${{ secrets.SSH_PREVIEWS }}
                   SSH_PREVIEWS_PORT: ${{ secrets.SSH_PREVIEWS_PORT }}
               run: |
-                chmod +x ./deploy.sh
-                printenv
-                ./deploy.sh
+                chmod +x deploy.sh
+                deploy.sh
