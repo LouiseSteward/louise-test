@@ -1,0 +1,35 @@
+name: Check PR build status
+on:
+    pull-request:
+
+jobs:
+    deploy-student-site:
+        name: Build and return exit code
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                fetch-depth: 2
+            
+            - name: Set up Ruby 2.7
+              uses: actions/setup-ruby@v1
+              with:
+                ruby-version: 2.7
+            
+            - name: Install Bundler
+              run: gem install bundler
+            
+            - name: Bundle install
+              run: bundle install
+            
+            - name: Build with Jekyll
+              run: |
+                bundle exec jekyll build
+                if [ $? -eq 0 ] 
+                  then 
+                    echo "Successfully built site" 
+                  else 
+                    echo "Could not build site"
+                fi
